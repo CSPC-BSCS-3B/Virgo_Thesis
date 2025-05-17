@@ -1,0 +1,336 @@
+\glsdefs@newdocentry{gps}%
+{%
+name={\acronymfont {\glsentryshort {gps}}},%
+sort={GPS},%
+type={acronym},%
+first={GPS},%
+firstplural={GPSs},%
+text={GPS},%
+plural={GPSs},%
+description={Global Positioning System},%
+descriptionplural={Global Positioning System},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Global Positioning System},%
+longplural={Global Positioning Systems},%
+short={GPS},%
+shortplural={GPSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ar}%
+{%
+name={\acronymfont {\glsentryshort {ar}}},%
+sort={AR},%
+type={acronym},%
+first={AR},%
+firstplural={ARs},%
+text={AR},%
+plural={ARs},%
+description={Augmented Reality},%
+descriptionplural={Augmented Reality},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Augmented Reality},%
+longplural={Augmented Realitys},%
+short={AR},%
+shortplural={ARs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ai}%
+{%
+name={\acronymfont {\glsentryshort {ai}}},%
+sort={AI},%
+type={acronym},%
+first={AI},%
+firstplural={AIs},%
+text={AI},%
+plural={AIs},%
+description={Artificial Intelligence},%
+descriptionplural={Artificial Intelligence},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Artificial Intelligence},%
+longplural={Artificial Intelligences},%
+short={AI},%
+shortplural={AIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{tip}%
+{%
+name={\acronymfont {\glsentryshort {tip}}},%
+sort={T.I.P.},%
+type={acronym},%
+first={T.I.P.},%
+firstplural={T.I.P.s},%
+text={T.I.P.},%
+plural={T.I.P.s},%
+description={Technological Institute of the Philippines},%
+descriptionplural={Technological Institute of the Philippines},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Technological Institute of the Philippines},%
+longplural={Technological Institute of the Philippiness},%
+short={T.I.P.},%
+shortplural={T.I.P.s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{dmmmsu}%
+{%
+name={\acronymfont {\glsentryshort {dmmmsu}}},%
+sort={DMMMSU},%
+type={acronym},%
+first={DMMMSU},%
+firstplural={DMMMSUs},%
+text={DMMMSU},%
+plural={DMMMSUs},%
+description={Don Mariano Marcos Memorial State University},%
+descriptionplural={Don Mariano Marcos Memorial State University},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Don Mariano Marcos Memorial State University},%
+longplural={Don Mariano Marcos Memorial State Universitys},%
+short={DMMMSU},%
+shortplural={DMMMSUs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cspc}%
+{%
+name={\acronymfont {\glsentryshort {cspc}}},%
+sort={CSPC},%
+type={acronym},%
+first={CSPC},%
+firstplural={CSPCs},%
+text={CSPC},%
+plural={CSPCs},%
+description={Camarines Sur Polytechnic Colleges},%
+descriptionplural={Camarines Sur Polytechnic Colleges},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Camarines Sur Polytechnic Colleges},%
+longplural={Camarines Sur Polytechnic Collegess},%
+short={CSPC},%
+shortplural={CSPCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cnn}%
+{%
+name={\acronymfont {\glsentryshort {cnn}}},%
+sort={CNN},%
+type={acronym},%
+first={CNN},%
+firstplural={CNNs},%
+text={CNN},%
+plural={CNNs},%
+description={Convolutional Neural Networks},%
+descriptionplural={Convolutional Neural Networks},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Convolutional Neural Networks},%
+longplural={Convolutional Neural Networkss},%
+short={CNN},%
+shortplural={CNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{lstm}%
+{%
+name={\acronymfont {\glsentryshort {lstm}}},%
+sort={LSTM},%
+type={acronym},%
+first={LSTM},%
+firstplural={LSTMs},%
+text={LSTM},%
+plural={LSTMs},%
+description={Long Short-Term Memory},%
+descriptionplural={Long Short-Term Memory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Long Short-Term Memory},%
+longplural={Long Short-Term Memorys},%
+short={LSTM},%
+shortplural={LSTMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ml}%
+{%
+name={\acronymfont {\glsentryshort {ml}}},%
+sort={ML},%
+type={acronym},%
+first={ML},%
+firstplural={MLs},%
+text={ML},%
+plural={MLs},%
+description={Machine Learning},%
+descriptionplural={Machine Learning},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Machine Learning},%
+longplural={Machine Learnings},%
+short={ML},%
+shortplural={MLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cv}%
+{%
+name={\acronymfont {\glsentryshort {cv}}},%
+sort={CV},%
+type={acronym},%
+first={CV},%
+firstplural={CVs},%
+text={CV},%
+plural={CVs},%
+description={Computer Vision},%
+descriptionplural={Computer Vision},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Computer Vision},%
+longplural={Computer Visions},%
+short={CV},%
+shortplural={CVs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{rnn}%
+{%
+name={\acronymfont {\glsentryshort {rnn}}},%
+sort={RNN},%
+type={acronym},%
+first={RNN},%
+firstplural={RNNs},%
+text={RNN},%
+plural={RNNs},%
+description={Recurrent Neural Networks},%
+descriptionplural={Recurrent Neural Networks},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Recurrent Neural Networks},%
+longplural={Recurrent Neural Networkss},%
+short={RNN},%
+shortplural={RNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{svm}%
+{%
+name={\acronymfont {\glsentryshort {svm}}},%
+sort={SVM},%
+type={acronym},%
+first={SVM},%
+firstplural={SVMs},%
+text={SVM},%
+plural={SVMs},%
+description={Support Vector Machines},%
+descriptionplural={Support Vector Machines},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Support Vector Machines},%
+longplural={Support Vector Machiness},%
+short={SVM},%
+shortplural={SVMs},%
+counter={page},%
+parent={},%
+%
+}%
+
