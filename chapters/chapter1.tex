@@ -1,17 +1,15 @@
 
 \chapter{Introduction}
-
+\begin{refsection}
 
 \hspace{1cm}This chapter provides an overview of the study, covering the challenges of the campus library, the study’s objectives, and its significance. It defines the problem, outlines research goals, and highlights the proposed system’s potential impact. The scope and limitations clarify its boundaries, while the project dictionary and notes offer essential terms and supporting details. 
 
-\begin{refsection}
 \section{Background of the Problem}
 \hspace{1cm}Large Language Models (LLMs) such as OpenAI's ChatGPT \cite{achiam2023gpt}  and Deepseek \cite{guo2025deepseek} have made significant advancements in Natural Language Processing (NLP) by excelling in diverse applications such as conversational chatbots, text summarization \cite{lewis2019bart}, and code summarization and generation \cite{nijkamp2022codegen,chen2021evaluating}
  In addition, these advancements have benefited various fields, including academic research. However, LLM responses can depend heavily on the data on which the model was trained, and they cannot retrieve real-time or external information beyond their pre-trained knowledge. This makes them less effective for tasks that require up-to-date, specific institutional data, such as retrieving current academic resources in university libraries \cite{liu2024information}.
 
 \bigbreak
 \hspace{0.4cm}Writing an academic paper requires a deep understanding of the subject and a significant amount of related literature for credible evidence, which can be challenging and time-consuming \cite{khalifa2024using}. It is essential to first visit the university library to search and gather existing related literature significant to the researcher’s study.  However, most libraries today still operate in traditional, non-digital formats where materials are only accessible on-site, making the process of finding and retrieving resources more difficult. Furthermore, some school libraries offer limited access and prohibit users from taking home thesis papers. These challenges significantly delay the progress of future academic research due to limited access to relevant literature in university libraries \cite{prajapat2022comparative}. 
-
 
 \bigbreak
 \hspace{0.4cm}To address retrieval issues, several universities in the Philippines have recognized the importance of adopting digital archiving systems to improve academic access. This becomes more evident in the last previous year before covid-19 pandemic, when researchers were unable to access library resources, prompting libraries to adapt and make resources accessible even remotely. However, digitalization alone does not fully solve the problem \cite{aydin2021comparing, lagas2023challenges, prajapat2022comparative}. Unfortunately, most digitalized libraries today still use outdated search systems that need an exact keyword search, which can result in irrelevant materials \cite{setiyani2023increasing}. The current search mechanism of this digital archives including the Camarines Sur Polytechnic Colleges (CSPC) library still heavily depends on traditional keyword-matching algorithms. If users do not input the exact title or precise keywords, the system returns "not found" even when relevant content exists. This limitation highlights a deeper issue in search functionality, where vague or topic-based queries cannot retrieve appropriate materials, thereby hindering access to valuable research. This inefficiency in retrieval presents a serious barrier for the academe community,  particularly when conducting time-sensitive or exploratory academic work.
@@ -25,29 +23,6 @@
 \bigbreak
 \hspace{0.4cm}This thesis proposes an enhanced LLM-powered chatbot with the integration of the Retrieval-Augmented Generation (RAG) technique to improve information retrieval, especially in literature search and thesis retrieval of university-owned thesis PDFs at the Camarines Sur Polytechnic Colleges (CSPC) Library. This chatbot application will generate answers and retrieve relevant documents based on the user's prompt.
 
-% \begin{figure}[ht]
-%     \centering
-% 	\includegraphics[width=0.85\textwidth]{figures/sampleFig1.jpg} 
-% 	\caption[Barred spiral galaxy NGC 1300]{Barred spiral galaxy NGC 1300 photographed by Hubble telescope. While the galaxy in the photo is not our sun, it does emit light, much like our sun. Image credit: NASA.}
-% 	\label{fig:firstFig}
-% \end{figure}
-
-% The stars in the sky are of particular interest to the aptly named , which in many recent experiments has shown promising results in converting this energy in a non-photoelectric sense into usable energy \cite{ssdsdsd_solid_2012}. Interestingly, \gls{starlabs} has theorized that the famous superhero known as ``Superman'' converts the light from our sun, which grants his fantastic abilities. There are many methods in industry for converting the sun's energy (of about \SI{1000}{\watt\per\meter\squared}) into electrical energy. Some of these are highlighted in \ref{tbl:sampleTbl1} \cite{noauthor_techopedia_nodate}.
-
-% \begin{table}[ht]
-% \centering
-% \caption{This is a table}
-% \label{tbl:sampleTbl1}
-% \resizebox{0.8\textwidth}{!}{%
-% \begin{tabular}{llll}
-% \hline
-% installation & type & capacity (GW) & location \\ \hline
-% Longyangxia Dam & photovoltaic & 0.85 & China \\
-% Gansu Wind Farm & wind & 6 & China \\
-% Sihwa Lake & tidal & 0.254 & South Korea \\ \hline
-% \end{tabular}%
-% }
-% \end{table}
 
 \section{Statement of the Problem}
 
