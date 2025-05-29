@@ -1,4 +1,3 @@
-
 \documentclass[12pt]{cspcccsthesis}
 % preamble
 \usepackage{indentfirst}
@@ -16,7 +15,7 @@
 \committeeMemberTwo{Tiffany Lyn O. Pandes, MSc}
 \committeeChair{Joseph Jessie S. Oñate, MSc}
 \department{}
-\thesisAbstract{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque hendrerit fringilla. Vestibulum nec nibh nisi. Curabitur iaculis est lorem, vehicula consectetur erat ullamcorper eget. Aliquam cursus mollis pretium. Fusce bibendum ornare nisl quis dictum. Curabitur tincidunt euismod erat, fringilla elementum ex blandit in. Nunc pretium libero non bibendum egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam vitae porttitor eros. Suspendisse pretium feugiat dui, sed posuere erat porta eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque hendrerit fringilla. Vestibulum nec nibh nisi. Curabitur iaculis est lorem, vehicula consectetur erat ullamcorper eget. Aliquam cursus mollis pretium. Fusce bibendum ornare nisl quis dictum. Curabitur tincidunt euismod erat, fringilla elementum ex blandit in. Nunc pretium libero non bibendum egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam vitae porttitor eros. Suspendisse pretium feugiat dui, sed posuere erat porta eu}
+\thesisAbstract{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque hendrerit fringilla. Vestibulum nec nibh nisi. Curabitur iaculis est lorem, vehicula consectetur erat ullamcorper eget. Aliquam cursus mollis pretium. Fusce bibendum ornare nisl quis dictum. Curabitur tincidunt euismod erat, fringilla elementum ex blandit in. Nunc pretium libero non bibendum egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam vitae porttitor eros. Suspendisse pretium feugiat dui, sed posuere erat porta eu.}
 \keywords{amet, consectetur, adipisci velit}
 
 % document body
@@ -24,27 +23,31 @@
 
 \makeTitlePage{May}{2025}
 
-\begin{frontmatter}
-    \input{approvalPage.tex}
-    \makePanelofExaminers{90}
-    \makeDedication{Ad Majorem Dei Gloriam}
-    \input{acknowledgments}
-    \makeAbstract
-    \makeTOC
-    \makeListOfTables
-    \makeListOfFigures
-    \input{abbrevs.tex}
-\end{frontmatter}
+% \begin{frontmatter}
+%     \input{approvalPage.tex}
+%     \makePanelofExaminers{90}
+%     \makeDedication{Ad Majorem Dei Gloriam}
+%     \input{acknowledgments}
+%     \makeAbstract
+%     \makeTOC
+%     \makeListOfTables
+%     \makeListOfFigures
+%     \input{abbrevs.tex}
+% \end{frontmatter}
 
 \begin{thesisbody}
     \input{chapters/chapter1}
     \input{chapters/chapter2}
-    \input{chapters/chapter3}
-    \input{chapters/chapter4}
-    \input{chapters/chapter5.tex}
+    \input{chapters/chapter3.tex}
+
+    % Required: Bibliography (for citation references)
     \makeBibliography
-    \input{chapters/appendix.tex}
-    \input{vita}
+
+    % Not needed for the first semester — Commented out
+    % \input{chapters/chapter4}
+    % \input{chapters/chapter5.tex}
+    % \input{chapters/appendix.tex}
+    % \input{vita}
 \end{thesisbody}
 
 \end{document}
