@@ -2,7 +2,7 @@
 \chapter{Methodology}
 \begin{refsection}
  
-This chapter presents the systematic methodology that will be employes to develop and evaluate the Retrieval-Augmented Generation (RAG)- based Large Language Model (LLM) chatbot system for literature search and thesis retrieval in the CSPC Library. The methodology includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
+This chapter presents the systematic methodology that will be employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system for literature search and thesis retrieval in the CSPC Library. The methodology includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
 
 \section{Research Design}
 
@@ -24,7 +24,7 @@ The system will incorporate the functionalities of:
 
 These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
 
-The system will be developed using Streamlit, which allows rapid deployment of an interactive user interface. The backend combines vector databases and transformer-based LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources.
+The system will be developed using Streamlit, which allows rapid deployment of an interactive user interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources.
 
 \section{Theorems, Algorithms, and Mathematical Models}
 
@@ -49,35 +49,25 @@ The chatbot’s RAG pipeline, as illustrated in Figure~\ref{fig:rag}, consists o
 \begin{itemize}
     \item \textbf{Document Preparation} – Thesis documents will be collected and preprocessed into smaller, semantically coherent chunks.
     \item \textbf{Embedding Generation} – Each chunk will be converted into a dense vector using a transformer-based embedding model.
-    \item \textbf{Vector Database Integration} – These vectors will be stored in a vector database (e.g., ChromaDB) to enable efficient similarity search.
+    \item \textbf{Vector Database Integration} – These vectors will be stored in a vector database (e.g., FAISS) to enable efficient similarity search.
 \end{itemize}
 
 \subsubsection*{B. Retrieval and Generation}
 \begin{itemize}
-    \item \textbf{Query Processing} – When a user submits a query, it will be embedded into a vector representation.
+    \item \textbf{Query Processing} – When a user submits a query, it will be embedded into a vector representation using the Gemini embedding model (gemini-embedding-001).
     \item \textbf{Similarity Matching} – The system will retrieve the top-K most semantically similar document chunks using cosine similarity.
-    \item \textbf{Contextual Generation} – The retrieved chunks will be passed to DeepSeek-R1 as context, and the model will generate a relevant, factual response.
+    \item \textbf{Contextual Generation} – The retrieved chunks will be passed to the Gemini 2.5-flash language model as context, and the model will generate a relevant, factual response.
 \end{itemize}
+
 
 \subsection{Large Language Model}
 
-Large Language Models (LLMs) are cutting-edge artificial intelligence systems capable of processing and generating coherent text. These models are built on the transformer architecture, trained on massive corpora, and have demonstrated effectiveness across NLP tasks such as summarization, question answering, information retrieval, and dialogue systems \citeauthor{naveed2024} \citeyear{naveed2024}. In this study, the system will use an LLM to synthesize retrieved academic content with its internal knowledge to generate responses tailored to user queries.
+Large Language Models (LLMs) are cutting-edge artificial intelligence systems capable of processing and generating coherent text. These models are built on advanced neural architectures, trained on massive corpora, and have demonstrated effectiveness across NLP tasks such as summarization, question answering, information retrieval, and dialogue systems \citeauthor{naveed2024} \citeyear{naveed2024}. In this study, the system will use the Gemini 2.5-flash LLM to synthesize retrieved academic content with its internal knowledge to generate responses tailored to user queries.
 
-\subsubsection*{DeepSeek-R1}
 
-The LLM that will be utilized in this project is \textbf{DeepSeek-R1}, a model designed to enhance logical reasoning through reinforcement learning. It builds upon the DeepSeek-V3 Base, which is pre-trained on large-scale text and code datasets. DeepSeek-R1 introduces several innovations that the system will leverage, including rule-based rewards to improve logical coherence in responses, and rejection sampling to filter out low-quality outputs \cite{deepseekai2025deepseekr1}.
+\subsubsection*{Gemini 2.5-flash}
 
-\newpage
-\clearpage
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/deepsek.png}
-    \caption{DeepSeek-R1 Training Pipeline}
-    \label{fig:deepseek_pipeline}
-\end{figure}
-
-While the DeepSeek-R1 model shown in Figure~\ref{fig:deepseek_pipeline} will serve as the generative backbone of the chatbot, this study will not involve the training of new LLMs. Instead, it will integrate the pre-trained model into an RAG framework to augment domain-specific information retrieval for CSPC Library users.
+The LLM that will be utilized in this project is \textbf{Gemini 2.5-flash}, a model designed for high accuracy and efficiency in natural language understanding and generation. Gemini 2.5-flash is optimized for real-time applications and excels at providing factually accurate, contextually relevant responses. The system will integrate this pre-trained model into the RAG framework to augment domain-specific information retrieval for CSPC Library users.
 
 \section{Materials and Statistical Tools}
 
@@ -99,7 +89,10 @@ To ensure optimal performance of the RAG-based LLM system, several key hardware 
     \end{tabular}
 \end{table}
 
-A modern multi-core CPU enables efficient data processing and model inference, ensuring smooth query execution. At least 16 GB of RAM is recommended to manage large-scale embeddings and real-time retrieval operations effectively. A 1 TB SSD is preferred due to its high read/write speeds, which significantly enhance data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
+A modern multi-core CPU enables efficient data processing and model inference, ensuring smooth query execution. At least 16 GB of RAM is recommended to manage large-scale embeddings and real-time retrieval operations effectively. 
+\newpage
+\clearpage
+A 1 TB SSD is preferred due to its high read/write speeds, which significantly enhance data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
 
 
 \subsubsection*{Software}
@@ -112,24 +105,28 @@ A modern multi-core CPU enables efficient data processing and model inference, e
         \hline
         \textbf{Component}              & \textbf{Specification}                        \\ \hline
         Programming Language            & Python 3.10+                                  \\
-        Vector Database                 & ChromaDB                                      \\
-        Language Model                  & DeepSeek-R1                                   \\
-        Embedding Model                 & DeepSeek Embedding                            \\
+        Vector Database                 & e.g. FAISS                                         \\
+        Language Model                  & Gemini 2.5-flash                                       \\
+        Embedding Model                 & gemini-embedding-001                            \\
         Web Framework                   & Streamlit                                     \\
         Libraries                       & \begin{tabular}[c]{@{}l@{}}LangChain\\ PyMuPDF\\ NumPy\\ PyPDFLoader\end{tabular}   \\
         \hline
     \end{tabular}
 \end{table}
 
-Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. ChromaDB is used as the vector database to facilitate fast and accurate semantic search. The system leverages DeepSeek-R1 (deployed locally via Ollama) as its LLM, which ensures data privacy during query generation. DeepSeek Embedding transforms preprocessed text chunks into semantically rich vector representations.
+Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS is used as the vector database to facilitate fast and accurate semantic search. The system leverages Gemini 2.5-flash (deployed locally via Ollama) as its LLM, which ensures data privacy during query generation. gemini-embedding-001 transforms preprocessed text chunks into semantically rich vector representations. The Streamlit framework is used to build an interactive user interface, allowing seamless user interactions.
 
-The Streamlit framework is used to build an interactive user interface, allowing seamless user interactions. Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
+\newpage
+\clearpage
+Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
 
 \section{Instruments}
 
-The instruments that will be utilized in this study will include a curated dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset will consist of all available PDF thesis documents sourced from the CSPC Library, which will be parsed using the PyMuPDF library for text extraction. These documents will undergo preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using \textit{DeepSeek Embedding}, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
 
-The vectorized representations of these chunks will then be stored in \textit{ChromaDB}, an open-source vector database optimized for fast similarity search and retrieval, which is vital for the implementation of the RAGAS framework~\cite{trychroma2023chroma}.
+The instruments that will be utilized in this study will include a curated dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset will consist of all available PDF thesis documents sourced from the CSPC Library, which will be parsed using the PyMuPDF library for text extraction. These documents will undergo preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using \textit{gemini-embedding-001}, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
+
+
+The vectorized representations of these chunks will then be stored in \textit{FAISS}, an open-source vector database optimized for fast similarity search and retrieval, which is vital for the implementation of the RAGAS framework~\cite{trychroma2023chroma}.
 
 To assess both technical and user-centered performance, multiple evaluation instruments will be employed. A user questionnaire will be used to gather feedback on usability, accuracy, and overall satisfaction, applying a 5-point Likert scale for consistent measurement.
 
@@ -161,8 +158,8 @@ PDF thesis documents will be gathered from CSPC Library’s digital archives, fo
 
 \subsection*{Indexing and Vector Embedding}
 \begin{itemize}
-    \item \textbf{Vector Embedding:} Each text chunk will be embedded using DeepSeek Embeddings.
-    \item \textbf{Database Construction:} ChromaDB will store the vectorized content along with metadata such as document titles, authors, and section headers.
+    \item \textbf{Vector Embedding:} Each text chunk will be embedded using gemini-embedding-001.
+    \item \textbf{Database Construction:} FAISS will store the vectorized content along with metadata such as document titles, authors, and section headers.
 \end{itemize}
 
 \subsection*{Query Handling and Semantic Retrieval}
@@ -175,7 +172,7 @@ PDF thesis documents will be gathered from CSPC Library’s digital archives, fo
 The retrieved chunks will be concatenated with the user query to create an augmented prompt, providing contextual grounding for accurate response generation.
 
 \subsection*{Response Generation}
-The DeepSeek-R1 language model will process the augmented input to generate a response that is factually aligned with the source documents.
+The Gemini 2.5-flash language model will process the augmented input to generate a response that is factually aligned with the source documents.
 
 \subsection*{Output Presentation}
 The system will display the generated response via a user interface that includes metadata such as the source thesis title and section, encouraging transparency and academic integrity.
@@ -211,6 +208,8 @@ This metric evaluates the proportion of retrieved chunks that are relevant to th
     \item $K$ is the total number of retrieved chunks in the top-K results.
 \end{itemize}
 
+\newpage
+\clearpage
 \subsection*{Context Recall}
 
 Context Recall evaluates how effectively the system retrieves all relevant chunks from the dataset. This metric measures the proportion of relevant chunks successfully obtained, ensuring a comprehensive retrieval process that is essential for academic research tasks~\cite{danter2024advanced}.
@@ -232,6 +231,8 @@ Context Recall evaluates how effectively the system retrieves all relevant chunk
     \item \textbf{Total number of claims in the reference:} Total number of relevant factual claims that should ideally be retrieved to answer the query comprehensively.
 \end{itemize}
 
+\newpage
+\clearpage
 \subsection*{Faithfulness}
 
 Faithfulness assesses the factual accuracy and fidelity of the generated responses in relation to the retrieved content. It measures whether the generated answer remains grounded in the context retrieved from source documents~\cite{lin2024satisfaction}. In the CSPC Library RAG-based system, this ensures academic integrity and minimizes misinformation in automated answers.
@@ -253,9 +254,14 @@ Faithfulness assesses the factual accuracy and fidelity of the generated respons
     \item \textbf{Total number of claims in the response:} The complete count of all claims made in the response, whether supported or unsupported by the context.
 \end{itemize}
 
+
 \section{Conceptual Framework}
 
-The conceptual framework will serve as the foundational blueprint for the RAG-based chatbot system. It will emphasize the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in Figure~\ref{fig:conceptual_framework}, the system will follow a cyclical process beginning with data collection and ending with system evaluation and refinement. In Figure~\ref{fig:conceptual_framework}, the arrows are used solely to visually indicate the step-by-step flow of each component within the chatbot framework; they do not signify any technical operation or special relationship beyond showing the direction of the process. This visualization helps guide readers through the sequence of the system stages, ensuring clarity at the outset.
+The conceptual framework will serve as the foundational blueprint for the RAG-based chatbot system. It will emphasize the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in Figure~\ref{fig:conceptual_framework}, the system will follow a cyclical process beginning with data collection and ending with system evaluation and refinement.
+In Figure~\ref{fig:conceptual_framework}, the arrows are used solely to visually indicate the step-by-step flow of each component within the chatbot framework; they do not signify any technical operation or special relationship beyond showing the direction of the process. 
+\newpage
+\clearpage
+This visualization helps guide readers through the sequence of the system stages, ensuring clarity at the outset.
 
 \begin{figure}[H]
     \centering
@@ -268,15 +274,18 @@ The process will begin with \textbf{data collection}, where PDF-format academic 
 
 In the \textbf{data pre-processing} phase, tools like PyMuPDF will be used to extract plain text from the collected PDFs. The extracted content will undergo cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
 
-Next, the system will perform \textbf{model training}, where embedding models such as DeepSeek Embeddings will be used to transform the text chunks into vector representations. These embeddings will preserve the semantic meaning of the documents and prepare them for storage and retrieval.
+Next, the system will perform \textbf{model training}, where embedding models such as gemini embeddings will be used to transform the text chunks into vector representations.
+
+
+These embeddings will preserve the semantic meaning of the documents and prepare them for storage and retrieval.
 
 The \textbf{input sampling} stage will support the gathering and simulation of user queries. These sample inputs will reflect typical academic inquiries posed by students when searching for specific thesis content.
 
 In the \textbf{input pre-processing} phase, user queries will be tokenized and encoded using the same embedding model applied during training. This will enable semantic similarity comparison between the user query and the pre-embedded document vectors.
 
-The system will then proceed to \textbf{location mapping}, which will correspond to the semantic search function performed using ChromaDB. Here, the system will retrieve the top-K most relevant document chunks by measuring vector similarity.
+The system will then proceed to \textbf{location mapping}, which will correspond to the semantic search function performed using FAISS. Here, the system will retrieve the top-K most relevant document chunks by measuring vector similarity.
 
-During \textbf{model inference}, an augmented input will be created by combining the user query with the retrieved chunks. This augmented prompt will be forwarded to a generative language model (e.g., DeepSeek-R1) to produce a contextually grounded response aligned with the original academic documents.
+During \textbf{model inference}, an augmented input will be created by combining the user query with the retrieved chunks. This augmented prompt will be forwarded to a generative language model (e.g., Gemini 2.5-flash) to produce a contextually grounded response aligned with the original academic documents.
 
 Finally, \textbf{performance evaluation} will be conducted using a dual-layer assessment. System-level performance will be measured using the RAGAS framework with metrics such as Context Precision, Context Recall, and Faithfulness. In parallel, a user-centered evaluation will be carried out using a structured Likert-scale questionnaire to assess usability, relevance, and satisfaction.
 
