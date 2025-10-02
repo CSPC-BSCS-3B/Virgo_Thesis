@@ -189,78 +189,101 @@ The system will display the generated response via a user interface that include
 
 \subsection*{Context Precision}
 
-This metric evaluates the proportion of retrieved chunks that are relevant to the user’s query. A high context precision score in the CSPC Library RAG-based system indicates that the system retrieves thesis content closely aligned with student queries, ensuring efficient and meaningful academic assistance during literature searches.
+The Context Precision metric is used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measures the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicates that the system effectively prioritizes relevant information for the user.
 
-% \begin{equation}
-% \text{Precision@K} = \frac{1}{K} \sum_{k=1}^{K} v_k
-% \end{equation}
-
-\begin{figure}[H]
+\begin{equation}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/context_precision_formula.png}
-\caption{Formula for Context Precision}
-\label{fig:context_precision}
-\end{figure}
+\text{Context Precision@K} = 
+\frac{
+    \sum_{k=1}^{K} \left( \text{Precision@k} \times v_k \right)
+}{
+    \text{Total number of relevant items in the top } K \text{ results}
+}
+\end{equation}
 
-\noindent Where:
-\begin{itemize}
-    \item $v_k \in \{0,1\}$ is the relevance indicator at rank $k$: $v_k = 1$ if the chunk at position $k$ is relevant; otherwise, $v_k = 0$.
-    \item $K$ is the total number of retrieved chunks in the top-K results.
-\end{itemize}
+where $\text{Precision@k}$ is the precision at rank $k$, and $v_k$ is a binary indicator variable such that $v_k = 1$ if the chunk at position $k$ is relevant, and $v_k = 0$ otherwise. Here, $K$ indicates the cutoff for the top results evaluated. The denominator normalizes the metric by accounting for the total number of relevant items within the top $K$ retrieved results. This weighted approach ensures that relevant items retrieved earlier in the ranking contribute more significantly to the final score, making the metric especially meaningful for library retrieval tasks.
+
+The precision at each position $k$, denoted as Precision@k, is computed as follows:
+
+\begin{equation}
+\centering
+\text{Precision@k} = 
+\frac{
+    \text{true positives@k}
+}{
+    \text{true positives@k} + \text{false positives@k}
+}
+\end{equation}
+
+where $\text{true positives@k}$ is the number of relevant chunks retrieved up to position $k$, and $\text{false positives@k}$ is the number of non-relevant chunks retrieved up to the same position. This component metric quantifies retrieval accuracy at each rank and serves as a foundation for the overall Context Precision@K calculation.
 
 \newpage
 \clearpage
 \subsection*{Context Recall}
 
-Context Recall evaluates how effectively the system retrieves all relevant chunks from the dataset. This metric measures the proportion of relevant chunks successfully obtained, ensuring a comprehensive retrieval process that is essential for academic research tasks~\cite{danter2024advanced}.
+Context Recall is used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measures the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
 
-% \begin{equation}
-% \text{Recall} = \frac{\text{Number of reference claims supported by retrieved context}}{\text{Total number of reference claims}}
-% \end{equation}
-
-\begin{figure}[H]
+\begin{equation}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/context_recall_formula.png}
-\caption{Formula for Context Recall}
-\label{fig:context_recall}
-\end{figure}
+\text{Context Recall} = \frac{\text{Number of relevant claims supported by retrieved chunks}}{\text{Total number of relevant claims in the reference answer}}
+\end{equation}
 
-\noindent Where:
+where:
 \begin{itemize}
-    \item \textbf{Number of claims in the reference supported by the retrieved context:} Total number of factual claims from the reference answer that appear in the retrieved chunks.
-    \item \textbf{Total number of claims in the reference:} Total number of relevant factual claims that should ideally be retrieved to answer the query comprehensively.
+    \item \textit{Number of relevant claims supported by retrieved chunks} refers to the count of factual claims in the ground truth answer that can be attributed to the retrieved document chunks,
+    \item \textit{Total number of relevant claims in the reference answer} represents all the factual claims present in the ground truth answer that ideally should be covered by the retrieval process.
 \end{itemize}
+
+This metric captures how effectively the system covers the necessary knowledge, with a value ranging between 0 and 1, where 1 indicates perfect recall. It ensures that critical academic information is not missed during retrieval, making it an essential part of evaluating the RAG chatbot system.
+
+\newpage
+\clearpage
+\subsection*{Response Relevance}
+
+Response Relevance is a critical metric used to evaluate how well the RAG chatbot's generated answer addresses the specific query posed by users in the CSPC Library. This metric ensures that the chatbot provides focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
+
+\begin{equation}
+\centering
+\text{Response Relevance} = \frac{1}{N} \sum_{i=1}^{N} \cos(E_{g_i}, E_o)
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $N$ is the number of artificially generated questions based on the response (typically 3),
+    \item $E_{g_i}$ is the embedding of the $i$-th generated question derived from the response,
+    \item $E_o$ is the embedding of the original user query,
+    \item $\cos(E_{g_i}, E_o)$ represents the cosine similarity between the generated question embedding and the original query embedding.
+\end{itemize}
+
+This metric works on the idea that if the chatbot's response sufficiently answers the original query, then questions generated from that response will semantically align with the original question, this involves generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensures that the retrieved academic information closely matches the research needs of CSPC Library users.
 
 \newpage
 \clearpage
 \subsection*{Faithfulness}
 
-Faithfulness assesses the factual accuracy and fidelity of the generated responses in relation to the retrieved content. It measures whether the generated answer remains grounded in the context retrieved from source documents~\cite{lin2024satisfaction}. In the CSPC Library RAG-based system, this ensures academic integrity and minimizes misinformation in automated answers.
+Faithfulness is a critical metric for evaluating the factual consistency of the RAG chatbot's generated responses with respect to the retrieved context from the CSPC Library. This metric ensures that all claims made in the chatbot's answer are directly supported by the information present in the retrieved documents, thereby minimizing hallucinations and maintaining academic integrity.
 
-% \begin{equation}
-% \text{Faithfulness} = \frac{\text{Number of claims in response supported by retrieved context}}{\text{Total number of claims in response}}
-% \end{equation}
-
-\begin{figure}[H]
+\begin{equation}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/faithfulness_formula.png}
-\caption{Formula for Faithfulness}
-\label{fig:faithfulness}
-\end{figure}
+\text{Faithfulness} = \frac{\text{Number of claims in the response supported by retrieved context}}{\text{Total number of claims in the response}}
+\end{equation}
 
-\noindent Where:
+where:
 \begin{itemize}
-    \item \textbf{Number of claims in the response supported by retrieved context:} The total number of claims in the response that can be directly inferred or verified from the retrieved context.
-    \item \textbf{Total number of claims in the response:} The complete count of all claims made in the response, whether supported or unsupported by the context.
+\item \textit{Number of claims in the response supported by retrieved context} refers to the count of factual statements in the generated answer that can be directly verified or inferred from the retrieved context chunks,
+\item \textit{Total number of claims in the response} is the complete count of all factual statements made in the answer, regardless of whether they are supported by the context.
 \end{itemize}
 
+A faithfulness score of $1.0$ indicates that all claims in the response are grounded in the retrieved context, while lower scores reveal the presence of unsupported or hallucinated information. In the context of academic literature search and thesis retrieval, maintaining high faithfulness is essential to ensure that the chatbot's answers are trustworthy and factually accurate, directly reflecting the content of the CSPC Library's resources.
 
+
+\newpage
+\clearpage
 \section{Conceptual Framework}
 
 The conceptual framework will serve as the foundational blueprint for the RAG-based chatbot system. It will emphasize the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in Figure~\ref{fig:conceptual_framework}, the system will follow a cyclical process beginning with data collection and ending with system evaluation and refinement.
 In Figure~\ref{fig:conceptual_framework}, the arrows are used solely to visually indicate the step-by-step flow of each component within the chatbot framework; they do not signify any technical operation or special relationship beyond showing the direction of the process. 
-\newpage
-\clearpage
+
 This visualization helps guide readers through the sequence of the system stages, ensuring clarity at the outset.
 
 \begin{figure}[H]
@@ -287,9 +310,7 @@ The system will then proceed to \textbf{location mapping}, which will correspond
 
 During \textbf{model inference}, an augmented input will be created by combining the user query with the retrieved chunks. This augmented prompt will be forwarded to a generative language model (e.g., Gemini 2.5-flash) to produce a contextually grounded response aligned with the original academic documents.
 
-Finally, \textbf{performance evaluation} will be conducted using a dual-layer assessment. System-level performance will be measured using the RAGAS framework with metrics such as Context Precision, Context Recall, and Faithfulness. In parallel, a user-centered evaluation will be carried out using a structured Likert-scale questionnaire to assess usability, relevance, and satisfaction.
-
-This framework will ensure that each component of the RAG-based chatbot system will operate in coordination, contributing to a reliable and academically useful tool for thesis retrieval and literature assistance.
+Finally, \textbf{performance evaluation} will be conducted using a dual-layer assessment. System-level performance will be measured using the RAGAS framework with metrics such as Context Precision, Context Recall, and Faithfulness. This framework will ensure that each component of the RAG-based chatbot system will operate in coordination, contributing to a reliable and academically useful tool for thesis retrieval and literature assistance.
 
 %=======================================================%
 %%%%% Do not delete this part %%%%%%
