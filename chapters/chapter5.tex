@@ -1,40 +1,30 @@
+\chapter{Summary of Findings, Conclusions, and Recommendations}
 
-\chapter{Summary of Findings, Conclusion and Recommendations}
-\begin{refsection}
-In this chapter, the RAG Chatbot for Efficient Literature Search and Thesis Retrieval in the CSPC Library is discussed. The information presented in this chapter is entirely based on the data that were gathered during the data collection and system development processes. The purpose of this chapter is to provide a summary of the results, conclusions, and research recommendations for additional study.
+\section*{Summary}
+This chapter presents a synthesis of the research findings, conclusions drawn from the evaluation of the RAG-based chatbot for literature search and thesis retrieval in the CSPC Library, and recommendations for future work. The study addressed the limitations of traditional keyword-based search systems in academic libraries by developing a Retrieval-Augmented Generation (RAG) chatbot, which leverages semantic search and large language models to provide more accurate and contextually relevant responses to user queries.
 
-\section{Summary}
-The RAG-based chatbot for efficient literature search and thesis retrieval in the CSPC Library was successfully developed and evaluated as part of this project. The system integrates Retrieval-Augmented Generation (RAG) techniques with vector embeddings and the Google Gemini large language model to enable semantic search, providing more accurate and contextually relevant results compared to traditional keyword-based search methods. The development process included modules for document ingestion, preprocessing, indexing, and storage, which ensured that the thesis repository was machine-readable and well-structured. The user interface was designed to be intuitive and user-friendly, allowing users to easily interact with the chatbot and retrieve relevant theses based on their queries. The system was evaluated through a series of tests, including accuracy, response time, which demonstrated its effectiveness in improving literature search and thesis retrieval processes.
+The system was evaluated using four key metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. The evaluation process involved the ingestion and semantic indexing of 200 undergraduate thesis PDFs, followed by rigorous testing of the chatbot’s ability to retrieve and generate factually grounded responses. The results, visualized through comprehensive dashboards, demonstrated the system’s strengths in precision and relevancy, while also highlighting areas for improvement in recall and faithfulness.
 
-\section{Findings}
-Based on the results and discussions presented in Chapter 4, the following findings were derived from the
+\section*{Findings}
 \begin{enumerate}
-    \item Successful Document Ingestion and Preprocessing
-The system effectively ingested and preprocessed all available thesis PDFs collected from the CSPC Library. Metadata such as page numbers, file names, and headings were preserved, ensuring academic integrity and accurate referencing of documents. This guaranteed that the repository was machine-readable and ready for retrieval operations.
-    \item Efficient Indexing and Storage
-The use of vector embeddings and a vector database allowed for efficient indexing and storage of the preprocessed thesis documents. This enabled fast and accurate retrieval of relevant documents based on semantic similarity, significantly improving the search experience for users.
-    \item Improved Query Handling and Response Generation
-The integration of the Google Gemini large language model with the RAG framework allowed for effective query handling and response generation. The chatbot was able to understand user queries in natural language and provide contextually relevant responses, enhancing the overall user experience.
-    \item User-Friendly Interface
-The user interface was designed to be intuitive and easy to navigate, allowing users to interact with the chatbot seamlessly. Users could input their queries and receive responses without requiring technical knowledge, making the system accessible to a wide range of users.
-    \item Positive Evaluation Results
+\item \textbf{Effectiveness of RAG Integration:} The integration of RAG with a local thesis database significantly improved the accuracy and relevance of literature retrieval compared to traditional keyword-based systems. The chatbot was able to interpret user queries in natural language and retrieve semantically relevant thesis content, making the search process more intuitive and efficient for students and faculty.
+\item \textbf{Performance Metrics:} The system achieved high scores in Context Precision (0.818) and Answer Relevancy (0.737), indicating that most retrieved and generated responses were both relevant and useful. Context Recall (0.721) showed that the system was able to capture most of the necessary information, though some relevant content was occasionally missed. Faithfulness (0.585) revealed that while the majority of responses were grounded in the source documents, there were instances where generated answers could be more closely aligned with the original texts.
+\item \textbf{User Experience:} The dashboard visualizations provided clear, actionable insights into system performance, allowing for targeted improvements. Users benefited from a more conversational and topic-oriented search experience, reducing the time and effort required to locate relevant academic materials.
+\item \textbf{Limitations:} The evaluation also identified limitations, such as the dependency on the quality and structure of ingested thesis documents, and the need for further optimization to enhance faithfulness and recall. Automated metrics, while informative, may not fully capture subjective aspects like fluency or user satisfaction, suggesting the value of incorporating human evaluations in future assessments.
 \end{enumerate}
 
-\section{Conclusion}
-Based on the findings, the researchers came up with the following conclusion:
+\section*{Conclusions}
 \begin{enumerate}
-    \item The RAG-based chatbot for efficient literature search and thesis retrieval in the CSPC Library was successfully developed and implemented, demonstrating the feasibility of using advanced AI techniques to enhance academic research processes.
-    \item The system effectively improved the accuracy and relevance of search results compared to traditional keyword-based search methods, providing users with more contextually appropriate theses based on their queries.
-    \item The integration of vector embeddings and the Google Gemini large language model proved to be effective in handling natural language queries and generating relevant responses, showcasing the potential of combining retrieval and generation techniques in information retrieval systems.
-    \item The user-friendly interface contributed to a positive user experience, making it easy for users to interact with the chatbot and access relevant academic resources without requiring technical expertise.
-
-
-    % \item The RAG-based chatbot demonstrated strong potential for enhancing academic research workflows, providing a valuable tool for students and researchers at CSPC.
-    % \item The successful implementation of the RAG framework in this project highlights the importance of leveraging advanced AI techniques to address challenges in information retrieval and academic research.
+\item \textbf{RAG as a Transformative Tool:} The study concludes that Retrieval-Augmented Generation is a transformative approach for academic literature retrieval, addressing the shortcomings of both traditional search and standalone LLMs. By combining semantic search with generative capabilities, the RAG chatbot offers a robust solution for efficient and accurate thesis retrieval in the CSPC Library.
+\item \textbf{Metric-Driven Evaluation:} The use of multi-dimensional metrics---answer relevancy, context precision, context recall, and faithfulness---provides a comprehensive framework for assessing and refining academic AI systems. These metrics not only highlight the system’s strengths but also guide ongoing improvements.
+\item \textbf{Practical Impact:} The successful deployment of the RAG chatbot demonstrates its practical value for students, faculty, and library management, streamlining the research process and enhancing access to academic resources.
 \end{enumerate}
-%=======================================================%
-%%%%% Do not delete this part %%%%%%
-\clearpage
 
-\printbibliography[heading=subbibintoc, title={\centering Notes}]
-\end{refsection}
+\section*{Recommendations}
+\begin{enumerate}
+\item \textbf{Enhance Faithfulness and Recall:} Future work should focus on improving the faithfulness and recall of generated responses. This may involve refining the chunking and retrieval process, integrating more advanced embedding models, or incorporating additional post-processing checks to ensure factual consistency.
+\item \textbf{Expand Dataset and Modalities:} Increasing the diversity and volume of ingested thesis documents, and exploring the inclusion of other academic materials (e.g., journal articles, conference papers), can further improve retrieval coverage and system robustness.
+\item \textbf{Incorporate Human Evaluation:} To complement automated metrics, future evaluations should include human-in-the-loop assessments, such as expert reviews or user feedback surveys, to better capture subjective aspects of response quality and user satisfaction.
+\item \textbf{System Usability and Features:} Continued development of the chatbot interface, including user-friendly features like advanced filtering, citation export, and personalized recommendations, will enhance usability and adoption within the academic community.
+\item \textbf{Scalability and Deployment:} For broader impact, consider deploying the system on scalable infrastructure and integrating it with other institutional platforms, ensuring accessibility for all CSPC stakeholders.
+\end{enumerate}
