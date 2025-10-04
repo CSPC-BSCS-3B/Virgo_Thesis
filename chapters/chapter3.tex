@@ -12,14 +12,12 @@ In this research, the primary artifact was a \textit{Retrieval-Augmented Generat
 
 The system incorporated the functionalities of:
 
-\begin{samepage}
 \begin{itemize}
     \item CSPC email authentication for user verification
     \item Semantic search using vector embeddings
     \item Query history tracking for improved user experience
     \item Retraining support to adapt to future academic datasets
 \end{itemize}
-\end{samepage}
 
 
 These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
@@ -30,8 +28,7 @@ The system was developed using Streamlit, which allows rapid deployment of an in
 
 This study implemented advanced machine learning techniques, natural language processing (NLP) models, and the Retrieval-Augmented Generation (RAG) pipeline, integrated with a Large Language Model (LLM) and a vector database. These components collaboratively enabled efficient information retrieval and generation in the context of literature and thesis search within the CSPC Library.
 
-\newpage
-\clearpage
+
 \subsection{Retrieval-Augmented Generation (RAG) Pipeline}
 
 The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that combines information retrieval with natural language generation. It allows LLMs to access external documents during inference, thereby improving both accuracy and contextual relevance.
@@ -233,8 +230,7 @@ where:
 
 This metric captures how effectively the system covers the necessary knowledge, with a value ranging between 0 and 1, where 1 indicates perfect recall. It ensures that critical academic information is not missed during retrieval, making it an essential part of evaluating the RAG chatbot system.
 
-\newpage
-\clearpage
+
 \subsection*{Response Relevance}
 
 Response Relevance was a critical metric used to evaluate how well the RAG chatbot's generated answer addressed the specific query posed by users in the CSPC Library. This metric ensured that the chatbot provided focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
@@ -254,8 +250,6 @@ where:
 
 This metric works on the idea that if the chatbot's response sufficiently answers the original query, then questions generated from that response will semantically align with the original question, this involves generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensures that the retrieved academic information closely matches the research needs of CSPC Library users.
 
-\newpage
-\clearpage
 \subsection*{Faithfulness}
 
 Faithfulness is a critical metric for evaluating the factual consistency of the RAG chatbot's generated responses with respect to the retrieved context from the CSPC Library. This metric ensures that all claims made in the chatbot's answer are directly supported by the information present in the retrieved documents, thereby minimizing hallucinations and maintaining academic integrity.
@@ -274,8 +268,6 @@ where:
 A faithfulness score of $1.0$ indicates that all claims in the response are grounded in the retrieved context, while lower scores reveal the presence of unsupported or hallucinated information. In the context of academic literature search and thesis retrieval, maintaining high faithfulness is essential to ensure that the chatbot's answers are trustworthy and factually accurate, directly reflecting the content of the CSPC Library's resources.
 
 
-\newpage
-\clearpage
 \section{Conceptual Framework}
 
 The conceptual framework served as the foundational blueprint for the RAG-based chatbot system. It emphasized the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in Figure~\ref{fig:conceptual_framework}, the system followed a cyclical process beginning with data collection and ending with system evaluation and refinement.
