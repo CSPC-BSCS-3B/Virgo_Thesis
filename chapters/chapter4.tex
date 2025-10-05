@@ -1,92 +1,75 @@
-
 \chapter{Results and Discussion}
 \begin{refsection}
 
-This chapter presents the detailed development process, results, and evaluation of the Retrieval-Augmented Generation (RAG) chatbot developed for efficient literature search and thesis retrieval at the Camarines Sur Polytechnic Colleges (CSPC) Library. The chapter follows the system’s conceptual framework, covering data collection, preprocessing, indexing, query handling, response generation, output, and performance evaluation. All activities described were completed during the study period.
+This chapter discusses the results and evaluation of the Retrieval-Augmented Generation (RAG) chatbot developed for efficient literature search and thesis retrieval at the Camarines Sur Polytechnic Colleges (CSPC) Library.
 
-\section{Implementation of the Proposed Original Model}
-This section outlines the development of the RAG chatbot system, which was guided by an integrated architectural framework comprising seven key stages. The figure below illustrates the complete system pipeline.
+\subsection{Dataset and Preparation}
+The study corpus comprised undergraduate thesis PDFs from multiple CSPC departments (290+ documents). Coordination with the CSPC Library established data handling practices and local/on-premise deployment. The dataset was prepared via structured text extraction and token-based chunking aligned with thesis sections (Abstract; Chapters 1--5), enabling section-aware retrieval.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/framework.png}
-    \caption{Implementation of the Proposed Original Model}
-\end{figure}
-
-\section{Data Collection}
-In this section, the researchers began with their proposal and coordination with CSPC Library and its staff, where the prototype was demonstrated to show how a RAG-powered chatbot could improve thesis discovery beyond exact-keyword search by enabling topic-oriented, semantically grounded retrieval within the library’s own repository. In the demonstration, the project’s institutional value was emphasized in accelerating literature searches, increasing access to relevant local theses, and supporting academic guidance, following the researchers' formal request to obtain one hundred undergraduate thesis PDFs from various College departments of CSPC to use as the main corpus of the RAG chatbot application.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/tsis_docs.png}
-    \caption{CSPC Undergraduate Thesis Documents}
+    \includegraphics[width=0.7\textwidth]{figures/doc_analysis.jpg}
+    \caption{CSPC Thesis PDF Analysis}
 \end{figure}
 
 Upon agreement on project scope, data handling practices, and local/on-premise deployment, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. The dataset was acknowledged and queued for the development phase following the proposed model pipelines’ process.
 
 \subsection{Data Preprocessing}
-This section commenced the systematic ingestion of the acquired thesis PDFs into the processing pipeline. Utilizing a custom script, the system recursively scanned the designated data folder housing more than 290+ undergraduate thesis documents, ensuring all relevant files were accessed regardless of folder organization. Each PDF was processed page-by-page using the PyPDFLoader, extracting raw textual content alongside essential metadata such as source file paths and page numbers. This granular extraction maintained the academic formatting and pagination critical for preserving context, citations, and facilitating precise retrieval during later stages.
+Texts were extracted page-by-page and enriched with metadata (source, page) to preserve academic provenance. Token-based chunking produced coherent segments sized to the LLM context window and guided by thesis structure, improving retrieval fidelity and citation transparency.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/dtprprcss.png}
-    \caption{Data Preprocessing inside the code editor}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{figures/chunk_analysis.jpg}
+        \caption{Chunk Analysis}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.75\textwidth]{figures/chunk_stat.jpg}
+        \caption{Chunk Statistics}
+    \end{minipage}
 \end{figure}
 
-Extracted texts were segmented with a token-aware strategy (RecursiveCharacterTextSplitter), producing semantically coherent chunks sized to the LLM context window and guided by structural delimiters such as paragraph breaks and headings. Each chunk retained source, page, and positional offsets to support traceability and user navigation. The preprocessing yielded clean, contextually rich text segments ready for vectorization and indexing in the subsequent pipeline stage.    
+This preprocessing yielded clean, contextually rich segments suitable for vectorization and indexing.    
 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that would define the chatbot's effectiveness in academic literature discovery.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/indfaiss.png}
-    \caption{Indexing and Vector Database Construction}
+    \includegraphics[width=0.7\textwidth]{figures/index.jpg}
+    \caption{Created index in FAISS}
 \end{figure}
 
-Each text chunk underwent embedding generation through the GoogleGenerativeAIEmbeddings model, which converted the semantic meaning of academic content into dense numerical vectors. This embedding process captured nuanced relationships between concepts, methodologies, and findings across the diverse corpus of CSPC thesis documents. The resulting vectors preserved both explicit textual information and implicit contextual relationships, enabling the system to understand queries about similar research topics, methodological approaches, or theoretical frameworks even when exact keywords differed. Following embedding generation, the vector representations were systematically indexed and stored within FAISS, a specialized library engineered for high-performance similarity search operations on dense vectors. The database construction process organized vectors using efficient indexing algorithms that would later enable rapid retrieval of contextually relevant thesis segments. Metadata preservation ensured that each vector maintained its connection to source documents, page numbers, and positional information, creating a comprehensive mapping between semantic concepts and their original academic contexts. This FAISS-based indexing architecture formed the retrieval foundation that would allow users to discover relevant thesis content through natural language queries, moving beyond traditional keyword matching to genuine semantic understanding of academic literature.
-
+Embeddings were generated primarily with \textit{sentence-transformers/all-MiniLM-L6-v2} (HuggingFace), chosen for its efficiency and strong semantic performance; when cloud embeddings were available, Gemini could be used as an alternative for multilingual scenarios. FAISS stored vectors alongside source/page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
 
 \subsection{Query Encoding and Retrieval}
-The query processing stage represented the critical juncture where user intent transformed into actionable semantic search within the RAG chatbot system. This phase determined whether students and researchers would successfully locate relevant thesis content or encounter the frustrating "no results found" experience that plagued traditional keyword-based library systems.
+Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/qandcntxtret.png}
-    \caption{Question and Context Retrieval}
-\end{figure}
+Representative queries included topic-oriented searches (e.g., sustainable energy, machine learning in healthcare). Retrieval consistently surfaced thesis abstracts and key sections with appropriate source/page labels, improving user navigation and citation accuracy. Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
 
-When users submitted natural language queries such as "What research has been done on machine learning applications in healthcare?" or "Show me theses about sustainable energy solutions," the system initiated a sophisticated encoding process that mirrored the document preprocessing methodology. The user's question underwent vectorization using the identical GoogleGenerativeAIEmbeddings model employed during the indexing phase, ensuring semantic consistency between query representation and document storage. This encoding process transformed colloquial academic inquiries into dense numerical vectors that captured not just keywords but the conceptual intent and contextual nuances embedded within the user's research interests.
+\subsection{Augmented Input and Generation}
+Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers (e.g., source filename, page). This supported grounded, traceable answers and reduced hallucination risk.
 
-The retrieval mechanism leveraged the FAISS index infrastructure to execute high-speed similarity comparisons between the encoded query vector and the comprehensive collection of stored thesis document vectors. Using cosine similarity algorithms, the system calculated semantic distances to identify document chunks that most closely aligned with the user's informational needs. The top-K most relevant chunks—typically configured to retrieve four highly pertinent segments—were systematically selected and prepared for downstream processing. This retrieval approach transcended simple keyword matching, enabling the discovery of academically relevant content even when users employed different terminology, conceptual frameworks, or research perspectives than those found in the original thesis documents. The retrieved chunks formed the contextual foundation that would guide the language model's response generation, ensuring that chatbot answers remained grounded in actual CSPC thesis content rather than general knowledge or potential hallucinations.
-
-
-\section{Augmented Input Generation}
-The augmented input generation phase served as the crucial bridge between retrieved thesis content and intelligent response formulation, where raw document chunks evolved into contextually enriched prompts capable of guiding accurate academic discourse. Following successful retrieval of the top-K relevant thesis segments, the system executed a sophisticated concatenation process that preserved both content integrity and source attribution. Each retrieved document chunk underwent formatting that maintained its semantic value while incorporating lightweight citation markers such as to ensure academic provenance remained traceable throughout the response generation process. This formatting approach created a unified context string that seamlessly wove together diverse thesis excerpts, methodological discussions, and research findings into a coherent knowledge foundation.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/augInGen.png}
-    \caption{Augmented Input Generation}
-\end{figure}
-
-The augmented prompt construction represented the culmination of the retrieval pipeline, where user queries and retrieved contexts merged into comprehensive input structures designed to optimize LLM performance within academic constraints. The system employed structured prompt templates to orchestrate a dual-component input framework consisting of system-level instructions that established academic rigor expectations and human-readable messages that combined the original user question with the formatted context string. This architectural approach ensured that the language model would receive explicit guidance to ground responses exclusively in provided thesis content while maintaining proper source citation practices. The pipeline incorporated practical safeguards, including token limit monitoring to prevent context overflow, intelligent truncation strategies for extensive retrievals, and explicit "no context available" indicators when insufficient relevant material existed, thereby maintaining input quality and preventing downstream processing issues.
+Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
 
 \subsection{Response Generation}
 
-The response generation stage represented the culmination of the RAG pipeline, where gemini-1.5-flash transformed augmented academic context into coherent, factually grounded answers that addressed user research inquiries. At this critical juncture, the language model processed the carefully constructed prompt containing both the original user question and the retrieved thesis content, leveraging its advanced reasoning capabilities to synthesize information from multiple academic sources into comprehensive responses. The system configured gemini-2.5-flash with temperature=0 to ensure deterministic output generation, eliminating randomness in responses and providing consistent answers when identical queries were posed. This deterministic approach proved essential for academic applications where reliability and reproducibility were paramount concerns for CSPC Library users seeking dependable research assistance.
+The Gemini 2.5-flash model generated answers grounded in retrieved context. The system was configured with temperature=0 to ensure deterministic outputs suitable for academic use.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/resgen.png}
-    \caption{Response Generation}
-\end{figure}   
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{figures/resgen.png}
+%     \caption{Response Generation}
+% \end{figure}   
 
-The generation process operated through token-by-token prediction, where gemini-2.5-flash conditioned each response element on both the explicit system instructions and the augmented context, ensuring that generated content remained faithful to the retrieved thesis material rather than relying solely on pre-training knowledge. The model's reinforcement learning enhancements enabled sophisticated reasoning patterns that could identify relationships between different thesis segments, synthesize findings across multiple documents, and present information in academically appropriate formats. Following generation completion, the raw model output underwent parsing to yield clean text responses suitable for display within the chatbot interface. Despite the RAG framework's significant reduction in hallucination risks, the system maintained awareness that occasional inaccuracies could still occur when context was ambiguous or insufficient, necessitating user validation of critical research findings and encouraging cross-referencing with original source materials for comprehensive academic work.
+Generated content was parsed into clean text for display. While RAG significantly reduced hallucinations, occasional inaccuracies were observed when context was insufficient; users were advised to validate critical findings.
 
-\section{Response Output and Interface Display}
+\section{Interface and Usage Observations}
 
-The final stage of user interaction materialized through a carefully designed Streamlit-based interface that transformed complex RAG processing into an intuitive conversational experience for CSPC Library users. When students and researchers submitted queries through the chat input interface, the system initiated a multi-layered safety and processing protocol that ensured both user protection and response quality. The application first executed content filtering mechanisms to verify query appropriateness before recording user messages in the session state, maintaining conversation continuity while preventing potentially harmful or inappropriate requests from reaching the underlying language model. This safety-first approach reflected the academic context where responsible AI deployment was essential for maintaining institutional standards and user trust.
+The Streamlit interface supported conversational exploration with session-based history and safety filters for disallowed queries. Cached chains ensured responsive interactions.
 
 \begin{figure}[h]
     \centering
@@ -94,7 +77,7 @@ The final stage of user interaction materialized through a carefully designed St
     \caption{Streamlit Interface Display}
 \end{figure}
 
-Following successful query validation, the cached RAG chain executed the complete retrieval and generation workflow through a single invoke call that orchestrated document retrieval, context formatting, and LLM response generation in a seamless pipeline. The interface architecture preserved conversation history by maintaining all user and assistant interactions within the session state, enabling users to reference previous exchanges and build upon earlier research discussions throughout extended library sessions. Generated responses appeared as rendered Markdown content that supported academic formatting including citations, lists, and structured text presentation, while the lightweight citation markers embedded within retrieved context enabled users to trace answers back to specific thesis documents and page references. When queries violated safety parameters, the system displayed clear Streamlit warnings instead of processing requests, maintaining transparent communication about system limitations. The synchronous processing approach with deterministic temperature settings ensured consistent response quality and eliminated unpredictable variations that could undermine user confidence in the academic research tool, while the persistent conversation interface encouraged iterative inquiry and deeper exploration of CSPC's thesis repository through natural dialogue.
+Generated responses appeared as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
 
 \section{Model Evaluation}
 In this section, the RAG-based chatbot system for the CSPC Library was evaluated utilizing four critical metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. These metrics provide a multidimensional perspective on the performance of the literature retrieval system, ensuring robust analysis in both information quality and reliability. The evaluation framework and explanations are patterned after established academic standards as demonstrated in the reference thesis.
