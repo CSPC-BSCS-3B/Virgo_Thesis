@@ -42,14 +42,14 @@ The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that 
 
 The chatbot’s RAG pipeline, as illustrated in Figure~\ref{fig:rag}, consists of the following key stages:
 
-\subsubsection*{A. Data Indexing}
+\subsubsection{A. Data Indexing}
 \begin{itemize}
     \item \textbf{Document Preparation} – Thesis documents were collected and preprocessed into smaller, semantically coherent chunks.
     \item \textbf{Embedding Generation} – Each chunk was converted into a dense vector using a transformer-based embedding model.
     \item \textbf{Vector Database Integration} – These vectors were stored in a vector database (e.g., FAISS) to enable efficient similarity search.
 \end{itemize}
 
-\subsubsection*{B. Retrieval and Generation}
+\subsubsection{B. Retrieval and Generation}
 \begin{itemize}
     \item \textbf{Query Processing} – When a user submits a query, it will be embedded into a vector representation using the Gemini embedding model (gemini-embedding-001).
     \item \textbf{Similarity Matching} – The system will retrieve the top-K most semantically similar document chunks using cosine similarity.
@@ -62,7 +62,7 @@ The chatbot’s RAG pipeline, as illustrated in Figure~\ref{fig:rag}, consists o
 Large Language Models (LLMs) are cutting-edge artificial intelligence systems capable of processing and generating coherent text. These models are built on advanced neural architectures, trained on massive corpora, and have demonstrated effectiveness across NLP tasks such as summarization, question answering, information retrieval, and dialogue systems \citeauthor{naveed2024} \citeyear{naveed2024}. In this study, the system used the Gemini 2.5-flash LLM to synthesize retrieved academic content with its internal knowledge to generate responses tailored to user queries.
 
 
-\subsubsection*{Gemini 2.5-flash}
+\subsubsection{Gemini 2.5-flash}
 
 The LLM that was utilized in this project is \textbf{Gemini 2.5-flash}, a model designed for high accuracy and efficiency in natural language understanding and generation. Gemini 2.5-flash is optimized for real-time applications and excels at providing factually accurate, contextually relevant responses. The system integrated this pre-trained model into the RAG framework to augment domain-specific information retrieval for CSPC Library users.
 
@@ -70,7 +70,8 @@ The LLM that was utilized in this project is \textbf{Gemini 2.5-flash}, a model 
 
 To ensure optimal performance of the RAG-based LLM system, several key hardware and software components are required.
 
-\subsubsection*{Hardware}
+\subsubsection{Hardware}
+
 \begin{table}[H]
     \centering
     \caption{Hardware Requirements}
@@ -91,7 +92,7 @@ A modern multi-core CPU enables efficient data processing and model inference, e
 A 1 TB SSD is preferred due to its high read/write speeds, which significantly enhance data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
 
 
-\subsubsection*{Software}
+\subsubsection{Software}
 
 \begin{table}[H]
     \centering
@@ -99,13 +100,13 @@ A 1 TB SSD is preferred due to its high read/write speeds, which significantly e
     \label{tab:software_requirements}
     \begin{tabular}{ll}
         \hline
-        \textbf{Component}              & \textbf{Specification}                        \\ \hline
-        Programming Language            & Python 3.10+                                  \\
-        Vector Database                 & e.g. FAISS                                         \\
-        Language Model                  & Gemini 2.5-flash                                       \\
-        Embedding Model                 & gemini-embedding-001                            \\
-        Web Framework                   & Streamlit                                     \\
-        Libraries                       & \begin{tabular}[c]{@{}l@{}}LangChain\\ PyMuPDF\\ NumPy\\ PyPDFLoader\end{tabular}   \\
+        \textbf{Component}      & \textbf{Specification}                                                               \\ \hline
+        Programming Language    & Python 3.10+                                                                         \\
+        Vector Database         & e.g. FAISS                                                                           \\
+        Language Model          & Gemini 2.5-flash                                                                     \\
+        Embedding Model         & gemini-embedding-001                                                                 \\
+        Web Framework           & Streamlit                                                                            \\
+        Libraries               & \begin{tabular}[c]{@{}l@{}}LangChain \\ PyMuPDF \\ NumPy \\ PyPDFLoader\end{tabular} \\
         \hline
     \end{tabular}
 \end{table}
@@ -117,7 +118,7 @@ Document parsing and extraction are managed through the PyMuPDF library, ensurin
 \section{Instruments}
 
 
-The instruments utilized in this study included a curated dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset consisted of all available PDF thesis documents sourced from the CSPC Library, which were parsed using the PyMuPDF library for text extraction. These documents underwent preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using \textit{gemini-embedding-001}, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
+The instruments utilized in this study includes all pdf thesis dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset consisted of all available PDF thesis documents sourced from the CSPC Library, which were parsed using the PyMuPDF library for text extraction. These documents underwent preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using \textit{gemini-embedding-001}, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
 
 
 The vectorized representations of these chunks were then stored in \textit{FAISS}, an open-source vector database optimized for fast similarity search and retrieval, which was vital for the implementation of the RAGAS framework~\cite{trychroma2023chroma}.
@@ -141,9 +142,11 @@ The procedures encompassed the collection and preprocessing of academic data, ve
 Each stage was designed to ensure the integrity, replicability, and effectiveness of the system in addressing the research objectives. By detailing the technical and methodological steps, this section served as a transparent and structured guide for future researchers seeking to replicate or build upon this study.
 
 \subsection*{Data Collection}
+
 PDF thesis documents were gathered from CSPC Library’s digital archives, focusing on undergraduate theses and institutional research. The collection process ensured that documents were academically relevant and representative of typical user queries.
 
-\subsection*{Data Preprocessing}
+\subsection{Data Preprocessing}
+
 \begin{itemize}
     \item \textbf{Text Extraction:} PyMuPDF will be used to convert PDF files into structured plain text.
     \item \textbf{Cleaning:} Non-informative characters and formatting will be removed.
@@ -151,27 +154,33 @@ PDF thesis documents were gathered from CSPC Library’s digital archives, focus
 \end{itemize}
 
 \subsection*{Indexing and Vector Embedding}
+
 \begin{itemize}
     \item \textbf{Vector Embedding:} Each text chunk will be embedded using gemini-embedding-001.
     \item \textbf{Database Construction:} FAISS will store the vectorized content along with metadata such as document titles, authors, and section headers.
 \end{itemize}
 
 \subsection*{Query Handling and Semantic Retrieval}
+
 \begin{itemize}
     \item \textbf{Query Encoding:} The user’s natural language query will be encoded using the same embedding model.
     \item \textbf{Similarity Search:} The encoded query will be matched with stored vectors to retrieve the top-K relevant chunks.
 \end{itemize}
 
 \subsection*{Augmented Input Generation}
+
 The retrieved chunks will be concatenated with the user query to create an augmented prompt, providing contextual grounding for accurate response generation.
 
 \subsection*{Response Generation}
+
 The Gemini 2.5-flash language model will process the augmented input to generate a response that is factually aligned with the source documents.
 
 \subsection*{Output Presentation}
+
 The system will display the generated response via a user interface that includes metadata such as the source thesis title and section, encouraging transparency and academic integrity.
 
 \subsection*{Performance Evaluation}
+
 \begin{itemize}
     \item \textbf{Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, and Faithfulness, will be calculated.
     \item \textbf{Human Evaluation:} A usability questionnaire was distributed to a sample of student users to assess the system’s clarity, ease of use, and usefulness in retrieving academic information.
@@ -211,8 +220,6 @@ The precision at each position $k$, denoted as Precision@k, is computed as follo
 
 where $\text{true positives@k}$ is the number of relevant chunks retrieved up to position $k$, and $\text{false positives@k}$ is the number of non-relevant chunks retrieved up to the same position. This component metric quantifies retrieval accuracy at each rank and serves as a foundation for the overall Context Precision@K calculation.
 
-\newpage
-\clearpage
 \subsection*{Context Recall}
 
 Context Recall was used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measured the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
@@ -223,6 +230,7 @@ Context Recall was used to evaluate the comprehensiveness of the retrieval syste
 \end{equation}
 
 where:
+
 \begin{itemize}
     \item \textit{Number of relevant claims supported by retrieved chunks} refers to the count of factual claims in the ground truth answer that can be attributed to the retrieved document chunks,
     \item \textit{Total number of relevant claims in the reference answer} represents all the factual claims present in the ground truth answer that ideally should be covered by the retrieval process.
