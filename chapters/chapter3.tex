@@ -1,33 +1,25 @@
-
 \chapter{Methodology}
 \begin{refsection}
  
-This chapter presents the systematic methodology that was employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system for literature search and thesis retrieval in the CSPC Library. The methodology includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
+This chapter discusses the specific steps and logical procedures that was employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system. This includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
 
 \section{Research Design}
 
 This study adopted a constructive research approach, which focuses on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems.
 
-In this research, the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system is designed to streamline thesis and literature retrieval within the CSPC Library by enabling semantically meaningful interactions between students and academic documents.
+In this research, the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacts when finding thesis literature in CSPC library. It addresses the challenges faced in searching and retrieving thesis literature by replacing the current yet traditional database and keyword based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
 
-The system incorporated the functionalities of:
+% making research faster, smarter, and more user-friendly. It incorporated semantic search using vector embeddings, enabling the RAG chatbot to generate contextually relevant and factually grounded responses for user queries. 
 
-\begin{itemize}
-    \item CSPC email authentication for user verification
-    \item Semantic search using vector embeddings
-    \item Query history tracking for improved user experience
-    \item Retraining support to adapt to future academic datasets
-\end{itemize}
+% And also functionalities such as CSPC email authentication for user verification, query history tracking for an improved user experience, and retraining support to adapt to future academic datasets.
+% These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
 
+% The system was developed using Streamlit, which allows for the rapid deployment of an interactive user interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources. The core data ingestion and experimentation were implemented in a dedicated Jupyter Notebook (\texttt{ingest\_off.ipynb}). This notebook was used to perform structured, token-based chunking aligned with thesis sections, experiment with different embedding models to optimize semantic representation, and visualize the resulting vector space. LangChain was used to orchestrate the final pipeline, with FAISS serving as the vector store for efficient retrieval.
 
-These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
-
-The system was developed using Streamlit, which allows rapid deployment of an interactive user interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources. In practice, ingestion and preprocessing were implemented in a dedicated jupyter notebook (\texttt{ingest\_off.ipynb}), which performs structured, token-based chunking aligned with thesis sections and creates embeddings for efficient retrieval; LangChain orchestrates the pipeline, and FAISS serves as the vector store.
 
 \section{Theorems, Algorithms, and Mathematical Models}
 
 This study implemented advanced machine learning techniques, natural language processing (NLP) models, and the Retrieval-Augmented Generation (RAG) pipeline, integrated with a Large Language Model (LLM) and a vector database. These components collaboratively enabled efficient information retrieval and generation in the context of literature and thesis search within the CSPC Library.
-
 
 \subsection{Retrieval-Augmented Generation (RAG) Pipeline}
 
