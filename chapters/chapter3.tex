@@ -50,11 +50,21 @@ Large Language Models (LLMs) are cutting-edge artificial intelligence systems ca
 
 The LLM that was utilized in this project is Gemini 2.5-flash, a model designed for high accuracy and efficiency in natural language understanding and generation. Gemini 2.5-flash is optimized for real-time applications and excels at providing factually accurate, contextually relevant responses. The system integrated this pre-trained model into the RAG framework to augment domain-specific information retrieval for CSPC Library users.
 
-\section{Materials and Statistical Tools}
+\section{Materials and Statistical Tools / Evaluation Methods}
 
 To ensure optimal performance of the RAG-based LLM system, several key hardware and software components are required.
 
+\subsection{Instruments}
+
+This section contains the dataset, hardware, and software requirements for the development of the RAG chatbot system.
+
+\subsubsection{Dataset}
+
+The study utilized a dataset consisting of all available undergraduate thesis PDFs from multiple CSPC departments, sourced from the CSPC library. Additionally, the system was designed to ingest newly published theses by allowing admin to upload new PDF files.
+
 \subsubsection{Hardware}
+
+To support the development of RAG chatbot system, the researchers will use hardware components that meet or exceed the specifications outlined in Table 1. hese components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
 
 \begin{table}[H]
     \centering
@@ -74,7 +84,6 @@ To ensure optimal performance of the RAG-based LLM system, several key hardware 
 A modern multi-core CPU enables efficient data processing and model inference, ensuring smooth query execution. At least 16 GB of RAM is recommended to manage large-scale embeddings and real-time retrieval operations effectively. 
 
 A 1 TB SSD is preferred due to its high read/write speeds, which significantly enhance data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
-
 
 \subsubsection{Software}
 
@@ -100,7 +109,6 @@ Python 3.10 or later serves as the core programming language due to its comprehe
 Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
 
 \section{Instruments}
-
 
 The instruments utilized in this study includes 290+ pdf thesis dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset consisted of all available PDF thesis documents sourced from the CSPC Library, which were parsed using the PyMuPDF library for text extraction. These documents underwent preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using gemini-embedding-001, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
 
