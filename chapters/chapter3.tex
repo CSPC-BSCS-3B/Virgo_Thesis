@@ -35,24 +35,16 @@ The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that 
 The chatbot’s RAG pipeline, as illustrated in Figure~\ref{fig:rag}, consists of the following key stages:
 
 \subsubsection{A. Data Indexing}
-\begin{itemize}
-    \item \textbf{Document Preparation} – Thesis documents were collected and preprocessed into smaller, semantically coherent chunks. Chunking was token-based and respected academic structure (e.g., Abstract; Chapters 1--5), preserving context within each section.
-    \item \textbf{Embedding Generation} – Each chunk was converted into a dense vector using open-source sentence-transformers/all-MiniLM-L6-v2 from hugging face. This model was chosen for its lightweight architecture while maintaining strong semantic representation capabilities.
-    \item \textbf{Vector Database Integration} – Vectors and metadata were stored in FAISS, enabling efficient similarity search and scalable retrieval over the thesis corpus.
-\end{itemize}
+
+The data indexing process begins with document preparation, where thesis documents are collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respects academic structure (e.g., Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata are stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
 
 \subsubsection{B. Retrieval and Generation}
-\begin{itemize}
-    \item \textbf{Query Processing} – When a user submits a query, it is embedded using the same model employed for indexing.
-    \item \textbf{Semantic Retrieval} – A FAISS-backed retriever returns the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall.
-    \item \textbf{Contextual Generation} – The retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling generation of relevant and factual responses aligned with the source documents.
-\end{itemize}
 
+The retrieval and generation process begins with query processing, where a user's query is embedded using the same model employed for indexing. A FAISS-backed retriever then performs a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
 
 \subsection{Large Language Model}
 
 Large Language Models (LLMs) are cutting-edge artificial intelligence systems capable of processing and generating coherent text. These models are built on advanced neural architectures, trained on massive corpora, and have demonstrated effectiveness across NLP tasks such as summarization, question answering, information retrieval, and dialogue systems \citeauthor{naveed2024} \citeyear{naveed2024}. In this study, the system used the Gemini 2.5-flash LLM to synthesize retrieved academic content with its internal knowledge to generate responses tailored to user queries.
-
 
 \subsubsection{Gemini 2.5-flash}
 
