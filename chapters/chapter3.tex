@@ -108,7 +108,8 @@ Python 3.10 or later serves as the core programming language due to its comprehe
 
 Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
 
-\section{Instruments}
+
+\subsection{Instrument}
 
 The instruments utilized in this study includes 290+ pdf thesis dataset, a vector database, a user evaluation questionnaire, and an automated evaluation toolkit. The dataset consisted of all available PDF thesis documents sourced from the CSPC Library, which were parsed using the PyMuPDF library for text extraction. These documents underwent preprocessing, including cleaning and segmentation into manageable chunks, before being embedded using gemini-embedding-001, a modern embedding model known for its semantic richness and high compatibility with retrieval tasks.
 
@@ -142,7 +143,7 @@ The table 3 shows the description of the 5 Point Likert Scale and the interpreta
 
 Additionally, the RAGAS (Retrieval-Augmented Generation Assessment Suite) toolkit was utilized to automatically evaluate the quality of system outputs using metrics such as context precision, faithfulness, and answer relevance~\cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks. These instruments ensured a rigorous and balanced evaluation of the proposed system from both system-level and user perspectives~ \cite{lin2021bert}.
 
-\section{Statistical Tools}
+\section{Statistical Test}
 
 The evaluation of the system utilized the RAGAS framework to evaluate the system's technical performance. It included metrics such as context precision, context recall, answer relevance, and faithfulness. These metrics assessed how accurately the system retrieved and utilized relevant documents to generate responses~\cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}.
 
@@ -152,50 +153,43 @@ The procedures encompassed the collection and preprocessing of academic data, ve
 
 Each stage was designed to ensure the integrity, replicability, and effectiveness of the system in addressing the research objectives. By detailing the technical and methodological steps, this section served as a transparent and structured guide for future researchers seeking to replicate or build upon this study.
 
-\subsection*{Data Collection}
+% \subsection*{Data Collection}
 
-PDF thesis documents were gathered from CSPC Library’s digital archives, focusing on undergraduate theses and institutional research. The collection process ensured that documents were academically relevant and representative of typical user queries.
+% PDF thesis documents were gathered from CSPC Library’s digital archives, focusing on undergraduate theses and institutional research. The collection process ensured that documents were academically relevant and representative of typical user queries.
 
-\subsection{Data Preprocessing}
+\begin{enumerate}
 
-\begin{itemize}
-    \item \textbf{Text Extraction:} PyMuPDF was used to convert PDF files into structured plain text.
-    \item \textbf{Cleaning:} Non-informative characters and formatting were removed.
-    \item \textbf{Text Chunking:} Text was segmented into manageable chunks to enhance semantic search accuracy.
-\end{itemize}
+    \item \textbf{Data Preprocessing} - 
+        \begin{enumerate}
+            \item [(a)] {Text Extraction:} PyMuPDF was used to convert PDF files into structured plain text.
+            \item [(b)] {Cleaning:} Non-informative characters and formatting were removed.
+            \item [(c)] {Text Chunking:} Text was segmented into manageable chunks to enhance semantic search accuracy.
+        \end{enumerate}
+        
+    \item \textbf{Indexing and Vector Embedding} - 
+        \begin{enumerate}
+            \item [(a)] {Vector Embedding:} Each text chunk will be embedded using gemini-embedding-001.
+            \item [(b)] {Cleaning:} FAISS will store the vectorized content along with metadata such as document titles, authors, and section headers.
+        \end{enumerate}
 
-\subsection*{Indexing and Vector Embedding}
+    \item \textbf{Query Handling and Semantic Retrieval} - 
+        \begin{enumerate}
+            \item [(a)] {Query Encoding:} The user’s natural language query is encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
+            \item [(b)] {Similarity Search:} The encoded query is matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ may be adaptively increased to improve coverage.
+        \end{enumerate}
 
-\begin{itemize}
-    \item \textbf{Vector Embedding:} Each text chunk will be embedded using gemini-embedding-001.
-    \item \textbf{Database Construction:} FAISS will store the vectorized content along with metadata such as document titles, authors, and section headers.
-\end{itemize}
+    \item \textbf{Response Generation} - The Gemini 2.5-flash language model will process the augmented input to generate a response that is factually aligned with the source documents.
 
-\subsection*{Query Handling and Semantic Retrieval}
+    \item \textbf{Output Presentation} - The system will display the generated response via a user interface that includes metadata such as the source thesis title and section, encouraging transparency and academic integrity.
 
-\begin{itemize}
-    \item \textbf{Query Encoding:} The user’s natural language query is encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
-    \item \textbf{Similarity Search:} The encoded query is matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ may be adaptively increased to improve coverage.
-\end{itemize}
+    \item \textbf{Performance Evaluation} - 
+        \begin{enumerate}
+            \item [(a)] {Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, Answer Relevance, and Faithfulness, will be calculated.
+            \item [(b)] {Human Evaluation:} A usability questionnaire was distributed to a sample of student users to assess the system’s clarity, ease of use, and usefulness in retrieving academic information.
+        \end{enumerate}
 
-\subsection*{Augmented Input Generation}
+\end{enumerate}
 
-The retrieved chunks are concatenated with the user query to create an augmented prompt, providing contextual grounding for accurate response generation. Metadata-aware formatting (e.g., source labels, chapter markers) is applied to support transparent citations and evidence tracing.
-
-\subsection*{Response Generation}
-
-The Gemini 2.5-flash language model will process the augmented input to generate a response that is factually aligned with the source documents.
-
-\subsection*{Output Presentation}
-
-The system will display the generated response via a user interface that includes metadata such as the source thesis title and section, encouraging transparency and academic integrity.
-
-\subsection*{Performance Evaluation}
-
-\begin{itemize}
-    \item \textbf{Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, Answer Relevance, and Faithfulness, will be calculated.
-    \item \textbf{Human Evaluation:} A usability questionnaire was distributed to a sample of student users to assess the system’s clarity, ease of use, and usefulness in retrieving academic information.
-\end{itemize}
 
 \section{Evaluation Metrics}
 
