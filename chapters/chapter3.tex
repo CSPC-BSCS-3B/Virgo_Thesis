@@ -309,24 +309,22 @@ This visualization helps guide readers through the sequence of the system stages
     \label{fig:conceptual_framework}
 \end{figure}
 
-The process began with \textit{Data Collection}, where PDF-format academic documents such as undergraduate theses and institutional research papers were sourced from the CSPC Library’s digital repository. These documents formed the primary knowledge base of the system.
+\textit{Data Collection}. The process began with section where the researchers began with their proposal and coordination with CSPC Library and its staff, where the prototype was demonstrated to show how a RAG-powered chatbot could improve thesis discovery beyond exact-keyword search by enabling topic-oriented, semantically grounded retrieval within the library’s own repository. In the demonstration, the project’s institutional value was emphasized in accelerating literature searches, increasing access to relevant local theses, and supporting academic guidance, following the researchers' formal request to obtain one hundred undergraduate thesis PDFs from various College departments of CSPC to use as the main corpus of the RAG chatbot application.
 
-In the \textit{Data Pre-processing} phase, tools like PyMuPDF were used to extract plain text from the collected PDFs. The extracted content underwent cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
+\textit{Data Pre-processing}. Tools like PyMuPDF were used to extract plain text from the collected PDFs. The extracted content underwent cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
 
-Next, the system performed \textit{Model Training}, where embedding models such as gemini embeddings were used to transform the text chunks into vector representations.
+\textit{Indexing and Vector Database Construction}. \textit{Indexing and Vector Database Construction}. Each text chunk was embedded using the sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, converting semantic meanings into dense vectors that capture both explicit and implicit relationships across CSPC thesis documents. These vectors were indexed in FAISS, enabling fast, context-aware retrieval of relevant content through natural language queries. Metadata was preserved for each vector, maintaining links to source documents and positions. This architecture supports semantic discovery of academic literature, surpassing traditional keyword matching.
 
+\textit{Query Encoding and Retrieval}. User queries were encoded into dense vectors using the same embedding model as for document indexing, ensuring semantic alignment. The system then performed fast similarity searches in FAISS, retrieving the top-K relevant thesis chunks based on conceptual match, instead of keyword overlap. This process allowed contextually accurate results even for varied terminology, forming the basis for the chatbot's informed, thesis-grounded responses.
 
-These embeddings preserved the semantic meaning of the documents and prepared them for storage and retrieval.
+\textit{Augmented Input Generation}. the augmented input generation phase served as the crucial bridge between retrieved thesis content and intelligent response formulation, where raw document chunks evolved into contextually enriched prompts capable of guiding accurate academic discourse.
 
-The \textit{Input Sampling} stage supported the gathering and simulation of user queries. These sample inputs reflected typical academic inquiries posed by students when searching for specific thesis content.
+\textit{Response Generation}, The response generation stage represented the culmination of the RAG pipeline, where gemini-1.5-flash transformed augmented academic context into coherent, factually grounded answers that addressed user research inquiries. 
 
-In the \textit{Input Pre-processing} phase, user queries were tokenized and encoded using the same embedding model applied during training. This enabled semantic similarity comparison between the user query and the pre-embedded document vectors.
+\textit{Response Output and Interface Display}. In this section, streamlit was used to create an intuitive web interface that presented the chatbot's responses alongside relevant metadata, such as source thesis titles and sections.
 
-The system then proceeded to \textit{Location Mapping}, which corresponded to the semantic search function performed using FAISS. Here, the system retrieved the top-K most relevant document chunks by measuring vector similarity.
+\textit{Performance Evaluation}. Lastly, the system's effectiveness was evaluated using both automated metrics and human-centered assessments. Automated evaluation employed the RAGAS framework and for user-centered evaluation, a structured questionnaire was administered to gather feedback on usability, accuracy, and overall satisfaction. This dual-layered evaluation ensured that the RAG-based chatbot system not only met technical performance benchmarks but also aligned with user expectations and academic research needs.
 
-During \textit{Model Inference}, an augmented input was created by combining the user query with the retrieved chunks. This augmented prompt was forwarded to a generative language model (e.g., Gemini 2.5-flash) to produce a contextually grounded response aligned with the original academic documents.
-
-Finally, \textit{Performance Evaluation} was conducted using a dual-layer assessment. System-level performance was measured using the RAGAS framework with metrics such as Context Precision, Context Recall, Answer Relevance and Faithfulness. This framework ensured that each component of the RAG-based chatbot system operated in coordination, contributing to a reliable and academically useful tool for thesis retrieval and literature assistance.
 
 %=======================================================%
 %%%%% Do not delete this part %%%%%%
