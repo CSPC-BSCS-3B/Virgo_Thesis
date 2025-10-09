@@ -48,7 +48,7 @@ Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 
 \subsection{Query Encoding and Retrieval}
 Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
 
-Representative queries included topic-oriented searches (e.g., sustainable energy, machine learning in healthcare). Retrieval consistently surfaced thesis abstracts and key sections with appropriate source/page labels, improving user navigation and citation accuracy. Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
+For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
 
 \subsection{Augmented Input and Generation}
 Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers (e.g., source filename, page). This supported grounded, traceable answers and reduced hallucination risk.
