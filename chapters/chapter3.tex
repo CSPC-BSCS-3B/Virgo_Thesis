@@ -316,24 +316,24 @@ This visualization helps guide readers through the sequence of the system stages
     \label{fig:conceptual_framework}
 \end{figure}
 
-The process began with \textbf{data collection}, where PDF-format academic documents such as undergraduate theses and institutional research papers were sourced from the CSPC Library’s digital repository. These documents formed the primary knowledge base of the system.
+The process began with \textit{Data Collection}, where PDF-format academic documents such as undergraduate theses and institutional research papers were sourced from the CSPC Library’s digital repository. These documents formed the primary knowledge base of the system.
 
-In the \textbf{data pre-processing} phase, tools like PyMuPDF were used to extract plain text from the collected PDFs. The extracted content underwent cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
+In the \textit{Data Pre-processing} phase, tools like PyMuPDF were used to extract plain text from the collected PDFs. The extracted content underwent cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
 
-Next, the system performed \textbf{model training}, where embedding models such as gemini embeddings were used to transform the text chunks into vector representations.
+Next, the system performed \textit{Model Training}, where embedding models such as gemini embeddings were used to transform the text chunks into vector representations.
 
 
 These embeddings preserved the semantic meaning of the documents and prepared them for storage and retrieval.
 
-The \textbf{input sampling} stage supported the gathering and simulation of user queries. These sample inputs reflected typical academic inquiries posed by students when searching for specific thesis content.
+The \textit{Input Sampling} stage supported the gathering and simulation of user queries. These sample inputs reflected typical academic inquiries posed by students when searching for specific thesis content.
 
-In the \textbf{input pre-processing} phase, user queries were tokenized and encoded using the same embedding model applied during training. This enabled semantic similarity comparison between the user query and the pre-embedded document vectors.
+In the \textit{Input Pre-processing} phase, user queries were tokenized and encoded using the same embedding model applied during training. This enabled semantic similarity comparison between the user query and the pre-embedded document vectors.
 
-The system then proceeded to \textbf{location mapping}, which corresponded to the semantic search function performed using FAISS. Here, the system retrieved the top-K most relevant document chunks by measuring vector similarity.
+The system then proceeded to \textit{Location Mapping}, which corresponded to the semantic search function performed using FAISS. Here, the system retrieved the top-K most relevant document chunks by measuring vector similarity.
 
-During \textbf{model inference}, an augmented input was created by combining the user query with the retrieved chunks. This augmented prompt was forwarded to a generative language model (e.g., Gemini 2.5-flash) to produce a contextually grounded response aligned with the original academic documents.
+During \textit{Model Inference}, an augmented input was created by combining the user query with the retrieved chunks. This augmented prompt was forwarded to a generative language model (e.g., Gemini 2.5-flash) to produce a contextually grounded response aligned with the original academic documents.
 
-Finally, \textbf{performance evaluation} was conducted using a dual-layer assessment. System-level performance was measured using the RAGAS framework with metrics such as Context Precision, Context Recall, Answer Relevance and Faithfulness. This framework ensured that each component of the RAG-based chatbot system operated in coordination, contributing to a reliable and academically useful tool for thesis retrieval and literature assistance.
+Finally, \textit{Performance Evaluation} was conducted using a dual-layer assessment. System-level performance was measured using the RAGAS framework with metrics such as Context Precision, Context Recall, Answer Relevance and Faithfulness. This framework ensured that each component of the RAG-based chatbot system operated in coordination, contributing to a reliable and academically useful tool for thesis retrieval and literature assistance.
 
 %=======================================================%
 %%%%% Do not delete this part %%%%%%
