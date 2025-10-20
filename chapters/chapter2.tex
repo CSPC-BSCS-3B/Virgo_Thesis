@@ -10,52 +10,38 @@ To develop a deeper understanding of the research topic, a comprehensive review 
 
 Large Language Models (LLMs) have significantly improved the use case of information retrieval (IR) within academic settings. The integration of LLMs, like ChatGPT and other model architectures, offers notable advancements in natural language processing (NLP) and also proves its capabilities to enhance IR, question-answering, summarization, and content generation, which benefits academic environments where efficient access to information is crucial \cite{yalamanchili2024quality} \cite{yang2023large}. For instance, the recent studies of \citeauthor{khraisha2024can} \citeyear{khraisha2024can} and \citeauthor{gartlehner2023data} \citeyear{gartlehner2023data} reveal that LLMs are capable of automating processes like systematic review, data extraction, and document screening, which demonstrate the capability and potential of LLMs in enhancing the efficiency of academic research \cite{khraisha2024can}  \cite{gartlehner2023data}.
 
-\newpage
-\clearpage
 While large language models (LLMs) offer advantages for information retrieval, they also come with challenges. One major challenge is that their inefficient when applied to domain-specific tasks that require specialized knowledge. This limitation occurs because of the models' dependency on their pre-trained knowledge, which limits them from providing factual answers for specific domains, like in Academe. Omar et al. discussed that LLMs, such as ChatGPT, serve as complementary tools in specialized scenarios but may struggle with complex queries due to a lack of exposure to field-specific training data \cite{khraisha2024can}. Additionally, pre-trained LLMs encounter challenges in keeping up with constant expansions of data in various domains, which makes them incapable of updating their knowledge without extensive fine-tuning. Lucas et al. highlighted that for applications in academic and professional settings, the inability of LLMs to access current domain-specific repositories reduces their effectiveness and utility \cite{gartlehner2023data}.
 
-
-\bigbreak
 While LLMs stand at the forefront of NLP innovation, substantial limitations arise in their application to domain-specific tasks. These include real-time data retrieval, pre-trained knowledge bases, and ethical considerations surrounding data privacy. Addressing these challenges through innovative approaches like RAG can help leverage the models' capabilities, ensuring they can meet the rigorous demands of specialized applications.
-
 
 \subsection{Retrieval-Augmented Generation}
 
 Retrieval-Augmented Generation (RAG) has conveyed notable progress in information retrieval (IR), especially in the context of literature search and thesis retrieval in library systems \cite{thomo2024pubmed}. The concept integrates traditional large language models (LLMs) with external knowledge sources to enhance response relevance, richness, and correctness \cite{chen2024benchmarking}.
-\newpage   
-\clearpage
+
 \citeauthor{lewis2020retrieval} \citeyear{lewis2020retrieval}, in their influential study "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks," emphasized that RAG enables more precise responses by overcoming the inherent limitations of LLMs, particularly regarding accurate knowledge retrieval and contextual relevance. Extending this, \citeauthor{shuster2021retrieval} \citeyear{shuster2021retrieval}, in their study "Retrieval Augmentation Reduces Hallucination in Conversation," showed that RAG reduces inconsistencies and hallucinations in LLM responses. Their findings indicated that RAG mechanisms significantly improved conversational fluency and integrity, especially in open-domain contexts, resulting in more knowledgeable and coherent outputs.
 
-\bigbreak
  \citeauthor{sagi2024genai} \citeyear{sagi2024genai}, study "GENAI: RAG Use Cases with Vector DB to Solve the Limitations of LLMs," further reinforced this by demonstrating that combining vector databases with RAG significantly enhances retrieval speed and relevance. Particularly in dynamic domains like academic and business libraries, the semantic search capabilities of vector databases support continuous real-time updates, greatly improving knowledge management and the factuality of generated responses. Thus, RAG not only strengthens the retrieval capabilities of LLMs but also substantially mitigates their traditional weaknesses in consistency and factual accuracy \cite{sagi2024genai}.
-
 
 \subsection{Document Ingestion and Retrieval}
 
 The performance of Retrieval-Augmented Generation (RAG) systems depends on efficient document use and retrieval procedures, especially when working with large, complicated datasets like academic libraries. Any type of data source, including text, video, images, and audio, can be used with retrieval-augmented generation (RAG) systems, allowing for flexible and contextually rich information retrieval. In this study, the researchers focused on utilizing PDF documents as the primary corpus for academic content extraction \cite{li2023extracting}. 
-\newpage
-\clearpage
+
 The effectiveness of RAG systems heavily depends on the quality of preprocessing, which involves converting unstructured PDF data into machine-readable formats suitable for embedding and semantic search \cite{arzideh2024miracle} \cite{aquino2024extracting}. Tools such as PyPDF2, PyMuPDF, and pypdfium are commonly employed for this task, enabling the extraction of raw text from complex PDF layouts \cite{adhikari2024comparative}.
 
-\bigbreak
  \citeauthor{sagi2024genai} \citeyear{sagi2024genai}, study "GENAI: RAG Use Cases with Vector DB to Solve the Limitations of LLMs," further reinforced this by demonstrating that combining vector databases with RAG significantly enhances retrieval speed and relevance. Particularly in dynamic domains like academic and business libraries, the semantic search capabilities of vector databases support continuous real-time updates, greatly improving knowledge management and the factuality of generated responses. Thus, RAG not only strengthens the retrieval capabilities of LLMs but also substantially mitigates their traditional weaknesses in consistency and factual accuracy \cite{sagi2024genai}.
 
 \bigbreak
  \citeauthor{adhikari2024comparative} \citeyear{adhikari2024comparative} evaluated several PDF parsers using F1 score, BLEU-4, and local alignment across diverse document categories. Their study revealed that PyMuPDF and pypdfium consistently preserved sentence structure and layout more accurately than other tools. These capabilities are essential for maintaining the necessary semantic coherence for accurate vectorization and retrieval. They also highlighted parsing difficulties in complex documents such as scientific and patent PDFs, where rule-based tools struggled while transformer-based models demonstrated significant improvements. Moreover, efficient document ingestion and retrieval are crucial in managing large repositories such as academic libraries \cite{adhikari2024comparative}.
 
 According to \citeauthor{zhang2023automated} \citeyear{zhang2023automated}, automated ingestion pipelines that parse and store documents in a searchable index improve the discoverability and accessibility of scholarly content. 
-\newpage
-\clearpage
+
 Techniques like optical character recognition (OCR), metadata extraction, and structured indexing are often applied to thesis repositories to facilitate retrieval operations \cite{zhang2023automated}. Similarly, \citeauthor{karpukhin2020dense} \citeyear{karpukhin2020dense} emphasized the importance of pre-processing, chunking, and embedding documents for semantic search in their work on Dense Passage Retrieval (DPR), informing modern RAG pipelines \cite{karpukhin2020dense}. Typically, the ingestion process involves multiple steps: (1) text extraction using tools like PyMuPDF or pypdfium, (2) text chunking into smaller, logical parts, and (3) embedding using models like Sentence-BERT. Finally, these vectors are stored in specialized vector databases such as FAISS, Pinecone, or FAISS for efficient retrieval during user queries. Efficient document ingestion and storage directly influence retrieval accuracy, system responsiveness, and user experience. Sagi emphasized that robust ingestion and vectorization processes ensure that relevant information can be retrieved quickly and that RAG models generate highly accurate, contextually rich responses, especially in dynamic environments like academic libraries \cite{karpukhin2020dense}.
 
-\bigbreak
 \citeauthor{deepak2025langchain} \citeyear{deepak2025langchain}, in their study "Langchain-chat with my pdf" highlighted the significance of vectorization techniques such as embedding and chunking in processing PDFs. Their research illustrated how chunking aids the RAG framework in identifying relevant sections of documents during user queries, streamlining the management of comprehensive PDF-based information, and enhancing the system's semantic search capabilities \cite{deepak2025langchain}.
 
 \bigbreak
 In conclusion, the studies collectively highlight that robust preprocessing, ingestion, and vectorization processes are foundational for bridging the gap between static document repositories and real-time information retrieval, demonstrating the potential of RAG architectures in managing large collections of academic knowledge \cite{allu2024beyond} \cite{aquino2024extracting}.
 
-\newpage
-\clearpage
 \subsection{RAG Applications in Various Domains}
 
 Beyond academic contexts, RAG frameworks are increasingly being applied to specialized domains such as legal research, medical retrieval, and scientific literature search, highlighting their wide versatility and impact.
@@ -106,7 +92,6 @@ Evaluation metrics are important for evaluating the performance of RAG in retrie
 
 Existing studies have extensively explored the capabilities of Retrieval-Augmented Generation (RAG) systems in various domains, including healthcare, legal research, and academic literature retrieval. However, there is a notable gap in the literature regarding the specific application of RAG systems within academic libraries, particularly in enhancing literature search and thesis retrieval processes. While previous research has demonstrated the effectiveness of RAG in improving information retrieval, there is limited implementation in the context of university libraries, where unique challenges and requirements exist.
 
-\newpage
 This study aims to bridge this gap by developing a RAG-based chatbot system specifically designed for the CSPC library. By focusing on the unique challenges and requirements of academic libraries, this research seeks to contribute valuable insights into the effective implementation of RAG systems in enhancing information retrieval.
 
 
