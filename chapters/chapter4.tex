@@ -4,16 +4,15 @@
 This chapter discusses the results and evaluation of the Retrieval-Augmented Generation (RAG) chatbot developed for efficient literature search and thesis retrieval at the Camarines Sur Polytechnic Colleges (CSPC) Library.
 
 \subsection{Dataset and Preparation}
-The study corpus comprised all available undergraduate thesis PDFs from multiple CSPC departments (290+ documents). Coordination with the CSPC Library established data handling practices and local/on-premise deployment. The dataset was prepared via structured text extraction and token-based chunking aligned with thesis sections (Abstract; Chapters 1--5), enabling section-aware retrieval.
-
+The study corpus comprised all available undergraduate thesis PDFs from multiple CSPC departments (290+ documents). The dataset was prepared via structured text extraction and token-based chunking aligned with thesis sections (Abstract; Chapters 1--5), enabling section-aware retrieval.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/dataset_sample.jpg}
-    \caption{CSPC Thesis PDF Analysis}
+    \caption{CSPC Thesis PDF Sample}
 \end{figure}
 
-Upon agreement on project scope, data handling practices, and local/on-premise deployment, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. The dataset was acknowledged and queued for the development phase following the proposed model pipelines’ process.
+Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. This composes of theses from different departments.
 
 \subsection{Data Preprocessing}
 Texts were extracted page-by-page and enriched with metadata (source, page) to preserve academic provenance. Token-based chunking produced coherent segments sized to the LLM context window and guided by thesis structure, improving retrieval fidelity and citation transparency.
@@ -32,10 +31,12 @@ Texts were extracted page-by-page and enriched with metadata (source, page) to p
     \end{minipage}
 \end{figure}
 
-This preprocessing yielded clean, contextually rich segments suitable for vectorization and indexing.    
+Figure 4 and 5 shows the chunk analysis and statistics respectively. Chunk statistics indicated a total chunks count of 38,127 and total token count of 11,849,783. With an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that would define the chatbot's effectiveness in academic literature discovery.
+
+Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 (HuggingFace), chosen for its efficiency and strong semantic performance; when cloud embeddings were available, Gemini could be used as an alternative for multilingual scenarios. FAISS stored vectors alongside source/page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
 
 \begin{figure}[h]
     \centering
@@ -43,15 +44,13 @@ The indexing phase transformed the preprocessed text chunks into a searchable kn
     \caption{Created index in FAISS}
 \end{figure}
 
-Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 (HuggingFace), chosen for its efficiency and strong semantic performance; when cloud embeddings were available, Gemini could be used as an alternative for multilingual scenarios. FAISS stored vectors alongside source/page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
-
 \subsection{Query Encoding and Retrieval}
 Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
 
 For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
 
 \subsection{Augmented Input and Generation}
-Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers (e.g., source filename, page). This supported grounded, traceable answers and reduced hallucination risk.
+Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers. This supported grounded, traceable answers and reduced hallucination risk.
 
 Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
 
