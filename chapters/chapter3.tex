@@ -51,7 +51,7 @@ The retrieval and generation process begins with query processing, where a user'
 
 Large Language Models (LLMs) are cutting-edge artificial intelligence systems capable of processing and generating coherent text. These models are built on advanced neural architectures, trained on massive corpora, and have demonstrated effectiveness across NLP tasks such as summarization, question answering, information retrieval, and dialogue systems \citeauthor{naveed2024} \citeyear{naveed2024}. In this study, the system used the Gemini 2.5-flash LLM to synthesize retrieved academic content with its internal knowledge to generate responses tailored to user queries.
 
-\subsubsection{Gemini 2.5-flash}
+% \subsubsection{Gemini 2.5-flash}
 
 % The large language model integrated in this project is Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gemini} \citeyear{comanici2025gemini}. Gemini 2.5 Flash delivers advanced reasoning capabilities with support for multimodal inputs, extended context windows, and agentic workflows. Its architecture is optimized to achieve high levels of factual accuracy and contextual relevance while minimizing latency and computational requirements. In this project, Gemini 2.5 Flash was incorporated into a retrieval-augmented generation (RAG) framework to enhance domain-specific information retrieval for CSPC Library users, leveraging its capabilities for real-time, cost-effective, and complex problem-solving.
 
@@ -213,6 +213,8 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 \section{Evaluation Metrics}
 
 The researchers used a framework called \textbf{RAGAS} that comprised specific metrics to assess Retrieval-Augmented Generation (RAG)-based architectures, thereby ensuring precise measurements of both retrieval quality and generation fidelity~\cite{oubah2024advanced}. This framework evaluated the model's performance using the following metrics: \textit{Context Precision}, \textit{Context Recall}, \textit{Response Relevance}, and \textit{Faithfulness}. Each metric was essential in addressing the system’s retrieval and generation performance.
+
+\subsection*{Context Precision}
 
 The Context Precision metric was used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measured the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicated that the system effectively prioritized relevant information for the user.
 
