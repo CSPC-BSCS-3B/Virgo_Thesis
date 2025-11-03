@@ -38,11 +38,11 @@ The indexing phase transformed the preprocessed text chunks into a searchable kn
 
 Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 (HuggingFace), chosen for its efficiency and strong semantic performance; when cloud embeddings were available, Gemini could be used as an alternative for multilingual scenarios. FAISS stored vectors alongside source/page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/index.jpg}
-    \caption{Created index in FAISS}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{figures/index.jpg}
+%     \caption{Created index in FAISS}
+% \end{figure}
 
 \subsection{Query Encoding and Retrieval}
 Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
@@ -67,7 +67,7 @@ The Streamlit interface supported conversational exploration with session-based 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/streamlit.png}
-    \caption{Streamlit Interface Display}
+    \caption{User Interface}
 \end{figure}
 
 Generated responses appeared as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
