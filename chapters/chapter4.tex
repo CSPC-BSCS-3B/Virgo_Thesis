@@ -86,39 +86,38 @@ This section presents the findings through tables, figures, and subsequent discu
         \hline
         \textbf{Metric}     & \textbf{Average Score} \\
         \hline
-        Answer Relevancy    & 0.737 \\
-        Context Precision   & 0.818 \\
-        Context Recall      & 0.721 \\
-        Faithfulness        & 0.585 \\
+        Answer Relevancy    & 0.8625 \\
+        Context Precision   & 0.9167 \\
+        Context Recall      & 0.8711 \\
+        Faithfulness        & 0.9179 \\
         \hline
     \end{tabular}
 \end{table}
 
-The table presented above provides a concise summary of the RAG system’s evaluation metrics, offering a clear view of its performance in literature search and thesis retrieval tasks. Each metric captures a distinct aspect of the system’s effectiveness:
+The table presents a performance profile characterized by precise, well-grounded answers. Faithfulness (0.9179) and Context Precision (0.9167) indicate that retrieved evidence is both accurate and tightly focused, yielding citations that trace cleanly to source pages. Context Recall (0.8711) shows broad coverage of relevant thesis passages, while Answer Relevancy (0.8625) confirms that final responses align with user intent in typical literature-search tasks.
 
-\begin{enumerate}
-\item \textbf{Answer Relevancy (0.737):} This metric reflects how well the system’s responses address user queries. A score of 0.737 indicates that the chatbot generally provides answers that are relevant and useful, supporting users in finding the information they seek.
-\item \textbf{Context Precision (0.818):} Context precision measures the proportion of retrieved text chunks that are actually relevant to the query. With a high score of 0.818, the system demonstrates strong ability to filter out irrelevant information, ensuring that users receive focused and meaningful content.
-\item \textbf{Context Recall (0.721):} This metric assesses the system’s ability to retrieve all relevant information needed to answer a query. A score of 0.721 suggests that the chatbot successfully gathers most of the necessary supporting content, though there is still room for improvement in capturing every relevant detail.
-\item \textbf{Faithfulness (0.585):} Reflects how accurately the chatbot's generated responses were supported by the source documents. While lower than other metrics, this value highlights a key area for improvement, emphasizing the challenge of maintaining strict factual consistency in generative retrieval systems.
-\end{enumerate}
+In practice, a query such as “What methodologies are used for detecting academic plagiarism at CSPC?” returns a compact set of segments drawn from Methods and Related Works sections across multiple theses. The system synthesizes these into direct, cited responses; high precision keeps noise low, high recall surfaces cross-department perspectives, and high faithfulness maintains strict grounding in the referenced documents.
 
-\noindent These metrics offer a comprehensive view of the system’s effectiveness. High answer relevancy and context precision demonstrate the chatbot’s practicality and efficiency in delivering relevant results, while context recall and faithfulness underscore the system’s coverage and reliability. Faithfulness, in particular, remains an ongoing focus for enhancement, aligning with current research advances in AI literature retrieval. These metrics collectively form the foundation for interpreting, tuning, and extending the RAG chatbot’s capabilities within the CSPC Library environment.
+These results demonstrate the RAG system's effectiveness in retrieving and generating accurate, relevant, and well-grounded answers based on the indexed thesis documents from the CSPC Library. The high scores across all four evaluation metrics indicate that the system is capable of providing reliable academic assistance, making it a valuable tool for students and researchers seeking information from the library's thesis collection.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/overall_out.png}
+    \includegraphics[width=0.7\textwidth]{figures/result_dash.png}
     \caption{RAG System - Metrics Dashboard}
 \end{figure}
 
 \section*{RAG System - Metrics Dashboard}
-The dashboard presented herein serves as an integrated visualization tool for evaluating the RAG system’s performance across four core metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. Each chart within the dashboard offers unique insights into different aspects of system behavior in the context of literature search and thesis retrieval.
-The bar chart illustrates the average score attained for each metric. Notably, Context Precision achieves the highest average (0.818), followed by Answer Relevancy (0.737), Context Recall (0.721), and Faithfulness (0.585). This ordering highlights the system’s exceptional ability to retrieve relevant information, moderate competence in delivering complete and relevant answers, and a comparative need for improvement in grounding generated responses strictly within the source material.
-The box plot details the score distribution across metrics, emphasizing both consistency and spread. Metrics such as Context Precision and Answer Relevancy display less variance and higher minimum scores, indicating stable system performance. In contrast, Context Recall and Faithfulness exhibit a broader range, evidencing occasional lapses in comprehensive retrieval and accurate grounding.
-The heatmap provides a granular view by displaying metric scores for individual questions. Darker shades correspond to higher scores, meaning better performance for both retrieval and generation on those specific queries. The heatmap reveals that while the chatbot excels on many questions, there is still inconsistency—some queries show lower faithfulness or recall, suggesting targets for further system refinement.
-The radar chart synthesizes the metric scores into a single shape, depicting the RAG system’s overall performance profile at a glance. The profile is robust in Context Precision and Answer Relevancy, slightly reduced in Context Recall, and tapers at Faithfulness. This visualization makes clear where the system currently excels and where enhancements should be prioritized.
+The metrics dashboard shown above serves as the visualization of the RAG system's performance across the four evaluation metrics used in this study. Each chart provides a different perspective on how well the system performs in retrieving and generating accurate, relevant, and well-grounded answers based on the indexed thesis documents.
 
-These visualizations collectively deliver a comprehensive, multi-faceted overview of the RAG chatbot’s strengths and areas for further enhancement. The visualizations reveal the system’s strong retrieval precision and relevancy, adequate recall, and opportunities for improvement regarding faithfulness to source documents. These insights guide ongoing refinements to optimize the chatbot for reliable, accurate, and comprehensive academic information retrieval.
+The bar chart illustrates the average scores of of the four evaluation metrics. The two leading metrics are Faithfulness (0.9179) and Context Precision (0.9167), indicating that the RAG system excels at providing answers that are both accurate and tightly linked to the source documents. Context Recall (0.8711) and Answer Relevancy (0.8625) also perform well, demonstrating that the system effectively retrieves relevant information and generates responses aligned with user queries.
+
+The box plot details the score distribution across metrics, emphasizing both consistency and spread. Faithfulness and Context Precision show tight distributions with high medians, indicating stable and reliable grounding and retrieval. Context Recall and Answer Relevancy show a slightly wider spread, reflecting occasional variation in coverage and alignment with user intent.
+
+The heatmap provides a granular view by displaying the metrics for individual questions. Dark green shades correspond to higher scores, red shades indicate lower scores, and yellow and lighter green shades represent mid to good-range scores. Most queries show strong faithfulness and context precision, while a few queries display lighter cells in context recall and answer relevancy, pointing to cases where added context could further improve coverage or alignment.
+
+The radar chart synthesizes the metric scores into a single shape, illustrating the RAG system's overall performance profile at a glance. This chart demonstrated the system's strengths in Faithfulness and Context Precision, with slightly lower but still robust scores in Context Recall and Answer Relevancy. The usage of radar charts effectively highlights the balance and areas for potential improvement of the system.
+
+These overall visualization results of evaluation metrics confirm the RAG system's capability as a dependable academic search assistant, while also guiding future enhancements to further elevate its performance.
 
 \section*{User Agreement on Chatbot Response Quality and Performance}
 \ref{tab:user_agreement_quality} shows the results of the user-centered evaluation of the CSPC Library RAG chatbot using 5-point likert scale survey questions that allows the respondents to evaluate and choose the level of agreement with the chatbot’s response quality and performance.
