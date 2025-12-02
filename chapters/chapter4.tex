@@ -22,16 +22,17 @@ Texts were extracted page-by-page and enriched with metadata (source, page) to p
     \begin{minipage}{0.48\textwidth}
         \centering
         \includegraphics[width=0.95\textwidth]{figures/chunk_analysis.jpg}
-        \caption{Chunk Analysis}
+        \subcaption{Chunk Analysis}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.75\textwidth]{figures/chunk_stat.jpg}
-        \caption{Chunk Statistics}
+        \includegraphics[width=0.95\textwidth]{figures/chunk_stat4.jpg}
+        \subcaption{Chunk Statistics}
     \end{minipage}
+    \caption{Chunk Analysis \& Statistics}
 \end{figure}
 
-Figure 4 and 5 shows the chunk analysis and statistics respectively. Chunk statistics indicated a total chunks count of 38,127 and total token count of 11,849,783. With an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
+Figure 4 shows the chunk analysis and statistics respectively. Chunk statistics indicated a total chunks count of 38,127 and total token count of 11,849,783. With an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that would define the chatbot's effectiveness in academic literature discovery.
