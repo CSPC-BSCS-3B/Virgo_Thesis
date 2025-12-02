@@ -1,29 +1,33 @@
+\PassOptionsToPackage{
+  style=authoryear,      % ACM uses author-year
+  maxnames=99,
+  minnames=1,
+  giveninits=false,      % Full first names
+  doi=true,
+  url=false,
+  date=year,
+  sorting=nyt
+}{biblatex}
 
 \documentclass[12pt]{cspcccsthesis}
-% preamble
 
-\usepackage{indentfirst}
-\usepackage{mfirstuc}
+% Fix author formatting: Firstname Middlename Lastname
+\DeclareNameAlias{default}{given-family}
+\DeclareNameAlias{sortname}{family-given}
 
-\AtBeginBibliography{
-  \renewcommand*{\mkbibnamefamily}[1]{#1} % keep normal capitalization
+% Author. Year. Title. Journal...
+\renewbibmacro*{author+year}{%
+  \printnames{author}%
+  \setunit{\addperiod\space}%
+  \printfield{year}%
+  \setunit{\addperiod\space}%
 }
 
-\AtBeginDocument{
-  % Show all authors
-  \ExecuteBibliographyOptions{
-    maxnames=99,
-    minnames=99,
-    giveninits=true,      % Use initials for given names (ACM style)
-    sorting=nyt,          % Sort: name → year → title (ACM-like)
-    date=year,            % Show only year
-    urldate=iso           % Clean URL dates
-  }
-}
-
-% --- Tune title casing to ACM-like (sentence case) ---
+% Sentence-case titles like ACM
 \DeclareFieldFormat[article,inproceedings,inbook]{title}{#1}
 
+% Add your .bib file
+\addbibresource{references.bib}
 
 
 
