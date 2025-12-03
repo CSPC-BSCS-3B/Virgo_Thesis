@@ -1,34 +1,6 @@
-\PassOptionsToPackage{
-  style=authoryear,      % ACM uses author-year
-  maxnames=99,
-  minnames=1,
-  giveninits=false,      % Full first names
-  doi=true,
-  url=false,
-  date=year,
-  sorting=nyt
-}{biblatex}
-
 \documentclass[12pt]{cspcccsthesis}
-
-% Fix author formatting: Firstname Middlename Lastname
-\DeclareNameAlias{default}{given-family}
-\DeclareNameAlias{sortname}{family-given}
-
-% Author. Year. Title. Journal...
-\renewbibmacro*{author+year}{%
-  \printnames{author}%
-  \setunit{\addperiod\space}%
-  \printfield{year}%
-  \setunit{\addperiod\space}%
-}
-
-% Sentence-case titles like ACM
-\DeclareFieldFormat[article,inproceedings,inbook]{title}{#1}
-
-% Add your .bib file
-\addbibresource{references.bib}
-
+% preamble
+\usepackage{indentfirst}
 
 
 \title{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}
