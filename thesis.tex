@@ -3,27 +3,14 @@
 % preamble
 
 \usepackage{indentfirst}
-\usepackage{mfirstuc}
-
-\AtBeginBibliography{
-  \renewcommand*{\mkbibnamefamily}[1]{#1} % keep normal capitalization
-}
-
 \AtBeginDocument{
-  % Show all authors
   \ExecuteBibliographyOptions{
-    maxnames=99,
-    minnames=99,
-    giveninits=true,      % Use initials for given names (ACM style)
-    sorting=nyt,          % Sort: name → year → title (ACM-like)
-    date=year,            % Show only year
-    urldate=iso           % Clean URL dates
+    maxbibnames=99,
+    minbibnames=99,
+    maxcitenames=2,
+    mincitenames=1
   }
 }
-
-% --- Tune title casing to ACM-like (sentence case) ---
-\DeclareFieldFormat[article,inproceedings,inbook]{title}{#1}
-
 
 
 
