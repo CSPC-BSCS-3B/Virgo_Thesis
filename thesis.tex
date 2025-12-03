@@ -1,6 +1,17 @@
+
 \documentclass[12pt]{cspcccsthesis}
 % preamble
+
 \usepackage{indentfirst}
+\AtBeginDocument{
+  \ExecuteBibliographyOptions{
+    maxbibnames=99,
+    minbibnames=99,
+    maxcitenames=2,
+    mincitenames=1
+  }
+}
+
 
 
 \title{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}
