@@ -575,7 +575,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \newenvironment{vita}{
     \bookmarksetupnext{level=part}
     \thispagestyle{fancy}
-    \chapter*{Vita}
-    \addcontentsline{toc}{chapter}{Vita}
+    \chapter*{Curriculum Vitae}
+    \addcontentsline{toc}{chapter}{Curriculum Vitae}
 }{
 }
