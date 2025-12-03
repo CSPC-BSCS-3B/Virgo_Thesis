@@ -3,7 +3,7 @@
 
 This chapter presents the summary of findings, conclusions, and recommendations derived from the results of the study.
 
-\section*{Summary}
+\section{Summary}
 
 Finding relevant thesis literature in a university library like in CSPC can be difficult for many students and researchers. Most people have a hard time finding the exact thesis they need because the current library website only allows searches by the exact title. If a user does not know the precise title, it becomes a struggle to locate the right documents. Making things even harder, library rules do not allow theses to be taken out of the building, which means users must visit the library in person to access important academic materials. Because of these challenges, this study explored creating a chatbot that would let users search for thesis papers using topics, keywords, or even general descriptions, all while making the system accessible everywhere.
 
@@ -13,7 +13,7 @@ The results were promising, with the RAG-based chatbot achieving high performanc
 
 The deployment of the chatbot was observed to make thesis search more intuitive, significantly lowering entry barriers for users and reducing time spent locating needed materials. Moreover, it became evident to the researchers that several factors influenced system performance, such as thesis data quality,  and user prompts that significantly impairs the chatbot's accuracy.
 
-\section*{Findings}
+\section{Findings}
 
 The following are the key findings from the study:
 
@@ -25,7 +25,7 @@ The following are the key findings from the study:
     \item Using the RAGAS as the RAG evaluation framework the system sustained high results in Context Precision (0.9167), Context Recall (0.8711), Answer Relevancy (0.8625), and Faithfulness (0.9179). Together these values indicate a robust retrieval-and-generation pipeline: high precision and recall show the FAISS-backed retrieval reliably returns the necessary thesis passages, while the strong answer relevancy demonstrates the LLM composes useful responses from those sources. The notably high faithfulness score suggests that generated outputs are, in most cases, directly grounded in retrieved documents, which materially reduces the likelihood of unsupported or hallucinated assertions. The evaluation still highlights the usual dependencies and limitations—chiefly the quality and structure of ingested thesis PDFs, OCR/formatting errors, and user prompt variability—which remain important targets for continued optimization even as overall performance is strong.
 \end{enumerate}
 
-\section*{Conclusions}
+\section{Conclusions}
 
     Based on the findings, the researchers come up with the folling conclusions:
 
@@ -37,7 +37,7 @@ The following are the key findings from the study:
     \item The evaluation confirms the RAG-based chatbot is an effective tool, successfully retrieving relevant context and providing useful answers. However, it also reveals areas for improvement, particularly in ensuring complete information retrieval and strict faithfulness to the source texts. The system's performance is fundamentally linked to the quality of the ingested documents, highlighting a need for ongoing optimization to enhance its reliability.
 \end{enumerate}
 
-\section*{Recommendations}
+\section{Recommendations}
 
 \begin{enumerate}
     \item Future work should focus on improving the faithfulness and recall of generated responses. This may involve refining the chunking and retrieval process, integrating more advanced embedding models, or incorporating additional post-processing checks to ensure factual consistency.
