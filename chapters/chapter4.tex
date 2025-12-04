@@ -10,6 +10,7 @@ The study corpus comprised all available undergraduate thesis PDFs from multiple
     \centering
     \includegraphics[width=0.7\textwidth]{figures/dataset_sample.jpg}
     \caption{CSPC Thesis PDF Sample}
+    \label{fig:dataset_sample}
 \end{figure}
 
 Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. This composes of theses from different departments.
@@ -69,6 +70,7 @@ The Streamlit interface supported conversational exploration with session-based 
     \centering
     \includegraphics[width=0.7\textwidth]{figures/streamlit.png}
     \caption{User Interface}
+    \label{fig:streamlit_interface}
 \end{figure}
 
 Generated responses appeared as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
@@ -104,10 +106,12 @@ These results demonstrate the RAG system's effectiveness in retrieving and gener
 \section*{Visualization of RAG System Evaluation Metrics}
 The figures below illustrate the evaluation metrics of the RAG system using various visualization techniques, including bar charts, box plots, heatmaps, and radar charts.
 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_bar_chart_result.png}
     \caption{Bar Chart of RAG System Evaluation Result}
+    \label{fig:rag_bar_chart}
 \end{figure}
 
 The bar graph shows that the overall evaluation of the RAG system demonstrates a strong performance in all four metrics. The highest scores are observed in Faithfulness (0.918) and Context Precision (0.917), indicating that the system effectively grounds its responses in accurate and relevant information retrieved from the source documents. These results suggest that the system minimizes hallucinations, maintains real information during response, and focuses on the most pertinent contextual segments during retrieval. These scores prove that the RAG model is well-optimized for generating trustworthy and accurate responses.
@@ -120,6 +124,7 @@ These result visualized using bar chart confirms effectiveness of the designed p
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_heatmap_chart_result.png}
     \caption{Heatmap of RAG System Evaluation Result}
+    \label{fig:rag_heatmap}
 \end{figure}
 
 The heatmap shows the question level performance of the RAG system across the four evaluation metrics. Most of the scores are ranging from 0.75 to 1.00, indicating a generally strong performance. The dark green cells represent high-quality outputs, while the mid-range yellow tones and the single red cell indicates low Context Precision for Question 3 which highlights the area where the system's performance could be improved. Overall, the system demonstrates strong answer alignment, with Questions 0 to 2 achieving high Answer Relevancy scores above 0.90. Meanwhile, Questions 3 and 4 show slightly reduced relevancy, suggesting occasional omissions. These patterns indicate that the system generally maintains high standards but may need targeted refinements for more complex queries.
@@ -130,6 +135,7 @@ Among the RAG metrics implemented, Context precision is excellent for four of th
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_radar_chart_result.png}
     \caption{Radar Chart of RAG System Evaluation Result}
+    \label{fig:rag_radar_chart}
 \end{figure}
 
 The radar chart shows that the RAG system demonstrates a consistently high and well-balanced performance across the four evaluation metrics: Faithfulness, Context Precision, Context Recall, and Answer Relevancy. The nearly symmetrical shape of the plot indicates that no metric falls below an acceptable range, with Faithfulness and Context Precision forming the strongest extensions. This suggests that the system reliably grounds its answers in retrieved evidence and selects context that is highly relevant to the user’s query, effectively minimizing hallucinations and maintaining strong alignment with source documents. 
@@ -145,6 +151,7 @@ These overall visualization results of evaluation metrics confirm the RAG system
     \centering
     \caption{User Agreement: Chatbot Response Quality and Performance}
     \label{tab:user_agreement_quality}
+    \footnotesize
     \begin{tabular}{p{7cm} c c}
         \hline
         \multicolumn{1}{c}{\textbf{Criteria}} & \textbf{Weighted Mean} & \textbf{Verbal Interpretation} \\
@@ -175,6 +182,7 @@ The result of the evaluation of the RAG chatbot using user-centered evaluation m
     \centering
     \caption{User Feedback on RAG chatbot’s Effectiveness and Usability}
     \label{tab:user_feedback_table}
+    \footnotesize
     \begin{tabular}{m{5cm} c c}
         \hline
         \multicolumn{1}{c}{\textbf{Criteria}} & \textbf{Weighted Mean} & \textbf{Verbal Interpretation} \\
