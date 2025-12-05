@@ -212,8 +212,7 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 
 
 \section{Evaluation Metrics}
-
-The researchers used a framework called \textbf{RAGAS} that comprised specific metrics to assess Retrieval-Augmented Generation (RAG)-based architectures, thereby ensuring precise measurements of both retrieval quality and generation fidelity~\cite{oubah2024advanced}. This framework evaluated the model's performance using the following metrics: \textit{Context Precision}, \textit{Context Recall}, \textit{Response Relevance}, and \textit{Faithfulness}. Each metric was essential in addressing the system’s retrieval and generation performance.
+The researchers evaluated the RAG-based system with RAGAS~\cite{es2024ragas}, focusing on Context Precision, Context Recall, Response Relevance, and Faithfulness. These metrics jointly assess retrieval quality, accuracy, query alignment, and factual grounding, ensuring reliable, useful outputs for users.
 
 \subsection*{Context Precision}
 
@@ -329,7 +328,7 @@ This visualization helps guide readers through the sequence of the system stages
 
 \textit{Response Output and Interface Display}. In this section, streamlit was used to create an intuitive web interface that presented the chatbot's responses alongside relevant metadata, such as source thesis titles and sections.
 
-\textit{Performance Evaluation}. Lastly, the system's effectiveness was evaluated using both automated metrics and human-centered assessments. Automated evaluation employed the RAGAS framework and for user-centered evaluation, a structured questionnaire was administered to gather feedback on usability, accuracy, and overall satisfaction. This dual-layered evaluation ensured that the RAG-based chatbot system not only met technical performance benchmarks but also aligned with user expectations and academic research needs.
+\textit{Performance Evaluation}. The system’s effectiveness was evaluated with two approach: automated RAGAS metrics (context precision, context recall, answer relevance, faithfulness) and a brief user survey using Likert scales. Findings guided refinements to retrieval, prompting, and UI. This ensured technical robustness, usability, and trustworthy, thesis-grounded answers aligned with CSPC academic needs for library users and researchers.
 
 
 %=======================================================%
