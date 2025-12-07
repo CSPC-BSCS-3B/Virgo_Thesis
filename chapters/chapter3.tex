@@ -19,7 +19,7 @@ This study adopted a construcive research design where the primary artifact was 
 % And also functionalities such as CSPC email authentication for user verification, query history tracking for an improved user experience, and retraining support to adapt to future academic datasets.
 % These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
 
-% The system was developed using Streamlit, which allows for the rapid deployment of an interactive user interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources. The core data ingestion and experimentation were implemented in a dedicated Jupyter Notebook (\texttt{ingest\_off.ipynb}). This notebook was used to perform structured, token-based chunking aligned with thesis sections, experiment with different embedding models to optimize semantic representation, and visualize the resulting vector space. LangChain was used to orchestrate the final pipeline, with FAISS serving as the vector store for efficient retrieval.
+% The system was developed using Flask, which allows for the creation of a robust and customizable web interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources. The core data ingestion and experimentation were implemented in a dedicated Jupyter Notebook (\texttt{ingest\_off.ipynb}). This notebook was used to perform structured, token-based chunking aligned with thesis sections, experiment with different embedding models to optimize semantic representation, and visualize the resulting vector space. LangChain was used to orchestrate the final pipeline, with FAISS serving as the vector store for efficient retrieval.
 
 
 \section{Theorems, Algorithms, and Mathematical Models}
@@ -103,13 +103,13 @@ A 1 TB SSD is preferred due to its high read/write speeds, which significantly e
         Vector Database         & e.g. FAISS                                                                           \\
         Language Model          & Gemini 2.5-flash                                                                     \\
         Embedding Model         & \begin{tabular}[c]{@{}l@{}}sentence-transformers/\\ all-MiniLM-L6-v2 (HuggingFace)\end{tabular} \\
-        Web Framework           & Streamlit                                                                            \\
+        Web Framework           & Flask                                                                            \\
         Libraries               & \begin{tabular}[c]{@{}l@{}}LangChain \\ PyMuPDF \\ NumPy \end{tabular} \\
         \hline
     \end{tabular}
 \end{table}
 
-Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS is used as the vector database to facilitate fast and accurate semantic search. The system leverages Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Streamlit framework is used to build an interactive user interface.
+Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS is used as the vector database to facilitate fast and accurate semantic search. The system leverages Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Flask framework is used to build an interactive user interface.
 
 Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
 
@@ -308,8 +308,7 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 
 
 \section{Evaluation Metrics}
-
-The researchers used a framework called \textbf{RAGAS} that comprised specific metrics to assess Retrieval-Augmented Generation (RAG)-based architectures, thereby ensuring precise measurements of both retrieval quality and generation fidelity~\cite{oubah2024advanced}. This framework evaluated the model's performance using the following metrics: \textit{Context Precision}, \textit{Context Recall}, \textit{Response Relevance}, and \textit{Faithfulness}. Each metric was essential in addressing the system’s retrieval and generation performance.
+The researchers evaluated the RAG-based system with RAGAS~\cite{es2024ragas}, focusing on Context Precision, Context Recall, Response Relevance, and Faithfulness. These metrics jointly assess retrieval quality, accuracy, query alignment, and factual grounding, ensuring reliable, useful outputs for users.
 
 \subsection*{Context Precision}
 
@@ -411,7 +410,7 @@ This visualization helps guide readers through the sequence of the system stages
     \label{fig:conceptual_framework}
 \end{figure}
 
-\textit{Data Collection}. The process began with section where the researchers began with their proposal and coordination with CSPC Library and its staff, where the prototype was demonstrated to show how a RAG-powered chatbot could improve thesis discovery beyond exact-keyword search by enabling topic-oriented, semantically grounded retrieval within the library’s own repository. In the demonstration, the project’s institutional value was emphasized in accelerating literature searches, increasing access to relevant local theses, and supporting academic guidance, following the researchers' formal request to obtain one hundred undergraduate thesis PDFs from various College departments of CSPC to use as the main corpus of the RAG chatbot application.
+\textit{Data Collection}. The process began with section where the researchers began with their proposal and coordination with CSPC Library and its staff, where the prototype was demonstrated to show how a RAG-powered chatbot could improve thesis discovery beyond exact-keyword search by enabling topic-oriented, semantically grounded retrieval within the library’s own repository. In the demonstration, the project’s institutional value was emphasized in accelerating literature searches, increasing access to relevant local theses, and supporting academic guidance, following the researchers' formal request to obtain all undergraduate thesis PDFs from various College departments of CSPC to use as the main corpus of the RAG chatbot application.
 
 \textit{Data Pre-processing}. Tools like PyMuPDF were used to extract plain text from the collected PDFs. The extracted content underwent cleaning and normalization to remove non-informative characters, followed by segmentation into semantically meaningful text chunks.
 
@@ -423,9 +422,9 @@ This visualization helps guide readers through the sequence of the system stages
 
 \textit{Response Generation}, The response generation stage represented the culmination of the RAG pipeline, where gemini-1.5-flash transformed augmented academic context into coherent, factually grounded answers that addressed user research inquiries. 
 
-\textit{Response Output and Interface Display}. In this section, streamlit was used to create an intuitive web interface that presented the chatbot's responses alongside relevant metadata, such as source thesis titles and sections.
+\textit{Response Output and Interface Display}. In this section, Flask was used to create an intuitive web interface that presented the chatbot's responses alongside relevant metadata, such as source thesis titles and sections.
 
-\textit{Performance Evaluation}. Lastly, the system's effectiveness was evaluated using both automated metrics and human-centered assessments. Automated evaluation employed the RAGAS framework and for user-centered evaluation, a structured questionnaire was administered to gather feedback on usability, accuracy, and overall satisfaction. This dual-layered evaluation ensured that the RAG-based chatbot system not only met technical performance benchmarks but also aligned with user expectations and academic research needs.
+\textit{Performance Evaluation}. The system’s effectiveness was evaluated with two approach: automated RAGAS metrics (context precision, context recall, answer relevance, faithfulness) and a brief user survey using Likert scales. Findings guided refinements to retrieval, prompting, and UI. This ensured technical robustness, usability, and trustworthy, thesis-grounded answers aligned with CSPC academic needs for library users and researchers.
 
 
 %=======================================================%
