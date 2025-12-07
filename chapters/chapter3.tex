@@ -1,14 +1,14 @@
 \chapter{Methodology}
 \begin{refsection}
  
-This chapter discusses the specific steps and logical procedures that was employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system. This includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
+This chapter discussed the specific steps and logical procedures that were employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system. This included the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
 
 \section{Research Design}
 
-Constructive research design focuses on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
+Constructive research design focused on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology was particularly well-suited to fields like information systems and artificial intelligence, where the goal was not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
 
 
-This study adopted a construcive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacts when finding thesis literature in CSPC library. It addresses the challenges faced in searching and retrieving thesis literature by replacing the current yet traditional database and keyword based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
+This study adopted a constructive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacted when finding thesis literature in the CSPC library. It addressed the challenges faced in searching and retrieving thesis literature by replacing the traditional database and keyword-based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access theses wherever they were, since current library policies restricted users from taking physical thesis books outside the premises.
 
 
 \section{Theorems, Algorithms, and Mathematical Models}
@@ -17,7 +17,7 @@ This study implemented advanced machine learning techniques, natural language pr
 
 \subsection{Retrieval-Augmented Generation (RAG) Pipeline}
 
-The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that combines information retrieval with natural language generation. It allows LLMs to access external documents during inference, thereby improving both accuracy and contextual relevance.
+The Retrieval-Augmented Generation (RAG) pipeline was a hybrid architecture that combined information retrieval with natural language generation. It allowed LLMs to access external documents during inference, thereby improving both accuracy and contextual relevance.
 
 \begin{figure}[htbp]
     \centering
@@ -26,15 +26,15 @@ The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that 
     \label{fig:rag}
 \end{figure}
 
-The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consists of the following key stages:
+The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consisted of the following key stages:
 
 \subsubsection{A. Data Indexing}
 
-The data indexing process begins with document preparation, where thesis documents are collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respects academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata are stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
+The data indexing process began with document preparation, where thesis documents were collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respected academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk was then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata were stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
 
 \subsubsection{B. Retrieval and Generation}
 
-The retrieval and generation process begins with query processing, where a user's query is embedded using the same model employed for indexing. A FAISS-backed retriever then performs a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
+The retrieval and generation process began with query processing, where a user's query was embedded using the same model employed for indexing. A FAISS-backed retriever then performed a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks were provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
 
 \subsection{Large Language Model}
 
@@ -42,15 +42,15 @@ Large Language Models (LLMs) are cutting-edge AI systems trained on massive data
 
 \subsubsection{Gemini 2.5-flash}
 
-The large language model integrated in this project is Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gem} \citeyear{comanici2025gem}. It delivers advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimizes factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhances domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities \cite{comanici2025gem}.
+The large language model integrated in this project was Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gem} \citeyear{comanici2025gem}. It delivered advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimized factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhanced domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities \cite{comanici2025gem}.
 
 \section{Materials and Statistical Tools / Evaluation Methods}
 
-To ensure optimal performance of the RAG-based LLM system, several key hardware and software components are required.
+To ensure optimal performance of the RAG-based LLM system, several key hardware and software components were required.
 
 \subsection{Research Materials}
 
-This section contains the dataset, hardware, and software requirements for the development of the RAG chatbot system.
+This section contained the dataset, hardware, and software requirements for the development of the RAG chatbot system.
 
 \subsubsection{Dataset}
 
@@ -58,7 +58,7 @@ The study utilized a dataset consisting of all available undergraduate thesis PD
 
 \subsubsection{Hardware}
 
-To support the development of RAG chatbot system, the researchers used hardware components that meet or exceed the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
+To support the development of the RAG chatbot system, the researchers used hardware components that met or exceeded the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
 
 \begin{table}[H]
     \centering
@@ -75,9 +75,9 @@ To support the development of RAG chatbot system, the researchers used hardware 
     \end{tabular}
 \end{table}
 
-A modern multi-core CPU enables efficient data processing and model inference, ensuring smooth query execution. At least 16 GB of RAM is recommended to manage large-scale embeddings and real-time retrieval operations effectively. 
+A modern multi-core CPU enabled efficient data processing and model inference, ensuring smooth query execution. At least 16 GB of RAM was recommended to manage large-scale embeddings and real-time retrieval operations effectively. 
 
-A 1 TB SSD is preferred due to its high read/write speeds, which significantly enhance data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
+A 1 TB SSD was preferred due to its high read/write speeds, which significantly enhanced data indexing and retrieval. Given the resource-intensive nature of embedding computations and AI-driven text generation, a high-performance GPU, such as an NVIDIA RTX 3090 or better, was crucial for accelerating deep learning inference and vector operations.
 
 \subsubsection{Software}
 
@@ -98,25 +98,25 @@ A 1 TB SSD is preferred due to its high read/write speeds, which significantly e
     \end{tabular}
 \end{table}
 
-Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS is used as the vector database to facilitate fast and accurate semantic search. The system leverages Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Flask framework is used to build an interactive user interface.
+Python 3.10 or later served as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS was used as the vector database to facilitate fast and accurate semantic search. The system leveraged Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Flask framework was used to build an interactive user interface.
 
-Document parsing and extraction are managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supports numerical operations, while LangChain manages the orchestration of LLMs during query interpretation and response generation.
+Document parsing and extraction were managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supported numerical operations, while LangChain managed the orchestration of LLMs during query interpretation and response generation.
 
 
 \subsection{Instrument}
 
-In this subsection, introduced the instruments that was used by researchers to analyze and evaluate the performance of the RAG chatbot system.
+In this subsection, the instruments that were used by researchers to analyze and evaluate the performance of the RAG chatbot system were introduced.
 
-\textit{RAGAS (Retrieval-Augmented Generation Assessment Suite)}. toolkit was utilized to automatically evaluate the quality of system outputs using metrics such as context precision, faithfulness, and answer relevance~\cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks. These instruments ensured a rigorous and balanced evaluation of the proposed system from both system-level and user perspectives~ \cite{lin2021bert}.
+	extit{RAGAS (Retrieval-Augmented Generation Assessment Suite)} toolkit was utilized to automatically evaluate the quality of system outputs using metrics such as context precision, faithfulness, and answer relevance~\cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks. These instruments ensured a rigorous and balanced evaluation of the proposed system from both system-level and user perspectives~ \cite{lin2021bert}.
 
-\textit{Survey.} Instruments served as data collection tools across different areas and provided an effective way to gather information. They were useful when seeking insights into the attributes, preferences, opinions, or beliefs of a specific group. To meet the study objectives, the researchers conducted a survey among employed librarians and CSPC students to evaluate the proposed RAG chatbot using a user-centered method that measured users' level of agreement on the chatbot's quality and performance. The researchers developed questionnaires to assess users' satisfaction with answers, likelihood to use the chatbot again, ease of reading and understanding the output, and confidence in the information retrieved by the system. The respondents of the study were all from the CSPC including 2 employees of Library, 2 faculty, and 14 students who served as a representative of the whole population.
+	extit{Survey.} Instruments served as data collection tools across different areas and provided an effective way to gather information. They were useful when seeking insights into the attributes, preferences, opinions, or beliefs of a specific group. To meet the study objectives, the researchers conducted a survey among employed librarians and CSPC students to evaluate the proposed RAG chatbot using a user-centered method that measured users' level of agreement on the chatbot's quality and performance. The researchers developed questionnaires to assess users' satisfaction with answers, likelihood to use the chatbot again, ease of reading and understanding the output, and confidence in the information retrieved by the system. The respondents of the study were all from the CSPC including 2 employees of the Library, 2 faculty, and 14 students who served as representatives of the whole population.
 
 
 \subsection{Statistical Test}
 
 The system’s technical performance was evaluated using the RAGAS framework, focusing on context precision, recall, relevance, and faithfulness to measure how well relevant documents were retrieved and responses generated~\cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}.
 
-Additionally, to asssess not only the technical but also the user-centered performance of the system, a user questionnaire was administered to collect feedback regarding usability, accuracy, and overall satisfaction, utilizing a 5-point Likert scale to ensure consistent measurement.
+Additionally, to assess not only the technical but also the user-centered performance of the system, a user questionnaire was administered to collect feedback regarding usability, accuracy, and overall satisfaction, utilizing a 5-point Likert scale to ensure consistent measurement.
 
 \begin{table}[H] %TABLE 3%
     \centering
@@ -163,7 +163,7 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:satisfaction_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Satisfaction based on the user’s experience with the system’s answers. The first column showed the scale that the system level of satisfaction fell under, which was shown in the third column, and its corresponding definition in the fourth column. User’s responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Satisfied,” which meant that the user of the RAG Chatbot was completely satisfied with the provided answers; scale 4 with a range of 3.40-4.19 was described as “Satisfied,” indicating that the user of the RAG Chatbot was satisfied with the provided answers but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unsatisfied,” indicating that the user of the RAG Chatbot was unsatisfied with the provided answers but not as intensely as “Very Unsatisfied”; and scale 1 was described as “Very Unsatisfied,” meaning that the user of the RAG chatbot was completely dissatisfied with the provided answers.  
+\ref{tab:satisfaction_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Satisfaction based on the user’s experience with the system’s answers. The first column showed the scale that the system level of satisfaction fell under, which was shown in the third column, and its corresponding definition in the fourth column. Users’ responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Satisfied,” which meant that the user of the RAG Chatbot was completely satisfied with the provided answers; scale 4 with a range of 3.40-4.19 was described as “Satisfied,” indicating that the user of the RAG Chatbot was satisfied with the provided answers but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unsatisfied,” indicating that the user of the RAG Chatbot was unsatisfied with the provided answers but not as intensely as “Very Unsatisfied”; and scale 1 was described as “Very Unsatisfied,” meaning that the user of the RAG chatbot was completely dissatisfied with the provided answers.  
 
 \begin{table}[H] %Table 5
     \centering
@@ -187,7 +187,7 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:reuse_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Using the Chatbot Again based on the user’s intention to reuse the system after their experience. The first column showed the scale that the system level of reuse fell under, which was shown in the third column and its corresponding definition in the fourth column. User’s responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Likely,” which meant that the user of the RAG Chatbot was very likely to use the system again or found it highly useful; scale 4 with a range of 3.40-4.19 was described as “Likely,” indicating that the user of the RAG Chatbot was likely to use the system again but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unlikely,” suggesting that the user of the RAG Chatbot was unlikely to use the system again but not as intensely as “Very Unlikely”; and scale 1 was described as “Very Unlikely,” indicating that the user of the RAG chatbot was very unlikely to reuse the system or found it not useful enough to return.
+\ref{tab:reuse_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Using the Chatbot Again based on the user’s intention to reuse the system after their experience. The first column showed the scale that the system level of reuse fell under, which was shown in the third column and its corresponding definition in the fourth column. Users’ responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Likely,” which meant that the user of the RAG Chatbot was very likely to use the system again or found it highly useful; scale 4 with a range of 3.40-4.19 was described as “Likely,” indicating that the user of the RAG Chatbot was likely to use the system again but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unlikely,” suggesting that the user of the RAG Chatbot was unlikely to use the system again but not as intensely as “Very Unlikely”; and scale 1 was described as “Very Unlikely,” indicating that the user of the RAG chatbot was very unlikely to reuse the system or found it not useful enough to return.
 
 \begin{table}[H] %TABLE 6%
     \centering
