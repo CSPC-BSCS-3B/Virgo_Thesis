@@ -7,7 +7,9 @@ This chapter discusses the specific steps and logical procedures that was employ
 
 Constructive research design focuses on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
 
+
 This study adopted a construcive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacts when finding thesis literature in CSPC library. It addresses the challenges faced in searching and retrieving thesis literature by replacing the current yet traditional database and keyword based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
+
 
 \section{Theorems, Algorithms, and Mathematical Models}
 
@@ -165,30 +167,30 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 
 \begin{enumerate}
 
-     \item \textbf{Data Preprocessing} - The collected PDF thesis documents underwent a preprocessing phase to extract and clean the textual content.
+    \item \textbf{Data Preprocessing} - The collected PDF thesis documents underwent a preprocessing phase to extract and clean the textual content.
         \begin{enumerate}
             \item [(a)] {Text Extraction:} PyMuPDF was used to convert PDF files into structured plain text.
             \item [(b)] {Cleaning:} Non-informative characters and formatting were removed.
             \item [(c)] {Text Chunking:} Text was segmented into manageable chunks to enhance semantic search accuracy.
         \end{enumerate}
         
-        \item \textbf{Indexing and Vector Embedding} - The preprocessed text chunks were transformed into vector representations and indexed for efficient retrieval.
+    \item \textbf{Indexing and Vector Embedding} - The preprocessed text chunks were transformed into vector representations and indexed for efficient retrieval.
         \begin{enumerate}
             \item [(a)] {Vector Embedding:} Each text chunk was embedded using gemini-embedding-001.
             \item [(b)] {Cleaning:} FAISS stored the vectorized content along with metadata such as document titles, authors, and section headers.
         \end{enumerate}
 
-        \item \textbf{Query Handling and Semantic Retrieval} - User queries were processed to retrieve relevant document chunks from the vector database.
+    \item \textbf{Query Handling and Semantic Retrieval} - User queries were processed to retrieve relevant document chunks from the vector database.
         \begin{enumerate}
             \item [(a)] {Query Encoding:} The user’s natural language query was encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
             \item [(b)] {Similarity Search:} The encoded query was matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ was adaptively increased to improve coverage.
         \end{enumerate}
 
-        \item \textbf{Response Generation} - The Gemini 2.5-flash language model processed the augmented input to generate a response that was factually aligned with the source documents.
+    \item \textbf{Response Generation} - The Gemini 2.5-flash language model processed the augmented input to generate a response that was factually aligned with the source documents.
 
-        \item \textbf{Output Presentation} - The system displayed the generated response via a user interface that included metadata such as the source thesis title and section, encouraging transparency and academic integrity.
+    \item \textbf{Output Presentation} - The system displayed the generated response via a user interface that included metadata such as the source thesis title and section, encouraging transparency and academic integrity.
 
-        \item \textbf{Performance Evaluation}
+    \item \textbf{Performance Evaluation}
         \begin{enumerate}
             \item [(a)] {Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, Answer Relevance, and Faithfulness, were calculated.
             \item [(b)] {Human Evaluation:} A usability questionnaire was distributed to a sample of student users to assess the system’s clarity, ease of use, and usefulness in retrieving academic information.
