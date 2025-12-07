@@ -5,22 +5,9 @@ This chapter discusses the specific steps and logical procedures that was employ
 
 \section{Research Design}
 
-% Constructive research design is a strategy for creating new constructs or systems that build on existing knowledge, concepts, or methods to address specific problems or challenges. It involves developing innovative solutions by combining and adapting well-established theories, techniques, and models to solve real-world problems. This design often relies on a combination of existing tools, knowledge, and frameworks, where researchers adapt and reassemble them into novel constructs or systems. In this process, the research seeks not only to develop theoretical understanding but also to create practical, tangible, functional solutions that can be implemented in real-world settings. This design is particularly relevant in fields where continuous innovation and development are required and where applying existing knowledge to new contexts can lead to breakthroughs in solving emerging problems \cite{crnkovic2010}.
-
-% The constructive research approach is a research procedure for producing innovativeconstructions, intended to solve problems faced in the real world and, by that means, to
-% make a contribution to the theory of the discipline in which it is applied.
-
 Constructive research design focuses on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
 
 This study adopted a construcive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacts when finding thesis literature in CSPC library. It addresses the challenges faced in searching and retrieving thesis literature by replacing the current yet traditional database and keyword based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
-
-% making research faster, smarter, and more user-friendly. It incorporated semantic search using vector embeddings, enabling the RAG chatbot to generate contextually relevant and factually grounded responses for user queries. 
-
-% And also functionalities such as CSPC email authentication for user verification, query history tracking for an improved user experience, and retraining support to adapt to future academic datasets.
-% These features highlight the system's real-world relevance, sustainability, and potential for long-term utility \cite{hevner2004design}.
-
-% The system was developed using Flask, which allows for the creation of a robust and customizable web interface. The backend combines vector databases and state-of-the-art LLMs, demonstrating how retrieval and generation components can be effectively integrated to improve access to academic resources. The core data ingestion and experimentation were implemented in a dedicated Jupyter Notebook (\texttt{ingest\_off.ipynb}). This notebook was used to perform structured, token-based chunking aligned with thesis sections, experiment with different embedding models to optimize semantic representation, and visualize the resulting vector space. LangChain was used to orchestrate the final pipeline, with FAISS serving as the vector store for efficient retrieval.
-
 
 \section{Theorems, Algorithms, and Mathematical Models}
 
@@ -41,7 +28,7 @@ The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consists of the f
 
 \subsubsection{A. Data Indexing}
 
-The data indexing process begins with document preparation, where thesis documents are collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respects academic structure (e.g., Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata are stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
+The data indexing process begins with document preparation, where thesis documents are collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respects academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata are stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
 
 \subsubsection{B. Retrieval and Generation}
 
@@ -53,7 +40,7 @@ Large Language Models (LLMs) are cutting-edge AI systems trained on massive data
 
 \subsubsection{Gemini 2.5-flash}
 
-The large language model integrated in this project is Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gemini} \citeyear{comanici2025gemini}. It delivers advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimizes factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhances domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities.
+The large language model integrated in this project is Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gem} \citeyear{comanici2025gem}. It delivers advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimizes factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhances domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities \cite{comanici2025gem}.
 
 \section{Materials and Statistical Tools / Evaluation Methods}
 
@@ -69,7 +56,7 @@ The study utilized a dataset consisting of all available undergraduate thesis PD
 
 \subsubsection{Hardware}
 
-To support the development of RAG chatbot system, the researchers will use hardware components that meet or exceed the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
+To support the development of RAG chatbot system, the researchers used hardware components that meet or exceed the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
 
 \begin{table}[H]
     \centering
@@ -120,7 +107,7 @@ In this subsection, introduced the instruments that was used by researchers to a
 
 \textit{RAGAS (Retrieval-Augmented Generation Assessment Suite)}. toolkit was utilized to automatically evaluate the quality of system outputs using metrics such as context precision, faithfulness, and answer relevance~\cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks. These instruments ensured a rigorous and balanced evaluation of the proposed system from both system-level and user perspectives~ \cite{lin2021bert}.
 
-\textit{Survey.} Instruments serve as data collection tools across different areas and provide an effective way to gather information. They are useful when seeking insights into the attributes, preferences, opinions, or beliefs of a specific group. To meet the study objectives, the researchers will conduct a survey among employed librarians and CSPC students to evaluate the proposed RAG chatbot using a user-centered method that measures users’ level of agreement on the chatbot’s quality and performance. The researchers will develop questionnaires to assess users’ satisfaction with answers, likelihood to use the chatbot again, ease of reading and understanding the output, and confidence in the information retrieved by the system. The respondents of the study are all from the CSPC including 3 employees of Library, 1 faculty, and the 7 students will serve as a representative of the whole population.
+\textit{Survey.} Instruments served as data collection tools across different areas and provided an effective way to gather information. They were useful when seeking insights into the attributes, preferences, opinions, or beliefs of a specific group. To meet the study objectives, the researchers conducted a survey among employed librarians and CSPC students to evaluate the proposed RAG chatbot using a user-centered method that measured users' level of agreement on the chatbot's quality and performance. The researchers developed questionnaires to assess users' satisfaction with answers, likelihood to use the chatbot again, ease of reading and understanding the output, and confidence in the information retrieved by the system. The respondents of the study were all from the CSPC including 2 employees of Library, 2 faculty, and 14 students who served as a representative of the whole population.
 
 
 \subsection{Statistical Test}
@@ -150,8 +137,7 @@ Additionally, to asssess not only the technical but also the user-centered perfo
         \hline
     \end{tabular}
 \end{table}
-
-\ref{tab:likert_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Agreement based on the user’s experience to the system’s response quality and performance. The first column showed the scale that the system level of agreement fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Strongly Agree” which means that the user of the RAG Chatbot completely agrees with the described criteria or finds its quality and performance excellent, scale 4 with a range 3.40-4.19 described as “Agree”, the user of the RAG Chatbot agrees with the described criteria but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the  criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Disagree”, the user of the RAG Chatbot disagrees with the criteria description but not as intensely as “Strongly Disagree”, and Scale 1 is described as “Strongly Disagree”, the user of the RAG chatbot completely disagrees with the criteria description or finds the system as low quality and low performance.
+\ref{tab:likert_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Agreement based on their experience with the system’s response quality and performance. The first column showed the scale that the system level of agreement fell under, which was shown in the third column, and its corresponding definition in the fourth column. Users' responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Strongly Agree,” which meant that the user of the RAG Chatbot completely agreed with the described criteria or found its quality and performance excellent. Scale 4 with a range of 3.40-4.19 was described as “Agree,” indicating that the user of the RAG Chatbot agreed with the described criteria but not to the strongest extent. Scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction. Scale 2 with a range of 1.80-2.59 was described as “Disagree,” indicating that the user of the RAG Chatbot disagreed with the criteria description but not as intensely as “Strongly Disagree,” and Scale 1 was described as “Strongly Disagree,” meaning that the user of the RAG chatbot completely disagreed with the criteria description or found the system to be of low quality and low performance.
 
 \begin{table}[H] %TABLE 4%
     \centering
@@ -175,14 +161,14 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:satisfaction_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Satisfaction based on the user’s experience to the system’s answers. The first column showed the scale that the system level of satisfaction fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Satisfied” which means that the user of the RAG Chatbot completely satisfies with the provided answers, scale 4 with a range 3.40-4.19 described as “Satisfied”, the user of the RAG Chatbot is satisfied with the provided answers but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Unsatisfied”, the user of the RAG Chatbot is unsatisfied with the provided answers but not as intensely as “Very Unsatisfied”, and Scale 1 is described as “Very Unsatisfied”, the user of the RAG chatbot completely dissatisfied with the provided answers.
+\ref{tab:satisfaction_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Satisfaction based on the user’s experience with the system’s answers. The first column showed the scale that the system level of satisfaction fell under, which was shown in the third column, and its corresponding definition in the fourth column. User’s responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Satisfied,” which meant that the user of the RAG Chatbot was completely satisfied with the provided answers; scale 4 with a range of 3.40-4.19 was described as “Satisfied,” indicating that the user of the RAG Chatbot was satisfied with the provided answers but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unsatisfied,” indicating that the user of the RAG Chatbot was unsatisfied with the provided answers but not as intensely as “Very Unsatisfied”; and scale 1 was described as “Very Unsatisfied,” meaning that the user of the RAG chatbot was completely dissatisfied with the provided answers.  
 
 \begin{table}[H] %Table 5
     \centering
     \caption{Likert Scale for User Level of Using the Chatbot Again}
     \label{tab:reuse_scale}
     \footnotesize
-    \begin{tabular}{cccp{6cm}}
+    \begin{tabular}{cccp{6.4cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Using the Chatbot Again} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -199,7 +185,7 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:reuse_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Using the Chatbot Again based on the user’s intention to reuse the system after their experience. The first column showed the scale that the system level of reuse fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Likely” which means that the user of the RAG Chatbot is very likely to use the system again or finds it highly useful, scale 4 with a range 3.40-4.19 described as “Likely”, the user of the RAG Chatbot is likely to use the system again but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Unlikely”, the user of the RAG Chatbot is unlikely to use the system again but not as intensely as “Very Unlikely”, and Scale 1 is described as “Very Unlikely”, the user of the RAG chatbot is very unlikely to reuse the system or finds it not useful enough to return.
+\ref{tab:reuse_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Using the Chatbot Again based on the user’s intention to reuse the system after their experience. The first column showed the scale that the system level of reuse fell under, which was shown in the third column and its corresponding definition in the fourth column. User’s responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Likely,” which meant that the user of the RAG Chatbot was very likely to use the system again or found it highly useful; scale 4 with a range of 3.40-4.19 was described as “Likely,” indicating that the user of the RAG Chatbot was likely to use the system again but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unlikely,” suggesting that the user of the RAG Chatbot was unlikely to use the system again but not as intensely as “Very Unlikely”; and scale 1 was described as “Very Unlikely,” indicating that the user of the RAG chatbot was very unlikely to reuse the system or found it not useful enough to return.
 
 \begin{table}[H] %TABLE 6%
     \centering
@@ -223,14 +209,14 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:understanding_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Understanding based on the user’s ease in reading and comprehending the system’s responses. The first column showed the scale that the system level of understanding fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Easy” which means that the user of the RAG Chatbot finds the chatbot’s responses very easy to understand or finds its clarity and readability excellent, scale 4 with a range 3.40-4.19 described as “Easy”, the user of the RAG Chatbot finds the responses easy to understand but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Difficult”, the user of the RAG Chatbot finds the responses difficult to understand but not as intensely as “Very Difficult”, and Scale 1 is described as “Very Difficult”, the user of the RAG chatbot finds the responses very difficult to understand or considers the system unclear and hard to interpret.
+\ref{tab:understanding_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Understanding based on the user’s ease in reading and comprehending the system’s responses. The first column showed the scale that the system level of understanding fell under, which was shown in the third column and its corresponding definition in the fourth column. User’s responses were computed using weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Easy,” which meant that the user of the RAG Chatbot found the chatbot’s responses very easy to understand or found its clarity and readability excellent; scale 4 with a range of 3.40-4.19 was described as “Easy,” indicating that the user of the RAG Chatbot found the responses easy to understand but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Difficult,” suggesting that the user of the RAG Chatbot found the responses difficult to understand but not as intensely as “Very Difficult”; and scale 1 was described as “Very Difficult,” indicating that the user of the RAG chatbot found the responses very difficult to understand or considered the system unclear and hard to interpret.
 
 \begin{table}[H] %TABLE 7%
     \centering
     \caption{Likert Scale for User Level of Confidence on Information Received}
     \label{tab:confidence_scale}
     \footnotesize
-    \begin{tabular}{cccp{7.7cm}}
+    \begin{tabular}{cccp{7.5cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Confidence} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -247,9 +233,9 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:confidence_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Confidence based on the user’s trust and perceived accuracy of the information retrieved by the system. The first column showed the scale that the system level of confidence fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Confident” which means that the user of the RAG Chatbot is very confident in the information received or finds its accuracy and reliability excellent, scale 4 with a range 3.40-4.19 described as “Confident”, the user of the RAG Chatbot is confident in the information but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Uncofident”, the user of the RAG Chatbot lacks confidence in the information retrieved but not as intensely as “Very Unconfident”, and Scale 1 is described as “Very Unconfident”, the user of the RAG chatbot is very unconfident in the chatbot's information or finds the responses unreliable.
+\ref{tab:confidence_scale} showed that the RAG chatbot system used a 5-point Likert Scale to determine users' Level of Confidence based on the user’s trust and perceived accuracy of the information retrieved by the system. The first column showed the scale that the system level of confidence fell under, which was shown in the third column, and its corresponding definition in the fourth column. User responses were computed using the weighted mean and were determined in which range they fell under. Scale 5 with a range of 4.20-5.00 was described as “Very Confident,” which meant that the user of the RAG Chatbot was very confident in the information received or found its accuracy and reliability excellent; scale 4 with a range of 3.40-4.19 was described as “Confident,” indicating that the user of the RAG Chatbot was confident in the information but not to the strongest extent; scale 3 with a range of 2.60-3.39 was described as “Neutral,” meaning that the user of the RAG chatbot was neutral, undecided, or the criteria description didn’t strongly resonate in either direction; scale 2 with a range of 1.80-2.59 was described as “Unconfident,” suggesting that the user of the RAG Chatbot lacked confidence in the information retrieved but not as intensely as “Very Unconfident”; and scale 1 was described as “Very Unconfident,” indicating that the user of the RAG chatbot was very unconfident in the chatbot's information or found the responses unreliable.
 
-To analyze user questionnaire responses, the researchers used the Weighted Mean to summarize Likert-scale data. It captures perceptions of user satisfaction with answers, likelihood of using again, ease of understanding outputs, and confidence in accuracy. This method enables consistent comparison across items and respondents, supporting an evidence-based assessment of the chatbot’s overall usability and performance.
+To analyze user questionnaire responses, the researchers used the Weighted Mean to summarize Likert-scale data. It captured perceptions of user satisfaction with answers, likelihood of using again, ease of understanding outputs, and confidence in accuracy. This method enabled consistent comparison across items and respondents, supporting an evidence-based assessment of the chatbot’s overall usability and performance.
 
 \begin{equation}
     \centering
@@ -264,7 +250,6 @@ Where:
 \end{itemize}
 
 \section{Procedures}
-
 The procedures encompassed the collection and preprocessing of academic data, vector-based indexing, retrieval using semantic search, LLM-based response generation, and multi-metric evaluation using RAGAS, and user-centered evaluation.
 
 Each stage was designed to ensure the integrity, replicability, and effectiveness of the system in addressing the research objectives. By detailing the technical and methodological steps, this section served as a transparent and structured guide for future researchers seeking to replicate or build upon this study.
@@ -275,32 +260,32 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 
 \begin{enumerate}
 
-    \item \textbf{Data Preprocessing} - The collected PDF thesis documents underwent a preprocessing phase to extract and clean the textual content.
+     \item \textbf{Data Preprocessing} - The collected PDF thesis documents underwent a preprocessing phase to extract and clean the textual content.
         \begin{enumerate}
             \item [(a)] {Text Extraction:} PyMuPDF was used to convert PDF files into structured plain text.
             \item [(b)] {Cleaning:} Non-informative characters and formatting were removed.
             \item [(c)] {Text Chunking:} Text was segmented into manageable chunks to enhance semantic search accuracy.
         \end{enumerate}
         
-    \item \textbf{Indexing and Vector Embedding} - The preprocessed text chunks were transformed into vector representations and indexed for efficient retrieval.
+        \item \textbf{Indexing and Vector Embedding} - The preprocessed text chunks were transformed into vector representations and indexed for efficient retrieval.
         \begin{enumerate}
-            \item [(a)] {Vector Embedding:} Each text chunk will be embedded using gemini-embedding-001.
-            \item [(b)] {Cleaning:} FAISS will store the vectorized content along with metadata such as document titles, authors, and section headers.
+            \item [(a)] {Vector Embedding:} Each text chunk was embedded using gemini-embedding-001.
+            \item [(b)] {Cleaning:} FAISS stored the vectorized content along with metadata such as document titles, authors, and section headers.
         \end{enumerate}
 
-    \item \textbf{Query Handling and Semantic Retrieval} - User queries were processed to retrieve relevant document chunks from the vector database.
+        \item \textbf{Query Handling and Semantic Retrieval} - User queries were processed to retrieve relevant document chunks from the vector database.
         \begin{enumerate}
-            \item [(a)] {Query Encoding:} The user’s natural language query is encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
-            \item [(b)] {Similarity Search:} The encoded query is matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ may be adaptively increased to improve coverage.
+            \item [(a)] {Query Encoding:} The user’s natural language query was encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
+            \item [(b)] {Similarity Search:} The encoded query was matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ was adaptively increased to improve coverage.
         \end{enumerate}
 
-    \item \textbf{Response Generation} - The Gemini 2.5-flash language model will process the augmented input to generate a response that is factually aligned with the source documents.
+        \item \textbf{Response Generation} - The Gemini 2.5-flash language model processed the augmented input to generate a response that was factually aligned with the source documents.
 
-    \item \textbf{Output Presentation} - The system will display the generated response via a user interface that includes metadata such as the source thesis title and section, encouraging transparency and academic integrity.
+        \item \textbf{Output Presentation} - The system displayed the generated response via a user interface that included metadata such as the source thesis title and section, encouraging transparency and academic integrity.
 
-    \item \textbf{Performance Evaluation}
+        \item \textbf{Performance Evaluation}
         \begin{enumerate}
-            \item [(a)] {Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, Answer Relevance, and Faithfulness, will be calculated.
+            \item [(a)] {Automated Evaluation:} Metrics from the RAGAS framework, Context Precision, Context Recall, Answer Relevance, and Faithfulness, were calculated.
             \item [(b)] {Human Evaluation:} A usability questionnaire was distributed to a sample of student users to assess the system’s clarity, ease of use, and usefulness in retrieving academic information.
         \end{enumerate}
 
@@ -376,7 +361,7 @@ where:
     \item $\cos(E_{g_i}, E_o)$ represents the cosine similarity between the generated question embedding and the original query embedding.
 \end{itemize}
 
-This metric works on the idea that if the chatbot's response sufficiently answers the original query, then questions generated from that response will semantically align with the original question, this involves generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensures that the retrieved academic information closely matches the research needs of CSPC Library users.
+This metric worked on the idea that if the chatbot's response sufficiently answered the original query, then questions generated from that response would semantically align with the original question. This involved generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensured that the retrieved academic information closely matched the research needs of CSPC Library users.
 
 \subsection*{Faithfulness}
 
