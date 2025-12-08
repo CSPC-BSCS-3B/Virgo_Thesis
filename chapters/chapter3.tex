@@ -1,14 +1,14 @@
 \chapter{Methodology}
 \begin{refsection}
  
-This chapter discussed the specific steps and logical procedures that were employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system. This included the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
+This chapter discusses the specific steps and logical procedures that were employed to develop and evaluate the Retrieval-Augmented Generation (RAG)-based Large Language Model (LLM) chatbot system. This includes the research design, theoretical and mathematical framework, software and hardware tools, instruments, procedures, evaluation metrics, and a conceptual framework.
 
 \section{Research Design}
 
-Constructive research design focused on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology was particularly well-suited to fields like information systems and artificial intelligence, where the goal was not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
+Constructive research design focuses on designing and building technological artifacts to address real-world problems and evaluating their practical utility \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
 
 
-This study adopted a constructive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacted when finding thesis literature in the CSPC library. It addressed the challenges faced in searching and retrieving thesis literature by replacing the traditional database and keyword-based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access theses wherever they were, since current library policies restricted users from taking physical thesis books outside the premises.
+This study adopted a construcive research design where the primary artifact was a Retrieval-Augmented Generation (RAG)-based chatbot integrated with a Large Language Model (LLM). The system was designed to revolutionize how the academe community interacts when finding thesis literature in CSPC library. It addresses the challenges faced in searching and retrieving thesis literature by replacing the current yet traditional database and keyword based search with a vector database and a RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
 
 
 \section{Theorems, Algorithms, and Mathematical Models}
@@ -30,7 +30,7 @@ The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consisted of the 
 
 \subsubsection{A. Data Indexing}
 
-The data indexing process began with document preparation, where thesis documents were collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respected academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk was then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata were stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
+The data indexing process begins with document preparation, where thesis documents are collected and preprocessed into smaller, semantically coherent chunks using a token-based method that respects academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a dense vector using the open-source `sentence-transformers/all-MiniLM-L6-v2` model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Finally, these vectors and their associated metadata are stored in FAISS, enabling efficient similarity search and scalable retrieval over the entire thesis corpus.
 
 \subsubsection{B. Retrieval and Generation}
 
@@ -42,7 +42,7 @@ Large Language Models (LLMs) are cutting-edge AI systems trained on massive data
 
 \subsubsection{Gemini 2.5-flash}
 
-The large language model integrated in this project was Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gem} \citeyear{comanici2025gem}. It delivered advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimized factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhanced domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities \cite{comanici2025gem}.
+The large language model integrated in this project is Gemini 2.5 Flash, part of the Gemini 2.X model family introduced by \citeauthor{comanici2025gem} \citeyear{comanici2025gem}. It delivers advanced reasoning, multimodal support, extended context windows, and agentic workflows. Its architecture optimizes factual accuracy and relevance while minimizing latency. Incorporated into a RAG framework, it enhances domain-specific retrieval for CSPC Library users, leveraging its real-time, cost-effective capabilities \cite{comanici2025gem}.
 
 \section{Materials and Statistical Tools / Evaluation Methods}
 
@@ -58,7 +58,7 @@ The study utilized a dataset consisting of all available undergraduate thesis PD
 
 \subsubsection{Hardware}
 
-To support the development of the RAG chatbot system, the researchers used hardware components that met or exceeded the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
+To support the development of RAG chatbot system, the researchers used hardware components that meet or exceed the specifications outlined in \ref{tab:hardware_requirements}. These components were selected to ensure efficient ingestion of a large corpus of PDFs, as well as to handle computationally intensive tasks like embedding generation.
 
 \begin{table}[H]
     \centering
@@ -98,7 +98,7 @@ A 1 TB SSD was preferred due to its high read/write speeds, which significantly 
     \end{tabular}
 \end{table}
 
-Python 3.10 or later served as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS was used as the vector database to facilitate fast and accurate semantic search. The system leveraged Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Flask framework was used to build an interactive user interface.
+Python 3.10 or later serves as the core programming language due to its comprehensive support for machine learning and natural language processing. FAISS is used as the vector database to facilitate fast and accurate semantic search. The system leverages Gemini 2.5-flash as its LLM via the Google Generative AI API, and sentence-transformers/all-MiniLM-L6-v2 to transform preprocessed text chunks into semantically rich vector representations. The Flask framework is used to build an interactive user interface.
 
 Document parsing and extraction were managed through the PyMuPDF library, ensuring accurate and efficient retrieval of textual data from PDF files. NumPy supported numerical operations, while LangChain managed the orchestration of LLMs during query interpretation and response generation.
 
@@ -123,7 +123,7 @@ Additionally, to assess not only the technical but also the user-centered perfor
     \caption{Likert Scale for User Level of Agreement}
     \label{tab:likert_scale}
     \footnotesize
-    \begin{tabular}{cccp{7.7cm}}
+    \begin{tabular}{cccp{7cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Agreement} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -146,7 +146,7 @@ Additionally, to assess not only the technical but also the user-centered perfor
     \caption{User Level of Satisfaction with Answers}
     \label{tab:satisfaction_scale}
     \footnotesize
-    \begin{tabular}{cccp{7.7cm}}
+    \begin{tabular}{cccp{7cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Satisfaction} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -170,7 +170,7 @@ Additionally, to assess not only the technical but also the user-centered perfor
     \caption{Likert Scale for User Level of Using the Chatbot Again}
     \label{tab:reuse_scale}
     \footnotesize
-    \begin{tabular}{cccp{6.4cm}}
+    \begin{tabular}{cccp{7cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Using the Chatbot Again} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -194,7 +194,7 @@ Additionally, to assess not only the technical but also the user-centered perfor
     \caption{User Level of Understanding Chatbot Responses}
     \label{tab:understanding_scale}
     \footnotesize
-    \begin{tabular}{cccp{7.5cm}}
+    \begin{tabular}{cccp{7cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Understanding} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline
@@ -218,7 +218,7 @@ Additionally, to assess not only the technical but also the user-centered perfor
     \caption{Likert Scale for User Level of Confidence on Information Received}
     \label{tab:confidence_scale}
     \footnotesize
-    \begin{tabular}{cccp{7.5cm}}
+    \begin{tabular}{cccp{7cm}}
         \hline
         \textbf{Scale} & \textbf{Range} & \textbf{Level of Confidence} & \multicolumn{1}{c}{\textbf{Description}} \\
         \hline

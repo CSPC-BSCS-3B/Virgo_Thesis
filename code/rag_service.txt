@@ -1,0 +1,160 @@
+rag_service.py
+
+"""
+RAG Service for Flask integration
+Adapted from cbot_stlit/rag_chain_hybrid.py with smart retrieval
+"""
+from typing import Tuple, Generator
+from langchain_community.vectorstores import FAISS
+from langchain_google_vertexai import ChatVertexAI, VertexAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+import os
+import traceback
+import logging
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Configure logger
+logger = logging.getLogger(__name__)
+
+# Get base directory for reliable path resolution
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Content moderation
+DISALLOWED = ("how to make a bomb", "explosive materials", "hatred", "self-harm")
+
+def is_allowed(question: str) -> bool:
+    """Check if the question contains disallowed content"""
+    ql = question.lower()
+    return not any(term in ql for term in DISALLOWED)
+
+def detect_embedding_type(persist_dir=None):
+    """
+    Detect which embedding model was used to create the index
+    """
+    if persist_dir is None:
+        persist_dir = os.path.join(BASE_DIR, "index")
+    
+    metadata_file = os.path.join(persist_dir, "embedding_model.txt")
+    if os.path.exists(metadata_file):
+        with open(metadata_file, 'r') as f:
+            return f.read().strip()
+    
+    return "huggingface"  # Default to HuggingFace
+
+def load_retriever(persist_dir=None, embedding_type=None):
+    """
+    Load retriever with automatic embedding model detection
+    Returns the vector store (not retriever) for flexible querying
+    """
+    if persist_dir is None:
+        persist_dir = os.path.join(BASE_DIR, "index")
+    
+    if embedding_type is None:
+        embedding_type = detect_embedding_type(persist_dir)
+    
+    logger.info(f"Loading index with {embedding_type} embeddings...")
+    
+    try:
+        if embedding_type == "huggingface":
+            # For indexes created with open-source models
+            # Use the same model that was used for ingestion
+            embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-MiniLM-L6-v2",  # Match your ingestion model
+                model_kwargs={'device': 'cpu'},  # Use CPU for local inference
+                encode_kwargs={'normalize_embeddings': True}
+            )
+        else:
+            # For indexes created with Vertex AI API
+            embeddings = VertexAIEmbeddings(
+                model_name="textembedding-gecko@001",
+                project=os.getenv('GOOGLE_CLOUD_PROJECT')
+            )
+        
+        vs = FAISS.load_local(persist_dir, embeddings, allow_dangerous_deserialization=True)
+        logger.info(f"Successfully loaded index with {embedding_type} embeddings")
+        return vs
+        
+    except Exception as e:
+        logger.warning(f"Failed to load with {embedding_type} embeddings: {e}")
+        
+        # Try the other embedding type as fallback
+        fallback_type = "vertexai" if embedding_type == "huggingface" else "huggingface"
+        logger.info(f"Trying fallback: {fallback_type} embeddings...")
+        
+        try:
+            if fallback_type == "huggingface":
+                embeddings = HuggingFaceEmbeddings(
+                    model_name="sentence-transformers/all-MiniLM-L6-v2",  # Match your ingestion model
+                    model_kwargs={'device': 'cpu'},
+                    encode_kwargs={'normalize_embeddings': True}
+                )
+            else:
+                embeddings = VertexAIEmbeddings(
+                    model_name="textembedding-gecko@001",
+                    project=os.getenv('GOOGLE_CLOUD_PROJECT')
+                )
+            
+            vs = FAISS.load_local(persist_dir, embeddings, allow_dangerous_deserialization=True)
+            logger.info(f"Successfully loaded index with {fallback_type} embeddings (fallback)")
+            return vs
+            
+        except Exception as e2:
+            logger.error(f"Both embedding types failed. Error: {e2}")
+            raise e2
+
+
+# Keep load_vectorstore as an alias for compatibility with existing code
+def load_vectorstore(persist_dir=None, embedding_type=None):
+    """
+    Load vector store (not retriever) for flexible querying
+    Returns FAISS vectorstore
+    Alias for load_retriever for backward compatibility
+    """
+    return load_retriever(persist_dir, embedding_type)
+
+
+def is_exhaustive_query(query: str) -> bool:
+    """
+    Detect if the query is asking for exhaustive/comprehensive results
+    """
+    exhaustive_keywords = [
+        "all", "list", "every", "give me all", "show me all",
+        "how many", "what are all", "enumerate", "complete list"
+    ]
+    query_lower = query.lower()
+    return any(keyword in query_lower for keyword in exhaustive_keywords)
+
+
+def smart_retrieve(query: str, vectorstore):
+    """
+    Adaptive retrieval that adjusts k and uses threshold filtering based on query intent
+    
+    - For exhaustive queries ("give me all X"): Uses high k + threshold filtering
+    - For specific queries: Uses standard top-k retrieval
+    """
+    is_exhaustive = is_exhaustive_query(query)
+    
+    if is_exhaustive:
+        # Exhaustive query: retrieve more docs and filter by similarity threshold
+        logger.debug(f"Detected exhaustive query - using adaptive retrieval (k=100)")
+        docs_with_scores = vectorstore.similarity_search_with_score(query, k=100)
+        
+        # Debug: Show score distribution
+        if docs_with_scores:
+            scores = [score for _, score in docs_with_scores[:10]]
+            logger.debug(f"Sample scores (top 10): min={min(scores):.3f}, max={max(scores):.3f}")
+        
+        # Dynamic threshold based on score distribution
+        # For HuggingFace: typically 0.8-1.5 range, use higher threshold
+        # For Gemini: typically 0.3-0.8 range, use lower threshold
+        # Strategy: Take documents within 150% of the best score
+        if docs_with_scores:
+            best_score = docs_with_scores[0][1]
+            # Use adaptive threshold: 1.5x the best score, capped at 2.0
+            threshold = min(best_score * 1.5, 2.0)
+            logger.debug(f"Using adaptive threshold: {threshold:.3f} (based on best score: {best_score:.3f})") 

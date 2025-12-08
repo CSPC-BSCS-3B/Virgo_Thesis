@@ -2,6 +2,16 @@
 \documentclass[12pt]{cspcccsthesis}
 % preamble
 \usepackage{indentfirst}
+\usepackage{indentfirst}
+\usepackage{listings} % <-- Add this line
+\usepackage{xcolor}   
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true
+}
+
+
+
 \AtBeginDocument{
   \ExecuteBibliographyOptions{
     maxbibnames=99,
@@ -56,8 +66,8 @@
     \input{chapters/chapter4}
     \input{chapters/chapter5}
     \makeBibliography
-    \input{chapters/appendix}
-    % \input{vita}
+    \include{chapters/appendix.tex}
+    \input{vita}
 \end{thesisbody}
 
 \end{document}

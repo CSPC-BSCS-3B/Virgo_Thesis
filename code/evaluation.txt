@@ -1,0 +1,144 @@
+"""
+RAGAS Core Evaluation Functions (for Thesis Appendix)
+Source: ragas_evaluation_gemini.ipynb (Dec 2025)
+This script contains the essential functions for evaluating RAG system metrics using the Gemini API and RAGAS.
+"""
+
+import json
+import os
+import sys
+import time
+from datasets import Dataset
+from ragas import evaluate
+from ragas.metrics import (
+    answer_relevancy,
+    context_precision,
+    context_recall,
+    faithfulness
+)
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_huggingface import HuggingFaceEmbeddings
+from dotenv import load_dotenv
+
+# --- Setup Gemini Models and Embeddings ---
+def setup_gemini_models(model_name="gemini-2.5-flash"):
+    """
+    Initialize Gemini LLM and HuggingFace embeddings for RAGAS evaluation.
+    """
+    llm = ChatGoogleGenerativeAI(
+        model=model_name,
+        temperature=0,
+        google_api_key=os.getenv("GOOGLE_API_KEY")
+    )
+    embeddings = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_kwargs={'device': 'cpu'},
+        encode_kwargs={'normalize_embeddings': True}
+    )
+    return llm, embeddings
+
+# --- Load Questions and Ground Truths ---
+def load_questions_only_dataset(dataset_path, max_items=None):
+    """
+    Load questions and ground truths from a JSON dataset file.
+    """
+    with open(dataset_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    if isinstance(data, dict):
+        for key in ['data', 'questions', 'dataset']:
+            if key in data:
+                data = data[key]
+                break
+        else:
+            for value in data.values():
+                if isinstance(value, list):
+                    data = value
+                    break
+    questions = [item['question'] for item in data]
+    ground_truths = [item['ground_truth'] for item in data]
+    if max_items:
+        questions = questions[:max_items]
+        ground_truths = ground_truths[:max_items]
+    return questions, ground_truths
+
+# --- Generate RAG Responses (Production Chain) ---
+def generate_rag_responses_with_rate_limit(questions, ground_truths, build_streaming_chain, smart_retrieve, delay_seconds=60):
+    """
+    Generate answers and contexts using the actual production RAG chain.
+    Rate limiting is enforced for Gemini API compliance.
+    """
+    chain, vectorstore = build_streaming_chain(persist_dir="../index")
+    evaluation_data = []
+    for idx, (question, ground_truth) in enumerate(zip(questions, ground_truths), 1):
+        docs = smart_retrieve(question, vectorstore)
+        contexts = [doc.page_content for doc in docs]
+        answer = ""
+        for chunk in chain.stream({"question": question, "chat_history": ""}):
+            answer += chunk
+        evaluation_data.append({
+            'question': question,
+            'answer': answer,
+            'contexts': contexts,
+            'ground_truth': ground_truth
+        })
+        if idx < len(questions):
+            time.sleep(delay_seconds)
+    return Dataset.from_list(evaluation_data)
+
+# --- RAGAS Metric Evaluation ---
+def evaluate_single_metric(dataset, llm, embeddings, metric, metric_name, batch_size=1, delay_between_batches=30):
+    """
+    Evaluate a single RAGAS metric with Gemini API rate limiting.
+    """
+    result = evaluate(
+        dataset,
+        metrics=[metric],
+        llm=llm,
+        embeddings=embeddings,
+        batch_size=batch_size,
+        show_progress=True
+    )
+    time.sleep(delay_between_batches)
+    return result
+
+# --- Convert Results to DataFrame ---
+def create_metric_dataframe(result, metric_name, dataset):
+    """
+    Convert RAGAS metric results to a pandas DataFrame for analysis.
+    """
+    import pandas as pd
+    scores = result[metric_name.lower().replace(' ', '_')]
+    df = pd.DataFrame({
+        'question_index': range(len(scores)),
+        'score': scores,
+        'metric': metric_name
+    })
+    if hasattr(dataset, 'to_pandas'):
+        dataset_df = dataset.to_pandas()
+        if 'question' in dataset_df.columns:
+            df['question'] = dataset_df['question'].str[:50] + '...'
+    return df
+
+# --- Example Usage ---
+if __name__ == "__main__":
+    load_dotenv()
+    dataset_path = "dataset_gemini_ragas.json"
+    model_name = "gemini-2.5-flash"
+    max_items = 5
+    llm, embeddings = setup_gemini_models(model_name)
+    questions, ground_truths = load_questions_only_dataset(dataset_path, max_items)
+    # Import production RAG chain functions
+    sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(), '..', 'app')))
+    from rag_service import build_streaming_chain, smart_retrieve
+    dataset = generate_rag_responses_with_rate_limit(questions, ground_truths, build_streaming_chain, smart_retrieve)
+    # Evaluate metrics
+    for metric, metric_name in [
+        (context_precision, "Context Precision"),
+        (answer_relevancy, "Answer Relevancy"),
+        (context_recall, "Context Recall"),
+        (faithfulness, "Faithfulness")
+    ]:
+        result = evaluate_single_metric(dataset, llm, embeddings, metric, metric_name)
+        df = create_metric_dataframe(result, metric_name, dataset)
+        print(f"\n{metric_name} Results:")
+        print(df[['question_index', 'score']])
