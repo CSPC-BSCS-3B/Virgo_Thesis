@@ -1,7 +1,7 @@
 
 % The environment used here (theappendices) is a wrapper for the basic appendices environment which changes the appearance of the title page and the structure and appearance of the appendices in the table of contents and PDF bookmarks. The original functionality can be restored by simply removing the 'the' from the \begin{} and \end{} statements below.
 
-\begin{theappendices}
+\begin{appendices}
 
 \chapter{Relevant Source Code}
 \lstinputlisting[language=Python, caption={RAG Service Python Source Code}]{code/rag_service.txt}
@@ -31,47 +31,40 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
 \vspace{3em}
 \noindent
 \textbf{1. Sign Up} \\
-If you are a new user, sign up using your CSPC email account. Only CSPC students, faculty, and employees are allowed to register and access the system.
+\small If you are a new user, sign up using your CSPC email account. Only CSPC students, faculty, and employees are allowed to register and access the system.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.05\textwidth]{figures/guide1.png}
+    \includegraphics[width=.90\textwidth]{figures/guide1.png}
     \caption{Sign Up Page}
 \end{figure}
 
 \newpage
 \vspace{5em}
-\noindent
 \textbf{2. Log In and Access} \\
-After signing up, log in with your CSPC credentials. Click the "Continue" button to be redirected to the main page.
+\small After signing up, log in with your CSPC credentials. Click the "Continue" button to be redirected to the main page.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.05\textwidth]{figures/guide2.png}
+    \includegraphics[width=0.95\textwidth]{figures/guide2.png}
     \caption{Login and Continue}
 \end{figure}
 
-\newpage
-\vspace{5em}
-\noindent
 \textbf{3. Start a Conversation} \\
-Once on the main page (ADAL), you can start a conversation by typing your query in the "Ask me anything" chat box and clicking send.
+\small Once on the main page (ADAL), you can start a conversation by typing your query in the "Ask me anything" chat box and clicking send.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.05\textwidth]{figures/guide3.png}
+    \includegraphics[width=0.95\textwidth]{figures/guide3.png}
     \caption{Chat Interface}
 \end{figure}
 
-\newpage
-\vspace{5em}
-\noindent
 \textbf{4. Manage Chats} \\
-You can click "New Chat" to start a new conversation. You can also view your chat history with the chatbot, delete previous conversations as needed, and log out.
+\small You can click "New Chat" to start a new conversation. You can also view your chat history with the chatbot, delete previous conversations as needed, and log out.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.05\textwidth]{figures/guide5.png}
+    \includegraphics[width=0.95\textwidth]{figures/guide5.png}
     \caption{Chat History and Management}
 \end{figure}
 
@@ -175,7 +168,30 @@ You can click "New Chat" to start a new conversation. You can also view your cha
     \end{figure}
 
 \chapter{ACM Format}
-\centering
+
+\includegraphics[width=0.90\textwidth]{figures/main.pdf}
+
+\includepdf[pages=2, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=3, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=4, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=5, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=6, width=0.99\textwidth,  pagecommand={}] {figures/main.pdf} 
+\includepdf[pages=7, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=8, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=9, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=10, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=11, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=12, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=13, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=14, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=15, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=16, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=17, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=18, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=19, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=20, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+
+
 
 \chapter{Consultation Log Form(CLF)}
 \centering
@@ -237,4 +253,4 @@ This is to certify that the undersigned has provided accurate recommendations, s
 Date:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 
-\end{theappendices}
+\end{appendices}
