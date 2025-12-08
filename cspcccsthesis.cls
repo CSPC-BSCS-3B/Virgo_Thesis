@@ -201,7 +201,7 @@
     \begin{center}
     \begin{singlespacing}
     \vspace{10\baselineskip}
-    \titlefontsize\textbf{\MakeUppercase{\@title}}\\
+    \titlefontsize\textbf{\MakeUppercase{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}}\\
     \normalsize
     \vspace{10\baselineskip}
     A Thesis Project\\
@@ -575,7 +575,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \newenvironment{vita}{
     \bookmarksetupnext{level=part}
     \thispagestyle{fancy}
-    \chapter*{Vita}
-    \addcontentsline{toc}{chapter}{Vita}
+    \chapter*{Curriculum Vitae}
+    \addcontentsline{toc}{chapter}{Curriculum Vitae}
 }{
 }

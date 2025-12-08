@@ -10,6 +10,7 @@ The study corpus comprised all available undergraduate thesis PDFs from multiple
     \centering
     \includegraphics[width=0.7\textwidth]{figures/dataset_sample.jpg}
     \caption{CSPC Thesis PDF Sample}
+    \label{fig:dataset_sample}
 \end{figure}
 
 Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. This composes of theses from different departments.
@@ -63,18 +64,19 @@ Generated content was parsed into clean text for display. While RAG significantl
 
 \section{Interface and Usage Observations}
 
-The Streamlit interface supported conversational exploration with session-based history and safety filters for disallowed queries. Cached chains ensured responsive interactions.
+The Flask-based web interface supported conversational exploration with session-based history and safety filters for disallowed queries.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/streamlit.png}
+    \includegraphics[width=0.7\textwidth]{figures/adalv4.jpg}
     \caption{User Interface}
+    \label{fig:flask_interface}
 \end{figure}
 
 Generated responses appeared as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
 
 \section{Model Evaluation}
-In this section, the RAG-based chatbot system for the CSPC Library was evaluated utilizing four critical metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. These metrics provide a multidimensional perspective on the performance of the literature retrieval system, ensuring robust analysis in both information quality and reliability. The evaluation framework and explanations are patterned after established academic standards as demonstrated in the reference thesis.
+This section evaluated the CSPC Library RAG chatbot using four core metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. Together, they capture accuracy, coverage, and grounding of responses. The evaluation follows established academic practices, enabling concise, reliable measurement of retrieval quality and generation within the literature search workflow of the system effectively.
 
 \section{Result}
 This section presents the findings through tables, figures, and subsequent discussion. Prior to evaluation, a systematic data processing pipeline was applied: 290+ undergraduate thesis PDFs from the CSPC Library were processed into segmented meaningful text chunks, and embedded using Hugging Face's Embeddings. These chunks were indexed in FAISS for efficient semantic retrieval, enabling the RAG chatbot to generate contextually relevant and factually grounded responses for user queries. This process ensured that the evaluation was conducted on high-quality, well-structured academic data. In addition to the system-level RAGAS metrics, a complementary user-centered evaluation was performed using a 5-point Likert scale questionnaire, responses were summarized via weighted mean and interpreted using predefined agreement ranges (see \ref{tab:likert_scale}) to align technical performance with perceived usability and satisfaction.
@@ -104,22 +106,25 @@ These results demonstrate the RAG system's effectiveness in retrieving and gener
 \section*{Visualization of RAG System Evaluation Metrics}
 The figures below illustrate the evaluation metrics of the RAG system using various visualization techniques, including bar charts, box plots, heatmaps, and radar charts.
 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_bar_chart_result.png}
     \caption{Bar Chart of RAG System Evaluation Result}
+    \label{fig:rag_bar_chart}
 \end{figure}
 
 The bar graph shows that the overall evaluation of the RAG system demonstrates a strong performance in all four metrics. The highest scores are observed in Faithfulness (0.918) and Context Precision (0.917), indicating that the system effectively grounds its responses in accurate and relevant information retrieved from the source documents. These results suggest that the system minimizes hallucinations, maintains real information during response, and focuses on the most pertinent contextual segments during retrieval. These scores prove that the RAG model is well-optimized for generating trustworthy and accurate responses.
 
 The faithfulness result as the score means that the system consistently produces outputs that accurately reflect the underlying source material, which is helpful for users seeking reliable information. The high context precision score indicates that the retrieved passages are highly relevant to the user's information needs, minimizing the inclusion of unnecessary or loosely related content. This is particularly important in academic contexts where precision is critical. The context recall score, while slightly lower, still demonstrates that the system captures a substantial portion of relevant information, though there may be room for improvement in ensuring that all pertinent details are included. Finally, the answer relevancy score indicates that the responses generated by the system generally align well with user queries, although there may be occasional instances where the answers could be more comprehensive or directly address the user's intent.
 
-These result visualized using bar chart confirms effectiveness of the designed pipeline and through the usage of the metrics such as faithfulness, context precision, context recall, and answer relevancy, it fully shows the system's capability to meet the information needs and assistance to the users who primarily seek accurate and relevant information for academic purposes from the CSPC Library's thesis collection.
+These results, visualized using a bar chart, further confirm the effectiveness of the designed RAG pipeline. By using metrics such as faithfulness, context precision, context recall, and answer relevancy, the evaluation demonstrates robust grounding, accurate retrieval, and answers well the different types of queries. Overall, the findings indicate that the system reliably meets information needs and provides actionable assistance to users who primarily seek accurate, relevant, and well-cited academic content from the CSPC Library’s thesis collection, thereby supporting accurate literature search and informed research decision‑making for students and researchers.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_heatmap_chart_result.png}
     \caption{Heatmap of RAG System Evaluation Result}
+    \label{fig:rag_heatmap}
 \end{figure}
 
 The heatmap shows the question level performance of the RAG system across the four evaluation metrics. Most of the scores are ranging from 0.75 to 1.00, indicating a generally strong performance. The dark green cells represent high-quality outputs, while the mid-range yellow tones and the single red cell indicates low Context Precision for Question 3 which highlights the area where the system's performance could be improved. Overall, the system demonstrates strong answer alignment, with Questions 0 to 2 achieving high Answer Relevancy scores above 0.90. Meanwhile, Questions 3 and 4 show slightly reduced relevancy, suggesting occasional omissions. These patterns indicate that the system generally maintains high standards but may need targeted refinements for more complex queries.
@@ -130,6 +135,7 @@ Among the RAG metrics implemented, Context precision is excellent for four of th
     \centering
     \includegraphics[width=0.7\textwidth]{figures/RAG_radar_chart_result.png}
     \caption{Radar Chart of RAG System Evaluation Result}
+    \label{fig:rag_radar_chart}
 \end{figure}
 
 The radar chart shows that the RAG system demonstrates a consistently high and well-balanced performance across the four evaluation metrics: Faithfulness, Context Precision, Context Recall, and Answer Relevancy. The nearly symmetrical shape of the plot indicates that no metric falls below an acceptable range, with Faithfulness and Context Precision forming the strongest extensions. This suggests that the system reliably grounds its answers in retrieved evidence and selects context that is highly relevant to the user’s query, effectively minimizing hallucinations and maintaining strong alignment with source documents. 
@@ -145,6 +151,7 @@ These overall visualization results of evaluation metrics confirm the RAG system
     \centering
     \caption{User Agreement: Chatbot Response Quality and Performance}
     \label{tab:user_agreement_quality}
+    \footnotesize
     \begin{tabular}{p{7cm} c c}
         \hline
         \multicolumn{1}{c}{\textbf{Criteria}} & \textbf{Weighted Mean} & \textbf{Verbal Interpretation} \\
@@ -175,6 +182,7 @@ The result of the evaluation of the RAG chatbot using user-centered evaluation m
     \centering
     \caption{User Feedback on RAG chatbot’s Effectiveness and Usability}
     \label{tab:user_feedback_table}
+    \footnotesize
     \begin{tabular}{m{5cm} c c}
         \hline
         \multicolumn{1}{c}{\textbf{Criteria}} & \textbf{Weighted Mean} & \textbf{Verbal Interpretation} \\
@@ -192,7 +200,7 @@ The result of the evaluation of the RAG chatbot using user-centered evaluation m
     \end{tabular}
 \end{table}
 
-The results for satisfaction with answers, likelihood to use again, ease of reading and understanding, and confidence in information accuracy show generally positive user feedback. And, according to \citeauthor{kaushal2022role} \citeyear{kaushal2022role} and \citeauthor{okonkwo2021chatbots} \citeyear{okonkwo2021chatbots}, these aspects of chatbots that deliver clear, useful, and readable responses greatly improve user satisfaction. In addition, \citeauthor{choudhury2023investigating} \citeyear{choudhury2023investigating} and \citeauthor{zhang2024ai} \citeyear{zhang2024ai} found that trust and factual accuracy are essential for encouraging continued use and building user confidence in AI chatbots. After considering these established determinants, the detailed breakdown is as follows. In terms of user satisfaction with answers, users were satisfied (weighted mean: 4.1), indicating that the chatbot’s replies met users’ needs and were generally acceptable. Regarding likelihood of reuse, users were very likely to use the chatbot again (4.3), suggesting strong perceived utility. Users also found the responses very easy to read and understand (4.5), demonstrating clear and user-friendly output. Confidence in the chatbot’s information was moderately strong (3.8), implying general trust with some expectation for accuracy improvements. Overall, the respondents provided positive feedback across all measures with the overall weighted mean of (4.2), showing that the users strongly agree that the chatbot delivers useful, relevant, clear, and mostly complete answers, supports continued usage intention, and yields satisfactory user experience, with factual confidence identified as a targeted area for further enhancement.
+The results for satisfaction with answers, likelihood to use again, ease of reading and understanding, and confidence in information accuracy show generally positive user feedback. And, according to \citeauthor{kaushal2022role} \citeyear{kaushal2022role} and \citeauthor{okonkwo2021chatbots} \citeyear{okonkwo2021chatbots}, these aspects of chatbots that deliver clear, useful, and readable responses greatly improve user satisfaction. In addition, \citeauthor{choudhury2023investigating} \citeyear{choudhury2023investigating} and \citeauthor{zhang2024ai} \citeyear{zhang2024ai} found that trust and factual accuracy are essential for encouraging continued use and building user confidence in AI chatbots. After considering these established determinants, the detailed breakdown is as follows. In terms of user satisfaction with answers, users were satisfied (weighted mean: 4.1), indicating that the chatbot’s replies met users’ needs and were generally acceptable. Regarding likelihood of reuse, users were very likely to use the chatbot again (4.3), suggesting strong perceived utility. Users also found the responses very easy to read and understand (4.5), demonstrating clear and user-friendly output. Confidence in the chatbot’s information was moderately strong (3.8), implying general trust with some expectation for accuracy improvements. Overall, resppondents gave positive feedback, with an overall weighted mean of 4.2, indicating useful, relevant, clear, mostly complete answers, strong reuse intent, good experience, and improving factual confidence as priority.
 
 %=======================================================%
 %%%%% Do not delete this part %%%%%%
