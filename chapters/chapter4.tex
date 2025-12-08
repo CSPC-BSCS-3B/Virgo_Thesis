@@ -33,7 +33,7 @@ Texts were extracted page-by-page and enriched with metadata (source, page) to p
     \caption{Chunk Analysis \& Statistics}
 \end{figure}
 
-Figure 4 showed the chunk analysis and statistics respectively. Chunk statistics indicated a total chunk count of 38,127 and total token count of 11,849,783, with an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
+Figure 4 shows the chunk analysis and statistics respectively. Chunk statistics indicated a total chunk count of 38,127 and total token count of 11,849,783, with an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that defined the chatbot's effectiveness in academic literature discovery.
@@ -47,21 +47,20 @@ Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 
 % \end{figure}
 
 \subsection{Query Encoding and Retrieval}
-Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
+Queries are embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returns the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
 
-For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
+For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieves abstracts and key sections.  Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
 
 \subsection{Augmented Input and Generation}
-Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers. This supported grounded, traceable answers and reduced hallucination risk.
+Retrieved chunks are concatenated with the user query into a structured context with lightweight citation markers. This supports grounded, traceable answers and reduced hallucination risk.
 
 Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
 
 \subsection{Response Generation with Gemini 2.5-flash}
 
-The Gemini 2.5-flash model generated answers grounded in retrieved context. The system was configured with temperature=0 to ensure deterministic outputs suitable for academic use.
+The Gemini 2.5-flash model generates answers grounded in retrieved context. The system is configured with temperature=0 to ensure deterministic outputs suitable for academic use.
  
-Generated content was parsed into clean text for display. While RAG significantly reduced hallucinations, occasional inaccuracies were observed when context was insufficient; users were advised to validate critical findings.
-
+Generated content is parsed into clean text for display. While RAG significantly reduces hallucinations, occasional inaccuracies are observed when context is insufficient; users are advised to validate critical findings.
 \section{Interface and Usage Observations}
 
 The Flask-based web interface supported conversational exploration with session-based history and safety filters for disallowed queries.
@@ -73,13 +72,13 @@ The Flask-based web interface supported conversational exploration with session-
     \label{fig:flask_interface}
 \end{figure}
 
-Generated responses appeared as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
+Generated responses appear as Markdown with citations and structured text. When queries violated safety parameters, clear warnings were shown. Deterministic settings improved consistency and user trust.
 
 \section{Model Evaluation}
-This section evaluated the CSPC Library RAG chatbot using four core metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. Together, they captured accuracy, coverage, and grounding of responses. The evaluation followed established academic practices, enabling concise, reliable measurement of retrieval quality and generation within the literature search workflow of the system effectively.
+This section evaluates the CSPC Library RAG chatbot using four core metrics: Answer Relevancy, Context Precision, Context Recall, and Faithfulness. Together, they captured accuracy, coverage, and grounding of responses. The evaluation followed established academic practices, enabling concise, reliable measurement of retrieval quality and generation within the literature search workflow of the system effectively.
 
 \section{Result}
-This section presented the findings through tables, figures, and subsequent discussion. Prior to evaluation, a systematic data processing pipeline was applied: 290+ undergraduate thesis PDFs from the CSPC Library were processed into segmented meaningful text chunks, and embedded using Hugging Face's Embeddings. These chunks were indexed in FAISS for efficient semantic retrieval, enabling the RAG chatbot to generate contextually relevant and factually grounded responses for user queries. This process ensured that the evaluation was conducted on high-quality, well-structured academic data. In addition to the system-level RAGAS metrics, a complementary user-centered evaluation was performed using a 5-point Likert scale questionnaire, responses were summarized via weighted mean and interpreted using predefined agreement ranges (see \ref{tab:likert_scale}) to align technical performance with perceived usability and satisfaction.
+This section presents the findings through tables, figures, and subsequent discussion. Prior to evaluation, a systematic data processing pipeline was applied: 290+ undergraduate thesis PDFs from the CSPC Library were processed into segmented meaningful text chunks, and embedded using Hugging Face's Embeddings. These chunks were indexed in FAISS for efficient semantic retrieval, enabling the RAG chatbot to generate contextually relevant and factually grounded responses for user queries. This process ensured that the evaluation was conducted on high-quality, well-structured academic data. In addition to the system-level RAGAS metrics, a complementary user-centered evaluation was performed using a 5-point Likert scale questionnaire, responses were summarized via weighted mean and interpreted using predefined agreement ranges (see \ref{tab:likert_scale}) to align technical performance with perceived usability and satisfaction.
 
 \begin{table}[H]
     \centering
@@ -97,7 +96,7 @@ This section presented the findings through tables, figures, and subsequent disc
     \end{tabular}
 \end{table}
 
-The table presented a performance profile characterized by precise, well-grounded answers. Faithfulness (0.9179) and Context Precision (0.9167) indicated that retrieved evidence was both accurate and tightly focused, yielding citations that traced cleanly to source pages. Context Recall (0.8711) showed broad coverage of relevant thesis passages, while Answer Relevancy (0.8625) confirmed that final responses aligned with user intent in typical literature-search tasks.
+The table presents a performance profile characterized by precise, well-grounded answers. Faithfulness (0.9179) and Context Precision (0.9167) indicated that retrieved evidence was both accurate and tightly focused, yielding citations that traced cleanly to source pages. Context Recall (0.8711) showed broad coverage of relevant thesis passages, while Answer Relevancy (0.8625) confirmed that final responses aligned with user intent in typical literature-search tasks.
 
 In practice, a query such as “What methodologies are used for detecting academic plagiarism at CSPC?” returned a compact set of segments drawn from Methods and Related Works sections across multiple theses. The system synthesized these into direct, cited responses; high precision kept noise low, high recall surfaced cross-department perspectives, and high faithfulness maintained strict grounding in the referenced documents.
 
@@ -115,7 +114,7 @@ The figures below illustrated the evaluation metrics of the RAG system using var
     \label{fig:rag_bar_chart}
 \end{figure}
 
-The bar graph showed that the overall evaluation of the RAG system demonstrated a strong performance in all four metrics. The highest scores were observed in Faithfulness (0.918) and Context Precision (0.917), indicating that the system effectively grounded its responses in accurate and relevant information retrieved from the source documents. These results suggested that the system minimized hallucinations, maintained real information during response, and focused on the most pertinent contextual segments during retrieval. These scores proved that the RAG model was well-optimized for generating trustworthy and accurate responses.
+The bar graph shows that the overall evaluation of the RAG system demonstrated a strong performance in all four metrics. The highest scores were observed in Faithfulness (0.918) and Context Precision (0.917), indicating that the system effectively grounded its responses in accurate and relevant information retrieved from the source documents. These results suggested that the system minimized hallucinations, maintained real information during response, and focused on the most pertinent contextual segments during retrieval. These scores proved that the RAG model was well-optimized for generating trustworthy and accurate responses.
 
 The faithfulness result as the score meant that the system consistently produced outputs that accurately reflected the underlying source material, which was helpful for users seeking reliable information. The high context precision score indicated that the retrieved passages were highly relevant to the user's information needs, minimizing the inclusion of unnecessary or loosely related content. This was particularly important in academic contexts where precision was critical. The context recall score, while slightly lower, still demonstrated that the system captured a substantial portion of relevant information, though there might have been room for improvement in ensuring that all pertinent details were included. Finally, the answer relevancy score indicated that the responses generated by the system generally aligned well with user queries, although there might have been occasional instances where the answers could have been more comprehensive or directly addressed the user's intent.
 
@@ -128,7 +127,7 @@ These results, visualized using a bar chart, further confirmed the effectiveness
     \label{fig:rag_heatmap}
 \end{figure}
 
-The heatmap showed the question level performance of the RAG system across the four evaluation metrics. Most of the scores ranged from 0.75 to 1.00, indicating a generally strong performance. The dark green cells represented high-quality outputs, while the mid-range yellow tones and the single red cell indicated low Context Precision for Question 3, which highlighted the area where the system's performance could have been improved. Overall, the system demonstrated strong answer alignment, with Questions 0 to 2 achieving high Answer Relevancy scores above 0.90. Meanwhile, Questions 3 and 4 showed slightly reduced relevancy, suggesting occasional omissions. These patterns indicated that the system generally maintained high standards but might have needed targeted refinements for more complex queries.
+The heatmap shows the question level performance of the RAG system across the four evaluation metrics. Most of the scores ranged from 0.75 to 1.00, indicating a generally strong performance. The dark green cells represented high-quality outputs, while the mid-range yellow tones and the single red cell indicated low Context Precision for Question 3, which highlighted the area where the system's performance could have been improved. Overall, the system demonstrated strong answer alignment, with Questions 0 to 2 achieving high Answer Relevancy scores above 0.90. Meanwhile, Questions 3 and 4 showed slightly reduced relevancy, suggesting occasional omissions. These patterns indicated that the system generally maintained high standards but might have needed targeted refinements for more complex queries.
 
 Among the RAG metrics implemented, Context precision was excellent for four of the five questions with each scoring 1.00, while Question 3’s value signaled low context selection. Despite that, Context recall remained consistently high, indicating stable retrieval depth across queries. Faithfulness was similarly strong, with only Question 2 dipping slightly. Altogether, the heatmap highlighted a reliable RAG system with minor, clearly identifiable areas for improvement.
 
@@ -139,14 +138,14 @@ Among the RAG metrics implemented, Context precision was excellent for four of t
     \label{fig:rag_radar_chart}
 \end{figure}
 
-The radar chart showed that the RAG system demonstrated a consistently high and well-balanced performance across the four evaluation metrics: Faithfulness, Context Precision, Context Recall, and Answer Relevancy. The nearly symmetrical shape of the plot indicated that no metric fell below an acceptable range, with Faithfulness and Context Precision forming the strongest extensions. This suggested that the system reliably grounded its answers in retrieved evidence and selected context that was highly relevant to the user’s query, effectively minimizing hallucinations and maintaining strong alignment with source documents. 
+The radar chart shows that the RAG system demonstrated a consistently high and well-balanced performance across the four evaluation metrics: Faithfulness, Context Precision, Context Recall, and Answer Relevancy. The nearly symmetrical shape of the plot indicated that no metric fell below an acceptable range, with Faithfulness and Context Precision forming the strongest extensions. This suggested that the system reliably grounded its answers in retrieved evidence and selected context that was highly relevant to the user’s query, effectively minimizing hallucinations and maintaining strong alignment with source documents. 
 
 However, the Context Recall and Answer Relevancy metrics, while still showing good performance in these areas, indicated that there was room for improvement to further enhance the system's ability to retrieve all relevant information and generate answers that fully met user expectations. Focusing on these metrics could have led to even more comprehensive and satisfactory responses in future iterations of the system.
 
 These overall visualization results of evaluation metrics confirmed the RAG system's capability as a dependable academic search assistant, while also guiding future enhancements to further elevate its performance.
 
 \section*{User Agreement on Chatbot Response Quality and Performance}
-\ref{tab:user_agreement_quality} showed the results of the user-centered evaluation of the CSPC Library RAG chatbot using 5-point likert scale survey questions that allowed the respondents to evaluate and choose the level of agreement with the chatbot’s response quality and performance.
+\ref{tab:user_agreement_quality} shows the results of the user-centered evaluation of the CSPC Library RAG chatbot using 5-point likert scale survey questions that allowed the respondents to evaluate and choose the level of agreement with the chatbot’s response quality and performance.
 
 \begin{table}[H]
     \centering
