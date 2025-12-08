@@ -17,7 +17,7 @@ This study implemented advanced machine learning techniques, natural language pr
 
 \subsection{Retrieval-Augmented Generation (RAG) Pipeline}
 
-The Retrieval-Augmented Generation (RAG) pipeline was a hybrid architecture that combined information retrieval with natural language generation. It allowed LLMs to access external documents during inference, thereby improving both accuracy and contextual relevance.
+The Retrieval-Augmented Generation (RAG) pipeline is a hybrid architecture that combines information retrieval with natural language generation. It allows LLMs to access external documents during inference, thereby improving both accuracy and contextual relevance.
 
 \begin{figure}[htbp]
     \centering
@@ -26,7 +26,7 @@ The Retrieval-Augmented Generation (RAG) pipeline was a hybrid architecture that
     \label{fig:rag}
 \end{figure}
 
-The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consisted of the following key stages:
+The chatbot’s RAG pipeline, as illustrated in \ref{fig:rag}, consists of the following key stages:
 
 \subsubsection{A. Data Indexing}
 
@@ -34,7 +34,7 @@ The data indexing process begins with document preparation, where thesis documen
 
 \subsubsection{B. Retrieval and Generation}
 
-The retrieval and generation process began with query processing, where a user's query was embedded using the same model employed for indexing. A FAISS-backed retriever then performed a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks were provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
+The retrieval and generation process begins with query processing, where a user's query is embedded using the same model employed for indexing. A FAISS-backed retriever then performs a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
 
 \subsection{Large Language Model}
 
@@ -50,7 +50,7 @@ To ensure optimal performance of the RAG-based LLM system, several key hardware 
 
 \subsection{Research Materials}
 
-This section contained the dataset, hardware, and software requirements for the development of the RAG chatbot system.
+This section contains the dataset, hardware, and software requirements for the development of the RAG chatbot system.
 
 \subsubsection{Dataset}
 
@@ -114,7 +114,7 @@ In this subsection, the instruments that were used by researchers to analyze and
 
 \subsection{Statistical Test}
 
-The system’s technical performance was evaluated using the RAGAS framework, focusing on context precision, recall, relevance, and faithfulness to measure how well relevant documents were retrieved and responses generated~\cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}.
+The system’s technical performance is evaluated using the RAGAS framework, focusing on context precision, recall, relevance, and faithfulness to measure how well relevant documents were retrieved and responses generated~\cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}.
 
 Additionally, to assess not only the technical but also the user-centered performance of the system, a user questionnaire was administered to collect feedback regarding usability, accuracy, and overall satisfaction, utilizing a 5-point Likert scale to ensure consistent measurement.
 
@@ -253,8 +253,8 @@ Where:
 
 \section{Procedures}
 The procedures encompassed the collection and preprocessing of academic data, vector-based indexing, retrieval using semantic search, LLM-based response generation, and multi-metric evaluation using RAGAS, and user-centered evaluation.
-
-Each stage was designed to ensure the integrity, replicability, and effectiveness of the system in addressing the research objectives. By detailing the technical and methodological steps, this section served as a transparent and structured guide for future researchers seeking to replicate or build upon this study.
+    
+Each stage is designed to ensure the integrity, replicability, and effectiveness of the system in addressing the research objectives. By detailing the technical and methodological steps, this section serves as a transparent and structured guide for future researchers seeking to replicate or build upon this study.
 
 % \subsection*{Data Collection}
 
@@ -299,7 +299,7 @@ The researchers evaluated the RAG-based system with RAGAS~\cite{es2024ragas}, fo
 
 \subsection*{Context Precision}
 
-The Context Precision metric was used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measured the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicated that the system effectively prioritized relevant information for the user.
+The Context Precision metric is used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measured the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicated that the system effectively prioritized relevant information for the user.
 
 \begin{equation}
 \centering
@@ -329,7 +329,7 @@ where $\text{true positives@k}$ is the number of relevant chunks retrieved up to
 
 \subsection*{Context Recall}
 
-Context Recall was used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measured the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
+Context Recall is used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measures the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
 
 \begin{equation}
 \centering
@@ -348,7 +348,7 @@ This metric captures how effectively the system covers the necessary knowledge, 
 
 \subsection*{Response Relevance}
 
-Response Relevance was a critical metric used to evaluate how well the RAG chatbot's generated answer addressed the specific query posed by users in the CSPC Library. This metric ensured that the chatbot provided focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
+Response Relevance is a critical metric used to evaluate how well the RAG chatbot's generated answer addresses the specific query posed by users in the CSPC Library. This metric ensures that the chatbot provides focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
 
 \begin{equation}
 \centering
@@ -385,7 +385,7 @@ A faithfulness score of $1.0$ indicates that all claims in the response are grou
 
 \section{Conceptual Framework}
 
-The conceptual framework served as the foundational blueprint for the RAG-based chatbot system. It emphasized the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in \ref{fig:conceptual_framework}, the system followed a cyclical process beginning with data collection and ending with system evaluation and refinement.
+The conceptual framework serves as the foundational blueprint for the RAG-based chatbot system. It emphasized the end-to-end interaction of modules required to support intelligent, accurate, and efficient academic document retrieval. As illustrated in \ref{fig:conceptual_framework}, the system followed a cyclical process beginning with data collection and ending with system evaluation and refinement.
 The arrows were used solely to visually indicate the step-by-step flow of each component within the chatbot framework; they did not signify any technical operation or special relationship beyond showing the direction of the process. 
 
 This visualization helps guide readers through the sequence of the system stages, ensuring clarity at the outset.
