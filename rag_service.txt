@@ -1,0 +1,538 @@
+rag_service.py
+
+"""
+RAG Service for Flask integration
+Adapted from cbot_stlit/rag_chain_hybrid.py with smart retrieval
+"""
+from typing import Tuple, Generator
+from langchain_community.vectorstores import FAISS
+from langchain_google_vertexai import ChatVertexAI, VertexAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+import os
+import traceback
+import logging
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Configure logger
+logger = logging.getLogger(__name__)
+
+# Get base directory for reliable path resolution
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Content moderation
+DISALLOWED = ("how to make a bomb", "explosive materials", "hatred", "self-harm")
+
+def is_allowed(question: str) -> bool:
+    """Check if the question contains disallowed content"""
+    ql = question.lower()
+    return not any(term in ql for term in DISALLOWED)
+
+def detect_embedding_type(persist_dir=None):
+    """
+    Detect which embedding model was used to create the index
+    """
+    if persist_dir is None:
+        persist_dir = os.path.join(BASE_DIR, "index")
+    
+    metadata_file = os.path.join(persist_dir, "embedding_model.txt")
+    if os.path.exists(metadata_file):
+        with open(metadata_file, 'r') as f:
+            return f.read().strip()
+    
+    return "huggingface"  # Default to HuggingFace
+
+def load_retriever(persist_dir=None, embedding_type=None):
+    """
+    Load retriever with automatic embedding model detection
+    Returns the vector store (not retriever) for flexible querying
+    """
+    if persist_dir is None:
+        persist_dir = os.path.join(BASE_DIR, "index")
+    
+    if embedding_type is None:
+        embedding_type = detect_embedding_type(persist_dir)
+    
+    logger.info(f"Loading index with {embedding_type} embeddings...")
+    
+    try:
+        if embedding_type == "huggingface":
+            # For indexes created with open-source models
+            # Use the same model that was used for ingestion
+            embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-MiniLM-L6-v2",  # Match your ingestion model
+                model_kwargs={'device': 'cpu'},  # Use CPU for local inference
+                encode_kwargs={'normalize_embeddings': True}
+            )
+        else:
+            # For indexes created with Vertex AI API
+            embeddings = VertexAIEmbeddings(
+                model_name="textembedding-gecko@001",
+                project=os.getenv('GOOGLE_CLOUD_PROJECT')
+            )
+        
+        vs = FAISS.load_local(persist_dir, embeddings, allow_dangerous_deserialization=True)
+        logger.info(f"Successfully loaded index with {embedding_type} embeddings")
+        return vs
+        
+    except Exception as e:
+        logger.warning(f"Failed to load with {embedding_type} embeddings: {e}")
+        
+        # Try the other embedding type as fallback
+        fallback_type = "vertexai" if embedding_type == "huggingface" else "huggingface"
+        logger.info(f"Trying fallback: {fallback_type} embeddings...")
+        
+        try:
+            if fallback_type == "huggingface":
+                embeddings = HuggingFaceEmbeddings(
+                    model_name="sentence-transformers/all-MiniLM-L6-v2",  # Match your ingestion model
+                    model_kwargs={'device': 'cpu'},
+                    encode_kwargs={'normalize_embeddings': True}
+                )
+            else:
+                embeddings = VertexAIEmbeddings(
+                    model_name="textembedding-gecko@001",
+                    project=os.getenv('GOOGLE_CLOUD_PROJECT')
+                )
+            
+            vs = FAISS.load_local(persist_dir, embeddings, allow_dangerous_deserialization=True)
+            logger.info(f"Successfully loaded index with {fallback_type} embeddings (fallback)")
+            return vs
+            
+        except Exception as e2:
+            logger.error(f"Both embedding types failed. Error: {e2}")
+            raise e2
+
+
+# Keep load_vectorstore as an alias for compatibility with existing code
+def load_vectorstore(persist_dir=None, embedding_type=None):
+    """
+    Load vector store (not retriever) for flexible querying
+    Returns FAISS vectorstore
+    Alias for load_retriever for backward compatibility
+    """
+    return load_retriever(persist_dir, embedding_type)
+
+
+def is_exhaustive_query(query: str) -> bool:
+    """
+    Detect if the query is asking for exhaustive/comprehensive results
+    """
+    exhaustive_keywords = [
+        "all", "list", "every", "give me all", "show me all",
+        "how many", "what are all", "enumerate", "complete list"
+    ]
+    query_lower = query.lower()
+    return any(keyword in query_lower for keyword in exhaustive_keywords)
+
+
+def smart_retrieve(query: str, vectorstore):
+    """
+    Adaptive retrieval that adjusts k and uses threshold filtering based on query intent
+    
+    - For exhaustive queries ("give me all X"): Uses high k + threshold filtering
+    - For specific queries: Uses standard top-k retrieval
+    """
+    is_exhaustive = is_exhaustive_query(query)
+    
+    if is_exhaustive:
+        # Exhaustive query: retrieve more docs and filter by similarity threshold
+        logger.debug(f"Detected exhaustive query - using adaptive retrieval (k=100)")
+        docs_with_scores = vectorstore.similarity_search_with_score(query, k=100)
+        
+        # Debug: Show score distribution
+        if docs_with_scores:
+            scores = [score for _, score in docs_with_scores[:10]]
+            logger.debug(f"Sample scores (top 10): min={min(scores):.3f}, max={max(scores):.3f}")
+        
+        # Dynamic threshold based on score distribution
+        # For HuggingFace: typically 0.8-1.5 range, use higher threshold
+        # For Gemini: typically 0.3-0.8 range, use lower threshold
+        # Strategy: Take documents within 150% of the best score
+        if docs_with_scores:
+            best_score = docs_with_scores[0][1]
+            # Use adaptive threshold: 1.5x the best score, capped at 2.0
+            threshold = min(best_score * 1.5, 2.0)
+            logger.debug(f"Using adaptive threshold: {threshold:.3f} (based on best score: {best_score:.3f})")
+            
+            filtered_docs = [doc for doc, score in docs_with_scores if score <= threshold]
+        else:
+            filtered_docs = []
+        
+        logger.debug(f"Retrieved {len(filtered_docs)} relevant documents")
+        return filtered_docs
+    else:
+        # Standard semantic search: top-k most relevant
+        logger.debug(f"Standard semantic search (k=50)")
+        return vectorstore.similarity_search(query, k=50)
+
+
+def format_docs(docs):
+    """Format documents with enhanced metadata for thesis-specific retrieval."""
+    out = []
+    abstract_docs = []
+    other_docs = []
+    
+    # Separate abstracts and other content for prioritization
+    for doc in docs:
+        meta = doc.metadata or {}
+        if meta.get("content_type") == "abstract":
+            abstract_docs.append(doc)
+        else:
+            other_docs.append(doc)
+    
+    # Process abstracts first (higher priority)
+    for i, d in enumerate(abstract_docs, 1):
+        meta = d.metadata or {}
+        src = meta.get("source", "document").replace("\\", "/").split("/")[-1]
+        page = meta.get("page", "")
+        content_type = meta.get("content_type", "")
+        chapter = meta.get("chapter", "")
+        
+        label_parts = [f"S{i}", src]
+        if page:
+            label_parts.append(f"p.{page}")
+        if content_type:
+            label_parts.append(f"({content_type})")
+        if chapter:
+            label_parts.append(f"Ch.{chapter}")
+        
+        label = f"[{' '.join(label_parts)}]"
+        out.append(d.page_content + f"\n{label}")
+    
+    # Then process other documents
+    start_idx = len(abstract_docs) + 1
+    for i, d in enumerate(other_docs, start_idx):
+        meta = d.metadata or {}
+        src = meta.get("source", "document").replace("\\", "/").split("/")[-1]
+        page = meta.get("page", "")
+        content_type = meta.get("content_type", "")
+        chapter = meta.get("chapter", "")
+        
+        label_parts = [f"S{i}", src]
+        if page:
+            label_parts.append(f"p.{page}")
+        if content_type:
+            label_parts.append(f"({content_type})")
+        if chapter:
+            label_parts.append(f"Ch.{chapter}")
+        
+        label = f"[{' '.join(label_parts)}]"
+        out.append(d.page_content + f"\n{label}")
+    
+    return "\n\n".join(out)
+
+
+# Load abstract and title data files using absolute paths
+def _load_data_files():
+    """Load abstract and title data files at module initialization"""
+    abstract_file = os.path.join(BASE_DIR, "index", "data_abstract.txt")
+    title_file = os.path.join(BASE_DIR, "index", "data_title_url.txt")
+    
+    content1 = ""
+    content2 = ""
+    
+    try:
+        if os.path.exists(abstract_file):
+            with open(abstract_file, "r", encoding="utf-8") as f1:
+                content1 = f1.read()
+                logger.info("Loaded data_abstract.txt")
+        else:
+            logger.warning(f"data_abstract.txt not found at {abstract_file}")
+        
+        if os.path.exists(title_file):
+            with open(title_file, "r", encoding="utf-8") as f2:
+                content2 = f2.read()
+                logger.info("Loaded data_title_url.txt")
+        else:
+            logger.warning(f"data_title_url.txt not found at {title_file}")
+    except Exception as e:
+        logger.warning(f"Could not load data files: {e}")
+    
+    return content1, content2
+
+file_content1, file_content2 = _load_data_files()
+
+
+SYSTEM_PROMPT = f"""
+You are Adal, an AI assistant specialized in CSPC (Camarines Sur Polytechnic College) thesis and academic research retrieval.
+
+You were created and are maintained by TEAM VIRGO.
+
+Your current knowledge base only includes theses and research coming from the following CSPC colleges: BSM, BSN, CAS, CCS, and CTHBM. Note that the CCS collection does not yet contain Computer Science theses, and there are no engineering theses available in your data.
+
+First:
+ -Read the \n{file_content2} and look for clue that will help you answer the question and provide the url.
+
+
+CORE RESPONSIBILITIES:
+- Help users discover and explore CSPC thesis documents and academic research
+- Provide complete abstracts when requested or when relevant to the query
+- Generate proper APA citations for thesis sources
+- Suggest related research based on semantic similarity
+- Handle both specific queries (returns top relevant results) and exhaustive queries (returns all matching results)
+- Maintain conversation context and understand follow-up questions
+
+RESPONSE GUIDELINES:
+- Always answer based STRICTLY on the provided context
+- Always answer direct to the point
+- If information is not in the context, clearly state "I didn't find that information in my knowledge base, but you can try rephrasing your question and I'll search again"
+- When providing abstracts, give the COMPLETE abstract text if available in context
+- For thesis-related queries, prioritize abstract and metadata information
+- Include proper APA citations at the end using format: [Author, Year. Title. Department, CSPC]
+- If the question is too vague, ask clarifying questions to narrow down the topic
+- For "give me all" or "list all" queries, provide a comprehensive list of ALL matching theses found in context
+- Use conversation history to understand context when users ask follow-up questions like "tell me more", "what else", "can you explain that", etc.
+
+QUERY TYPES TO HANDLE:
+- "What is [thesis title] about?" -> Provide abstract and key findings
+- "Show me the abstract of..." -> Provide complete abstract text
+- "Find theses about [topic]" -> List relevant research with brief descriptions
+- "Give me all research on [topic]" -> List ALL matching theses comprehensively
+- "How many theses about [topic]?" -> Count and list all matching theses
+- "Who wrote about [subject]?" -> Identify authors and their work
+- "What department studies [field]?" -> Identify relevant departments and their research
+- Follow-up questions -> Use conversation history to understand context
+
+CITATION FORMAT:
+Use APA style
+Example: [Santos et al. AI in Education. 2023. Computer Science Dept, CSPC]
+
+Remember: You are helping unlock CSPC's academic knowledge for the research community."""
+
+# Prompt template for conversational RAG (with history)
+conversational_prompt = ChatPromptTemplate.from_messages([
+    ("system", SYSTEM_PROMPT),
+    ("human", """Previous conversation:
+{chat_history}
+
+Current question: {question}
+
+Relevant context from knowledge base:
+{context}
+
+Please answer the current question, taking into account the conversation history above for context."""),
+])
+
+# Simple prompt for single questions (no history)
+simple_prompt = ChatPromptTemplate.from_messages([
+    ("system", SYSTEM_PROMPT),
+    ("human", "Question: {question}\n\nContext:\n{context}"),
+])
+
+# Keep original prompt for backward compatibility
+prompt = simple_prompt
+
+
+def format_chat_history(history: list) -> str:
+    """Format chat history for the prompt"""
+    if not history:
+        return "No previous conversation."
+    
+    formatted = []
+    for msg in history[-6:]:  # Keep last 6 messages (3 exchanges) for context
+        role = "User" if msg.get('role') == 'user' else "Assistant"
+        content = msg.get('content', '')
+        # Truncate long messages to save context space
+        if len(content) > 500:
+            content = content[:500] + "..."
+        formatted.append(f"{role}: {content}")
+    
+    return "\n".join(formatted)
+
+
+def build_chain(embedding_type=None) -> Tuple:
+    """
+    Build basic RAG chain (non-streaming) - matches rag_chain.py exactly
+    Returns: (chain, vectorstore)
+    """
+    vectorstore = load_retriever(embedding_type=embedding_type)
+    llm = ChatVertexAI(
+        model="gemini-2.5-flash",
+        temperature=0,
+        project=os.getenv('GOOGLE_CLOUD_PROJECT'),
+        location=os.getenv('GOOGLE_CLOUD_LOCATION', 'us-central1')
+    )
+    
+    # Create a custom retrieval function that uses smart_retrieve
+    def custom_retrieve(question: str) -> str:
+        docs = smart_retrieve(question, vectorstore)
+        return format_docs(docs)
+    
+    # Build chain with smart retrieval integration
+    chain = (
+        {
+            "context": lambda x: custom_retrieve(x), 
+            "question": RunnablePassthrough()
+        }
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+    
+    # Return both chain and vectorstore for flexibility
+    return chain, vectorstore
+
+
+def build_streaming_chain(persist_dir=None):
+    """
+    Build RAG chain with streaming support and smart retrieval for Flask
+    Uses same configuration as build_chain but with streaming enabled
+    Returns: (chain, vectorstore)
+    """
+    if persist_dir is None:
+        persist_dir = os.path.join(BASE_DIR, "index")
+    
+    try:
+        logger.info("Building streaming RAG chain with smart retrieval...")
+        
+        # Load vectorstore using the same function as build_chain
+        vectorstore = load_retriever(persist_dir)
+        
+        logger.info("Initializing Vertex AI LLM with streaming...")
+        # Create LLM with streaming - using Vertex AI instead of google-genai
+        llm = ChatVertexAI(
+            model="gemini-2.5-flash",
+            temperature=0,
+            streaming=True,
+            project=os.getenv('GOOGLE_CLOUD_PROJECT'),
+            location=os.getenv('GOOGLE_CLOUD_LOCATION', 'us-central1')
+        )
+        
+        logger.info("Streaming RAG chain built successfully (model: gemini-2.5-flash, streaming: enabled)")
+        return llm, vectorstore
+        
+    except Exception as e:
+        logger.error(f"Failed to build streaming chain: {str(e)}")
+        logger.debug(f"Traceback: {traceback.format_exc()}")
+        raise e
+
+
+# Patterns that indicate a follow-up question needing context reconstruction
+FOLLOWUP_PATTERNS = [
+    "tell me more", "what else", "can you explain", "elaborate", "more details",
+    "what about", "how about", "and what", "also", "furthermore", "additionally",
+    "that", "this", "it", "them", "those", "these", "the same", "similar",
+    "related", "another", "other", "else", "continue", "go on", "expand",
+    "why", "how", "when", "where", "who"  # Short contextual questions
+]
+
+
+def is_followup_question(question: str) -> bool:
+    """
+    Detect if a question is likely a follow-up that needs context reconstruction.
+    """
+    question_lower = question.lower().strip()
+    
+    # Very short questions are often follow-ups
+    if len(question_lower.split()) <= 4:
+        return True
+    
+    # Check for follow-up patterns
+    for pattern in FOLLOWUP_PATTERNS:
+        if pattern in question_lower:
+            return True
+    
+    # Questions starting with pronouns often need context
+    if question_lower.startswith(('it ', 'that ', 'this ', 'they ', 'what about', 'how about')):
+        return True
+    
+    return False
+
+
+def reconstruct_query(question: str, chat_history: list, llm) -> str:
+    """
+    Use LLM to reconstruct a standalone search query from a follow-up question.
+    This combines the conversation context with the current question to create
+    a query that can be used for database retrieval.
+    """
+    if not chat_history:
+        return question
+    
+    # Format recent history for context (last 4 messages = 2 exchanges)
+    history_text = ""
+    for msg in chat_history[-4:]:
+        role = "User" if msg.get('role') == 'user' else "Assistant"
+        content = msg.get('content', '')[:300]  # Truncate for efficiency
+        history_text += f"{role}: {content}\n"
+    
+    reconstruction_prompt = f"""Given this conversation history:
+{history_text}
+
+The user now asks: "{question}"
+
+Rewrite this as a standalone search query that captures what the user is looking for.
+The query should be specific enough to search a thesis database.
+Only output the reconstructed query, nothing else.
+
+Reconstructed query:"""
+    
+    try:
+        # Use LLM to reconstruct (non-streaming for speed)
+        response = llm.invoke(reconstruction_prompt)
+        reconstructed = response.content.strip()
+        
+        # Sanity check - if reconstruction is too different or empty, use original
+        if len(reconstructed) < 5 or len(reconstructed) > 500:
+            return question
+        
+        logger.info(f"Query reconstructed: '{question}' -> '{reconstructed}'")
+        return reconstructed
+    except Exception as e:
+        logger.warning(f"Query reconstruction failed: {e}, using original question")
+        return question
+
+
+def stream_with_history(question: str, vectorstore, llm, chat_history: list = None):
+    """
+    Stream a response with conversation history support.
+    
+    Args:
+        question: The current user question
+        vectorstore: The FAISS vectorstore for retrieval
+        llm: The language model (Gemini)
+        chat_history: List of previous messages [{"role": "user/assistant", "content": "..."}]
+    
+    Yields:
+        Chunks of the response
+    """
+    # Determine the search query - reconstruct if it's a follow-up question
+    search_query = question
+    if chat_history and len(chat_history) > 0 and is_followup_question(question):
+        logger.debug(f"Detected follow-up question, reconstructing query...")
+        search_query = reconstruct_query(question, chat_history, llm)
+    
+    # Get relevant context using the (possibly reconstructed) query
+    docs = smart_retrieve(search_query, vectorstore)
+    context = format_docs(docs)
+    
+    logger.debug(f"Search query: '{search_query}', Context size: {len(context)} chars, {len(docs)} docs")
+    
+    # Choose prompt based on whether we have history
+    if chat_history and len(chat_history) > 0:
+        formatted_history = format_chat_history(chat_history)
+        prompt_to_use = conversational_prompt
+        chain_input = {
+            "context": context,
+            "question": question,  # Use original question for response generation
+            "chat_history": formatted_history
+        }
+        logger.debug(f"Using conversational prompt with {len(chat_history)} history messages")
+    else:
+        prompt_to_use = simple_prompt
+        chain_input = {
+            "context": context,
+            "question": question
+        }
+        logger.debug("Using simple prompt (no history)")
+    
+    # Build and run chain
+    chain = prompt_to_use | llm | StrOutputParser()
+    
+    # Stream the response
+    for chunk in chain.stream(chain_input):
+        yield chunk
