@@ -1,7 +1,6 @@
 
 \documentclass[12pt]{cspcccsthesis}
 % preamble
-
 \usepackage{indentfirst}
 \AtBeginDocument{
   \ExecuteBibliographyOptions{
@@ -14,47 +13,50 @@
 
 
 
-\title{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}
+\title{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis Retrieval in CSPC Library}
 \authorOne{Divino Franco R. Aurellano}
 \authorTwo{Herald Carl N. Avila}
 \authorThree{Almira L. Calingacion}
 \degree{Bachelor of Science in Computer Science}
-\approvaldate{January 1, 2020}
+\approvaldate{December , 2025}
 \school{College of Computer Studies}
 \adviser{Rosel O. Onesa, MIT.}
 \dean{Rosel O. Onesa, MIT}
-\committeeMemberOne{Kaela Marie N. Fortuno, M}
+\committeeMemberOne{Kaela Marie N. Fortuno, MIT}
 \committeeMemberTwo{Tiffany Lyn O. Pandes, MSc}
 \committeeChair{Joseph Jessie S. Oñate, MSc}
 \department{}
-\thesisAbstract{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque hendrerit fringilla. Vestibulum nec nibh nisi. Curabitur iaculis est lorem, vehicula consectetur erat ullamcorper eget. Aliquam cursus mollis pretium. Fusce bibendum ornare nisl quis dictum. Curabitur tincidunt euismod erat, fringilla elementum ex blandit in. Nunc pretium libero non bibendum egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam vitae porttitor eros. Suspendisse pretium feugiat dui, sed posuere erat porta eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque hendrerit fringilla. Vestibulum nec nibh nisi. Curabitur iaculis est lorem, vehicula consectetur erat ullamcorper eget. Aliquam cursus mollis pretium. Fusce bibendum ornare nisl quis dictum. Curabitur tincidunt euismod erat, fringilla elementum ex blandit in. Nunc pretium libero non bibendum egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam vitae porttitor eros. Suspendisse pretium feugiat dui, sed posuere erat porta eu}
-\keywords{amet, consectetur, adipisci velit}
+	\thesisAbstract{Finding relevant thesis literature in the CSPC Library has long been hindered by restrictive search systems and limited access to physical documents. This study addresses these challenges by developing a Retrieval-Augmented Generation (RAG) chatbot that enables users to search for undergraduate theses using natural language queries, topics, and keywords. The system preprocesses and chunks over 290 thesis PDFs, generates semantic embeddings with all-MiniLM-L6-v2, and stores them in a FAISS vector database. User queries are semantically matched to relevant thesis segments, and responses are generated using the Gemini 2.5-flash model, ensuring grounded and contextually accurate answers. Performance was evaluated using RAGAS metrics—Context Precision (0.9167), Context Recall (0.8711), Answer Relevancy (0.8625), and Faithfulness (0.9179)—and validated through user surveys. Results demonstrate that the chatbot significantly improves literature search efficiency, accessibility, and user satisfaction compared to traditional systems. The work highlights the impact of data quality and query clarity on retrieval accuracy. This research advances AI-driven information retrieval in academic settings, modernizing thesis discovery and supporting the needs of students and researchers.}
+\keywords{RAG, Chatbot, Semantic Search, Thesis Retrieval, CSPC Library, LLM, FAISS, Gemini}
 
 % document body
 \begin{document}
 
 \makeTitlePage{May}{2025}
 
-% \begin{frontmatter}
-%     \input{approvalPage.tex}
-%     \makePanelofExaminers{90}
-%     \makeDedication{Ad Majorem Dei Gloriam}
-%     \input{acknowledgments}
-%     \makeAbstract
-%     \makeTOC
-%     \makeListOfTables
-%     \makeListOfFigures
-%     \input{abbrevs.tex}
-% \end{frontmatter}
+\begin{frontmatter}
+    \input{approvalPage.tex}
+    \makePanelofExaminers{90}
+    \makeDedication{We, the researchers, dedicate this work to God for giving us wisdom, strength, and perseverance throughout this journey. To our families, whose unconditional love, support, and encouragement have been the foundation of our success, and whose sacrifices and faith in us have made every step possible. To our mentors and instructors, for guiding, challenging, and inspiring us to grow and achieve our goals. To our friends, for their unwavering support, comfort, and laughter, which helped us overcome the challenges along the way. And to our classmates, for sharing this academic journey, offering collaboration, companionship, and memorable experiences that made this chapter meaningful. To all of you who believed in us and supported us in finishing this journey, we sincerely say “thank you.” 
+    
+    Finally, we dedicate this to ourselves, the researchers, who persevered through every stressful day; despite cramming and being scolded, we have successfully completed this study. We did cram, laugh, struggle, and forget, but we never forgot our goal.\\[1em]
+\textbf{-- Team Virgo}}
+    \input{acknowledgments}
+    \makeAbstract
+    \makeTOC
+    \makeListOfTables
+    \makeListOfFigures
+    \input{abbrevs.tex}
+\end{frontmatter}
 
 \begin{thesisbody}
     \input{chapters/chapter1}
     \input{chapters/chapter2}
     \input{chapters/chapter3}
     \input{chapters/chapter4}
-    \input{chapters/chapter5.tex}
+    \input{chapters/chapter5}
     \makeBibliography
-    % \input{chapters/appendix.tex}
+    \input{chapters/appendix}
     % \input{vita}
 \end{thesisbody}
 
