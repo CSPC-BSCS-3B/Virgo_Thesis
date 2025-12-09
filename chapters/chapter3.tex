@@ -34,7 +34,7 @@ The data indexing process begins with document preparation, where thesis documen
 
 \subsubsection{B. Retrieval and Generation}
 
-The retrieval and generation process begins with query processing, where a user's query is embedded using the same model employed for indexing. A FAISS-backed retriever then performs a semantic search to return the top-$K$ most relevant chunks (default $K=6$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
+The retrieval and generation process begins with query processing, where a user's query is embedded using the same model employed for indexing. A FAISS-backed retriever then performs a semantic search to return the top-$K$ most relevant chunks (default $K=50$), balancing precision and recall. Finally, during contextual generation, these retrieved chunks are provided to the Gemini 2.5-flash language model as grounded context, enabling the generation of relevant and factual responses aligned with the source documents.
 
 \subsection{Large Language Model}
 
@@ -281,7 +281,7 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
     \item \textbf{Query Handling and Semantic Retrieval} - User queries were processed to retrieve relevant document chunks from the vector database.
         \begin{enumerate}
             \item [(a)] {Query Encoding:} The user’s natural language query was encoded using the same embedding model applied during indexing to maintain compatibility in the latent space.
-            \item [(b)] {Similarity Search:} The encoded query was matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=6$). For exploratory or synthesis-oriented queries, $K$ was adaptively increased to improve coverage.
+            \item [(b)] {Similarity Search:} The encoded query was matched against stored vectors to retrieve the top-$K$ relevant chunks (default $K=50$). For exploratory or synthesis-oriented queries, $K$ was adaptively increased to improve coverage.
         \end{enumerate}
 
     \item \textbf{Response Generation} - The Gemini 2.5-flash language model processed the augmented input to generate a response that was factually aligned with the source documents.
