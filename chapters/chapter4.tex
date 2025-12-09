@@ -1,10 +1,14 @@
 \chapter{Results and Discussion}
 \begin{refsection}
 
-This chapter discusses the results and evaluation of the Retrieval-Augmented Generation (RAG) chatbot developed for efficient literature search and thesis retrieval at the Camarines Sur Polytechnic Colleges (CSPC) Library.
+This chapter discusses the results and evaluation of the RAG chatbot developed for efficient literature search and thesis retrieval at the CSPC Library.
+
+\section{Document Ingestion and Retrieval Module}
+
+This implementation addressed the first specific objective of the study by transforming the library's static collection of thesis PDFs into a dynamic, searchable knowledge base. 
 
 \subsection{Dataset and Preparation}
-The study corpus comprised all available undergraduate thesis PDFs from multiple CSPC departments (290+ documents). The dataset was prepared via structured text extraction and token-based chunking aligned with thesis sections (Abstract; Chapters 1--5), enabling section-aware retrieval.
+The study corpus comprised all available undergraduate thesis PDFs from multiple CSPC departments (290+ documents). The dataset was prepared via structured text extraction and token-based chunking aligned with thesis sections (Abstract; Chapters 1--5).
 
 \begin{figure}[h]
     \centering
@@ -13,7 +17,9 @@ The study corpus comprised all available undergraduate thesis PDFs from multiple
     \label{fig:dataset_sample}
 \end{figure}
 
-Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. This composes of theses from different departments.
+% Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the digital copies of undergraduate thesis papers. This composes of theses from different departments.
+
+Upon agreement on project scope and data handling, library personnel granted the researchers to gain access to the available digital copies of undergraduate thesis papers. 
 
 \subsection{Data Preprocessing}
 Texts were extracted page-by-page and enriched with metadata (source, page) to preserve academic provenance. Token-based chunking produced coherent segments sized to the LLM context window and guided by thesis structure, improving retrieval fidelity and citation transparency.
@@ -38,7 +44,7 @@ Figure 4 shows the chunk analysis and statistics respectively. Chunk statistics 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that would define the chatbot's effectiveness in academic literature discovery.
 
-Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 (HuggingFace), chosen for its efficiency and strong semantic performance; when cloud embeddings were available, Gemini could be used as an alternative for multilingual scenarios. FAISS stored vectors alongside source/page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
+Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 (HuggingFace), chosen for its efficiency and strong semantic performance. FAISS stored vectors alongside page metadata to preserve traceability. This enabled natural language queries to retrieve semantically relevant thesis segments beyond exact keyword matching.
 
 % \begin{figure}[h]
 %     \centering
@@ -46,21 +52,21 @@ Embeddings were generated primarily with sentence-transformers/all-MiniLM-L6-v2 
 %     \caption{Created index in FAISS}
 % \end{figure}
 
-\subsection{Query Encoding and Retrieval}
-Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ relevant chunks (default $K=6$), balancing precision and recall. Diversity-enhancing strategies (e.g., MMR) were used for broader queries to avoid redundant chunks.
+\section{Semantic Search and Thesis Retrieval System}
 
-For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=6$ produced a good balance of focused context and cross-thesis coverage.
+The semantic search and thesis retrieval system addresses the second specific objective by leveraging the RAG pipeline and Google Gemini 2.5-flash. This implementation transitions the system from static document storage to dynamic, intent-driven information discovery, enabling precise retrieval of relevant academic content.
+
+\subsection{Query Encoding and Retrieval}
+Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ chunks, balancing precision and recall.
+
+For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=50$ produced a good balance of focused context and cross-thesis coverage.
 
 \subsection{Augmented Input and Generation}
-Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers. This supported grounded, traceable answers and reduced hallucination risk.
-
-Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
+Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers. This supported grounded, traceable answers and reduced hallucination risk. Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
 
 \subsection{Response Generation with Gemini 2.5-flash}
 
-The Gemini 2.5-flash model generated answers grounded in retrieved context. The system was configured with temperature=0 to ensure deterministic outputs suitable for academic use.
- 
-Generated content was parsed into clean text for display. While RAG significantly reduced hallucinations, occasional inaccuracies were observed when context was insufficient; users were advised to validate critical findings.
+The Gemini 2.5-flash model generated answers grounded in retrieved context. The system was configured with temperature=0 to ensure deterministic outputs suitable for academic use. Generated content was parsed into clean text for display. While RAG significantly reduced hallucinations, occasional inaccuracies were observed when context was insufficient; users were advised to validate critical findings.
 
 \section{Interface and Usage Observations}
 
