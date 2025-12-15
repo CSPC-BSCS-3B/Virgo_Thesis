@@ -321,8 +321,8 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \begin{center}
     \vspace{\baselineskip}
     \textbf{\underline{\MakeUppercase{\@dean}}}\\
-    Dean, \@school \\
-    Date:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+    OIC Dean, \@school \\
+    Date:
     
 \end{center}
 }
@@ -501,7 +501,8 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \newenvironment{theappendices}{
     \thispagestyle{plain}
     \bookmarksetup{depth=0,open}
-    \addtocontents{toc}{\setcounter{tocdepth}{1}}
+    % \addtocontents{toc}
+    {\setcounter{tocdepth}{1}}
     \renewcommand{\@chap@pppage}{%
         \clear@ppage
         \addappheadtotoc

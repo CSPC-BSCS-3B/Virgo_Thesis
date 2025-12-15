@@ -1,7 +1,7 @@
 
 % The environment used here (theappendices) is a wrapper for the basic appendices environment which changes the appearance of the title page and the structure and appearance of the appendices in the table of contents and PDF bookmarks. The original functionality can be restored by simply removing the 'the' from the \begin{} and \end{} statements below.
 
-\begin{appendices}
+\begin{theappendices}
 
 \chapter{Relevant Source Code}
 \lstinputlisting[language=Python, caption={RAG Service Python Source Code}]{code/rag_service.txt}
@@ -168,30 +168,39 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
     \end{figure}
 
 \chapter{ACM Format}
-
-\includegraphics[width=0.90\textwidth]{figures/main.pdf}
-
-\includepdf[pages=2, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=3, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=4, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=5, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=6, width=0.99\textwidth,  pagecommand={}] {figures/main.pdf} 
-\includepdf[pages=7, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=8, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=9, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=10, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=11, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=12, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=13, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=14, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=15, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=16, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=17, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=18, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=19, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
-\includepdf[pages=20, width=0.99\textwidth, pagecommand={}] {figures/main.pdf}
+\includepdf[pages=1, scale=0.2,]{figures/main.pdf}
 
 
+% \chapter{ACM Format}
+% \centering
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_1.jpg}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_2.jpg} 
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_3.jpg}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_4.jpg}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_5.jpg} 
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_6.jpg}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.85\textwidth]{figures/taurusACM_7.jpg}
+%     \end{figure}
 
 \chapter{Consultation Log Form(CLF)}
 \centering
@@ -253,4 +262,4 @@ This is to certify that the undersigned has provided accurate recommendations, s
 Date:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 
-\end{appendices}
+\end{theappendices}
