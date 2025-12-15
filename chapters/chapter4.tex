@@ -68,7 +68,7 @@ Retrieved chunks were concatenated with the user query into a structured context
 
 The Gemini 2.5-flash model generated answers grounded in retrieved context. The system was configured with temperature=0 to ensure deterministic outputs suitable for academic use. Generated content was parsed into clean text for display. While RAG significantly reduced hallucinations, occasional inaccuracies were observed when context was insufficient; users were advised to validate critical findings.
 
-\section{Interface and Usage Observations}
+\subsection{Interface and Usage Observations}
 
 The Flask-based web interface supported conversational exploration with session-based history and safety filters for disallowed queries.
 
@@ -109,7 +109,7 @@ In practice, a query such as “What methodologies are used for detecting academ
 
 These results demonstrate the RAG system's effectiveness in retrieving and generating accurate, relevant, and well-grounded answers based on the indexed thesis documents from the CSPC Library. The high scores across all four evaluation metrics indicate that the system is capable of providing reliable academic assistance, making it a valuable tool for students and researchers seeking information from the library's thesis collection.
 
-\section*{Visualization of RAG System Evaluation Metrics}
+\section{Visualization of RAG System Evaluation Metrics}
 The figures below illustrate the evaluation metrics of the RAG system using various visualization techniques, including bar charts, box plots, heatmaps, and radar charts.
 
 
@@ -150,7 +150,7 @@ However, the Context Recall and Answer Relevancy metrics, while still the RAG sy
 
 These overall visualization results of evaluation metrics confirm the RAG system's capability as a dependable academic search assistant, while also guiding future enhancements to further elevate its performance.
 
-\section*{User Agreement on Chatbot Response Quality and Performance}
+\section{User Agreement on Chatbot Response Quality and Performance}
 \ref{tab:user_agreement_quality} shows the results of the user-centered evaluation of the CSPC Library RAG chatbot using 5-point likert scale survey questions that allows the respondents to evaluate and choose the level of agreement with the chatbot’s response quality and performance.
 
 \begin{table}[H]
@@ -181,7 +181,7 @@ These overall visualization results of evaluation metrics confirm the RAG system
 
 The result of the evaluation of the RAG chatbot using user-centered evaluation method indicate a generally positive reception from users across various criteria. Here’s the breakdown of the findings. In terms of the chatbot’s question and answering performance, users strongly agreed (weighted mean: 4.3) that the system performed well in answering user questions, indicating that the chatbot meets user expectation in getting right answers. Users also strongly agreed (weighted mean: 4.5) that the chatbot provide answers relevant to the questions provided by the users, indicating that the system effectively interprets user intent and provide relevant answers based on the questions. Furthermore, users strongly agreed (weighted mean: 4.5) that the chatbot gives clear and easy-to-understand answers. This means the chatbot not only gives correct responses but also explains them in a way that users can easily follow. Moreover, the chatbot helped users find the answers they were looking for. With a (weighted mean of 4.3), users strongly agreed that the chatbot’s replies were useful and matched their questions well. This shows that the system supports users in getting the help they need. In the same way, the chatbot provided enough information to help users, with a weighted mean of 4.2. This shows that users  strongly agreed and felt the chatbot gave complete and useful answers during their interaction. Lastly, the chatbot was quick to reply, with users agreeing (weighted mean: 4.1) that it responded without delay. This means the system was able to give answers fast, helping users get the information they needed right away. Overall, the respondents showed agreement across the measured areas, with an average weighted mean of 4.3 (Strongly Agree). This indicates that users found the chatbot’s answers to be correct, relevant, clear, and mostly complete, and that the chatbot responded quickly enough to be useful These findings suggest the chatbot works well for its main task of helping users find information and understand answers. Minor improvements could focus on making responses more complete and slightly faster to raise overall satisfaction even more. Furthermore, according to \citeauthor{folstad2021future} \citeyear{folstad2021future}, user-centered evaluation has been key within several disciplines at the roots of current chatbot research, particularly in understanding users' needs, motivations, and experiences with chatbot interactions. Thus, it is advisable to utilize this method to assess system effectiveness and user satisfaction before deployment to ensure the RAG chatbot meets actual user expectations and provides satisfactory support for thesis retrieval tasks in the CSPC Library context.
 
-\section*{User Feedback on RAG chatbot’s Effectiveness and Usability}
+\section{User Feedback on RAG chatbot’s Effectiveness and Usability}
 \ref{tab:user_feedback_table} presents the user-centered evaluation results of the RAG chatbot using a 5-point Likert scale. The table shows weighted means for user satisfaction, likelihood of using the chatbot again, ease of reading and understanding the chatbot’s output, and confidence in the chatbot’s information, allowing readers to gauge overall user perception and intent to use the system in the future.
 
 \begin{table}[H] %%%%% Table 6 page 55 %%%%%%

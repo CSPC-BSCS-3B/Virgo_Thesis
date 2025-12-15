@@ -300,7 +300,7 @@ Each stage was designed to ensure the integrity, replicability, and effectivenes
 \section{Evaluation Metrics}
 The researchers evaluated the RAG-based system with RAGAS~\cite{es2024ragas}, focusing on Context Precision, Context Recall, Response Relevance, and Faithfulness. These metrics jointly assess retrieval quality, accuracy, query alignment, and factual grounding, ensuring reliable, useful outputs for users.
 
-\subsection*{Context Precision}
+\subsection{Context Precision}
 
 The Context Precision metric was used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measured the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicated that the system effectively prioritized relevant information for the user.
 
@@ -330,7 +330,7 @@ The precision at each position $k$, denoted as Precision@k, is computed as follo
 
 where $\text{true positives@k}$ is the number of relevant chunks retrieved up to position $k$, and $\text{false positives@k}$ is the number of non-relevant chunks retrieved up to the same position. This component metric quantifies retrieval accuracy at each rank and serves as a foundation for the overall Context Precision@K calculation.
 
-\subsection*{Context Recall}
+\subsection{Context Recall}
 
 Context Recall was used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measured the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
 
@@ -349,7 +349,7 @@ where:
 This metric captures how effectively the system covers the necessary knowledge, with a value ranging between 0 and 1, where 1 indicates perfect recall. It ensures that critical academic information is not missed during retrieval, making it an essential part of evaluating the RAG chatbot system.
 
 
-\subsection*{Response Relevance}
+\subsection{Response Relevance}
 
 Response Relevance was a critical metric used to evaluate how well the RAG chatbot's generated answer addressed the specific query posed by users in the CSPC Library. This metric ensured that the chatbot provided focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
 
@@ -368,7 +368,7 @@ where:
 
 This metric worked on the idea that if the chatbot's response sufficiently answered the original query, then questions generated from that response would semantically align with the original question. This involved generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensured that the retrieved academic information closely matched the research needs of CSPC Library users.
 
-\subsection*{Faithfulness}
+\subsection{Faithfulness}
 
 Faithfulness is a critical metric for evaluating the factual consistency of the RAG chatbot's generated responses with respect to the retrieved context from the CSPC Library. This metric ensures that all claims made in the chatbot's answer are directly supported by the information present in the retrieved documents, thereby minimizing hallucinations and maintaining academic integrity.
 
