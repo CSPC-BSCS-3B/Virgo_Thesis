@@ -268,7 +268,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
     % \hline \\ 
     \vspace{\baselineskip}
     
-    \indent This research project entitled, \textbf{\MakeUppercase{\@title}}, in partial fulfillment of the requirements for the degree of \@degree has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
+    \indent This research project entitled, \textbf{\MakeUppercase{\@title}} in partial fulfillment of the requirements for the degree of \@degree has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
     
     \vspace{\baselineskip}
     
@@ -293,7 +293,8 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \begin{center}
 \textbf{\MakeUppercase{\\Panel of Examiners}} \\
 \end{center}
-\textbf{APPROVED} by the Committee on Oral Examination with a grade of \textbf{PASSED} on \@approvaldate.
+        \textbf{APPROVED} by the Committee on Oral Examination with a grade of \textbf{PASSED} on \\
+\@approvaldate.
 
 \begin{center}
     \vspace{\baselineskip}
@@ -313,12 +314,12 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \end{center}
 \vspace{\baselineskip}
 
-\textbf{ACCEPTED} and \textbf{APPROVED} in partial fulfillment of the requirements in \@degree with a grade of #1.
+\textbf{ACCEPTED} and \textbf{APPROVED} in partial fulfillment of the requirements in \@degree with a grade of \_\_\_\_.
 \begin{center}
     \vspace{\baselineskip}
     \textbf{\underline{\MakeUppercase{\@dean}}}\\
-    Dean, \@school \\
-    Date:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+    OIC Dean, \@school \\
+    Date: December 9, 2025
     
 \end{center}
 }
