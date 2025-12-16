@@ -1,3 +1,4 @@
+
 % This template is based on gatechthesis class - for use in preparation of Theses and Dissertations at Georgia Tech 
 % revised Feb 2022
 
@@ -34,12 +35,13 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{authblk}
 \RequirePackage{lastpage}
-\RequirePackage[style=numeric,backend=biber,natbib=true,sorting=anyt]{biblatex}
+\RequirePackage[style=acmnumeric,backend=biber,natbib=true,sorting=anyt]{biblatex}
 \addbibresource{references.bib}
 \RequirePackage{chngcntr}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 \RequirePackage[font=bf]{caption}
+\RequirePackage{indentfirst}
 \RequirePackage{float}
 
 
@@ -133,8 +135,6 @@
 \newcommand{\authorOne}[1]{\gdef\@authorOne{#1}}
 \newcommand{\authorTwo}[1]{\gdef\@authorTwo{#1}}
 \newcommand{\authorThree}[1]{\gdef\@authorThree{#1}}
-\newcommand{\authorFour}[1]{\gdef\@authorFour{#1}}
-\newcommand{\authorFive}[1]{\gdef\@authorFive{#1}}
 \newcommand{\committeeMemberOne}[1]{\gdef\@committeeMemberOne{#1}}
 \newcommand{\committeeMemberTwo}[1]{\gdef\@committeeMemberTwo{#1}}
 \newcommand{\committeeChair}[1]{\gdef\@committeeChair{#1}}
@@ -146,6 +146,7 @@
 \newcommand{\department}[1]{\gdef\@department{#1}}%
 \newcommand{\@department}{\@latex@warning@no@line{No \noexpand\department given}}
 \newcommand\titlefontsize{\fontsize{17pt}{17pt}\selectfont}
+\newcommand{\bibliofont}{\footnotesize}
 \makeatother
 
 % frontmatter environment, only handles title formatting
@@ -201,7 +202,7 @@
     \begin{center}
     \begin{singlespacing}
     \vspace{10\baselineskip}
-    \titlefontsize\textbf{\MakeUppercase{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}}\\
+    \titlefontsize\textbf{\\\MakeUppercase{\@title}}\\
     \normalsize
     \vspace{10\baselineskip}
     A Thesis Project\\
@@ -216,11 +217,6 @@
     \@authorOne\\ 
     \@authorTwo\\ 
     \@authorThree\\
-    % \@authorFour\\
-    % \@authorFive\\
-    \vspace{3\baselineskip}
-    \vspace{\baselineskip}
-    
     \vfill
     \ #1 \ #2
     \end{singlespacing}
@@ -313,7 +309,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
     
     \vspace{\baselineskip}
 
-% \hline
+%\hline
 \end{center}
 \vspace{\baselineskip}
 
@@ -321,8 +317,8 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \begin{center}
     \vspace{\baselineskip}
     \textbf{\underline{\MakeUppercase{\@dean}}}\\
-    OIC Dean, \@school \\
-    Date:
+    Dean, \@school \\
+    Date:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     
 \end{center}
 }
@@ -365,7 +361,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \newcommand{\makeAbstract}{
 \clearpage
 \addcontentsline{toc}{chapter}{Abstract}
-%\nospacing
+% \nospacing
 \begin{center}
 \textbf{\\ABSTRACT}\\
 \end{center}
@@ -382,8 +378,6 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \\ \@authorOne\\ 
 \@authorTwo\\ 
 \@authorThree\\
-% \@authorFour\\
-% \@authorFive\\
 \end{multicols} 
 
 \begin{multicols}{2}
@@ -408,7 +402,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \textbf{Keywords:}\\
 \columnbreak
 \\ \@keywords \\
-\end{multicols}
+\end{multicols} 
 
 \@thesisAbstract
 
@@ -576,7 +570,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
 \newenvironment{vita}{
     \bookmarksetupnext{level=part}
     \thispagestyle{fancy}
-    \chapter*{Curriculum Vitae}
-    \addcontentsline{toc}{chapter}{Curriculum Vitae}
+    \chapter*{Vita}
+    \addcontentsline{toc}{chapter}{Vita}
 }{
 }
