@@ -268,7 +268,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
     % \hline \\ 
     \vspace{\baselineskip}
     
-    \indent This research project entitled, \textbf{\MakeUppercase{\@title}} in partial fulfillment of the requirements for the degree of \@degree has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
+    \indent This research project entitled, \textbf{\MakeUppercase{\@title}} in partial fulfillment of the requirements for the degree of \@degree\ has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
     
     \vspace{\baselineskip}
     
