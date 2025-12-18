@@ -24,22 +24,28 @@ Upon agreement on project scope and data handling, library personnel granted the
 \subsection{Data Preprocessing}
 Texts were extracted page-by-page and enriched with metadata (source, page) to preserve academic provenance. Token-based chunking produced coherent segments sized to the LLM context window and guided by thesis structure, improving retrieval fidelity and citation transparency.
 
-\begin{figure}[h]
+\begin{table}[H]
     \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=0.95\textwidth]{figures/chunk_analysis.jpg}
-        \subcaption{Chunk Analysis}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=0.95\textwidth]{figures/chunk_stat4.jpg}
-        \subcaption{Chunk Statistics}
-    \end{minipage}
     \caption{Chunk Analysis \& Statistics}
-\end{figure}
+    \label{tab:chunk_analysis_stats}
+    \begin{tabular}{ll} 
+        \hline
+        \textbf{Metric}            & \textbf{Value} \\
+        \hline
+        Total Chunks               & 38,127 \\
+        Total Tokens               & 11,849,783 \\
+        Avg Characters/Chunk       & 1323 \\
+        Avg Words/Chunk            & 180 \\
+        Minimum Tokens per chunk   & 124 \\
+        Maximum Tokens  per chunk  & 1200 \\
+        Median Tokens per chunk    & 335 \\
+        \hline
+    \end{tabular}
+\end{table}
 
-Figure 4 shows the chunk analysis and statistics respectively. Chunk statistics indicated a total chunks count of 38,127 and total token count of 11,849,783. With an average of 311 tokens per chunk. The chunking strategy was effective in breaking down lengthy thesis documents into manageable, semantically coherent pieces suitable for embedding and retrieval.
+The overall results of the chunk analysis as shown in \ref{tab:chunk_analysis_stats} indicate that the implemented chunking strategy is effective and well-structured for document preprocessing. The analysis produced a total of 38,127 chunks with 11,849,783 tokens, where each chunk contains an average of 1,323 characters or approximately 180 words, and a median of 335 tokens per chunk. These results show that the generated chunks fall within an appropriate size range to preserve semantic context while remaining suitable for vector embedding and retrieval.
+
+In terms of chunk size control, the results demonstrate that the system successfully enforced defined boundaries. The minimum chunk size was 124 tokens, which prevented the creation of fragmented or low-information chunks that could negatively impact embedding quality. Meanwhile, the maximum chunk size was limited to 1,200 tokens, ensuring that excessively large chunks that could dilute semantic relevance were avoided.
 
 \subsection{Indexing and Vector Database Construction}
 The indexing phase transformed the preprocessed text chunks into a searchable knowledge base optimized for semantic retrieval within the RAG pipeline. This critical stage bridged the gap between raw textual content and the intelligent query-response capabilities that would define the chatbot's effectiveness in academic literature discovery.
