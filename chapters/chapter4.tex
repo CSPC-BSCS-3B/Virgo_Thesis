@@ -65,10 +65,21 @@ The semantic search and thesis retrieval system addresses the second specific ob
 \subsection{Query Encoding and Retrieval}
 Queries were embedded using the same model as indexing to ensure consistency. The FAISS-backed retriever returned the top-$K$ chunks, balancing precision and recall.
 
-For example, when users asked, “What research has been done on machine learning applications in healthcare?” or “Show me theses about sustainable energy solutions,” the system retrieved abstracts and key sections.  Notably, setting $K=50$ produced a good balance of focused context and cross-thesis coverage.
+For example, when users asked, “What research has been done on machine learning applications in healthcare?”, as shown in \ref{fig:sample_query_output} the system retrieved abstracts/summary and key sections.  Notably, setting $K=50$ produced a good balance of focused context and cross-thesis coverage.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/virgo_sample_query.jpg}
+    \caption{Screenshot of Query and Retrieved Output}
+    \label{fig:sample_query_output}
+\end{figure}
+
+\ref{fig:sample_query_output} shows a sample user query about existing research on machine learning applications in healthcare and the retrieved thesis key sections and summary. The system effectively find one thesis related to the query, which demonstrates its capability to locate relevant chunk content from the FAISS vector database.
+
+Moreover, the output also includes the created citations that shows the author's last name and the year of publication in the CSPC. Notably, this retrieved data are all chunks that was get from the top-K retrieval process.
 
 \subsection{Augmented Input and Generation}
-Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers. This supported grounded, traceable answers and reduced hallucination risk. Prompt templates guided the model to answer strictly from provided context, with safeguards (token monitoring, truncation) to maintain input quality.
+Retrieved chunks were concatenated with the user query into a structured context with lightweight citation markers and including the url of the source document. This supported grounded, traceable answers and reduced hallucination risk. Prompt templates guided the model to answer strictly from provided context, with guardrail to maintain input quality.
 
 \subsection{Response Generation with Gemini 2.5-flash}
 
