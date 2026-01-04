@@ -4,8 +4,8 @@
 \begin{theappendices}
 
 \chapter{Relevant Source Code}
-\lstinputlisting[language=Python, caption={Ingest Script Python Source Code}]{code/ingest.txt}
 \lstinputlisting[language=Python, caption={RAG Service Python Source Code}]{code/rag_service.txt}
+\lstinputlisting[language=Python, caption={Ingest Script Python Source Code}]{code/ingest.txt}
 \lstinputlisting[language=Python, caption={Evaluation Script Python Source Code}]{code/evaluation.txt}
 
 
@@ -24,142 +24,167 @@
     \centering
     The pictures shown are from the meeting days when we were developing our system and papers, and defending our work to our panels. The first picture was taken at the Landers, where we held a meeting, and the second is from our Pre-proposal Defense day.
 
+
+
+
 \chapter{User's Guide}
-This section provides a step-by-step guide on how to use the RAG Chatbot system for efficient literature search and thesis retrieval in the CSPC Library.
+\vspace{-3em}
 
-\begin{enumerate}
-    \item \textbf{Sign Up Page} 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/1register.png}
-            % \caption[]{Sign Up Page}
-        \end{figure}
-
-        New users must create an account by accessing the Registration Page and providing the required information. Successful registration grants access to the system.
-        \\
-        \textcolor{red}{\textbf{Note:}} Only CSPC email are accepted
-
-        \begin{enumerate}
-            \item [(A)] \textbf {Full Name -} The user is required to enter their complete legal name for identification purposes.
-            \item [(B)] \textbf {CSPC Email Address -} This field accepts the user's official CSPC email address, which will be used as the primary credential for account authentication and login.
-            \item [(C)] \textbf {Password -} The user must provide a secure password that will be used to access the system.
-            \item [(D)] \textbf {Confirm Password -} This field requires the user to re-enter the password to ensure accuracy and prevent typographical errors.
-            \item [(E)] \textbf {Agree to Terms and Conditions -} The user must review and accept the system's terms and conditions by selecting the corresponding checkbox before proceeding.
-            \item [(F)] \textbf {Continue / Register Button -} After completing all required fields, the user must click the Continue/Register button to complete the registration process and proceed to the login page.
-        \end{enumerate}
-
-    \item \textbf{Log In Page} 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/2login.png}
-            % \caption[]{Log In Page}
-        \end{figure}
-
-        Registered users can access the system through the Log In Page by entering their valid credentials. Only officially registered CSPC email addresses are permitted to log in to the system.
-
-        \begin{enumerate}
-            \item [(A)] \textbf {CSPC Email Address -} This field accepts the user's official CSPC email address, which will be used as the primary credential for account authentication and login.
-            \item [(B)] \textbf {Password -} The user must input the password associated with their CSPC email address to authenticate their account.
-            \item [(C)] \textbf {Login / Continue Button -} Upon entering valid credentials, the user must click the Log In/Continue button to gain access to the chatbot interface.
-        \end{enumerate}
-
-        \textcolor{red}{\textbf{Note:}} Non-CSPC email addresses are automatically rejected by the system to ensure authorized access.
+This section presents a step-by-step user guide for the ADAL chatbot system. Each interface component is labeled alphabetically and explained to guide users in navigating and utilizing the system effectively.
 
 
-    \item \textbf{Chat Prompt Input}
+\vspace{2em}
+\textbf{Step 1: User Registration Interface} \\
+Figure 1. illustrates the account registration page of the ADAL system for new users.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/3welcome.png}
-            % \caption[]{Chat Prompt Input}
-        \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{appendices/user-guide/1register.png}
+\end{figure}
 
-        After logging in, users are redirected to the Chat Interface, where they can enter a query or prompt related to thesis they want.
+\begin{itemize}
+    \item \textbf{A -- Full Name Field}:  
+    The user enters their complete legal name, which is used to identify the account within the system.
 
-        \begin{enumerate}
-            \item [(A)] \textbf {Query Input Field -} The user enters a text-based query or prompt into the input field to specify the thesis topic, keyword, or research inquiry.
-            \item [(B)] \textbf {Submit Query Button -} The user initiates the request by clicking the Submit Query button, represented by a send icon, which transmits the prompt to the system for processing.
-        \end{enumerate}
+    \item \textbf{B -- CSPC Email Field}:  
+    The user provides a valid CSPC institutional email address. This email serves as the primary identifier for the account.
 
-        
-    \item \textbf{Output} 
+    \item \textbf{C -- Password Field}:  
+    The user creates a password with a minimum of eight characters, in accordance with system security requirements.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/4output.png}
-            % \caption[]{Output}
-        \end{figure}
+    \item \textbf{D -- Confirm Password Field}:  
+    The user re-enters the password to ensure accuracy and prevent typographical errors.
 
-        After the query is submitted, the system displays a generated response containing relevant thesis or literature information based on the user’s input. The output is presented in the chat interface for easy review and reference.
+    \item \textbf{E -- Terms and Privacy Policy Checkbox}:  
+    The user must agree to the Terms of Use and Privacy Policy before proceeding with account creation.
 
-        \begin{enumerate}
-            \item [(A)] \textbf {Thesis Title -} Displays the title of the retrieved thesis relevant to the user’s query
-            \item [(B)] \textbf {URL for full view access -} Provides a clickable link that allows the user to view the full thesis document, subject to access permissions.
-        \end{enumerate}
+    \item \textbf{F -- Continue Button}:  
+    After completing all required fields, the user clicks this button to finalize the registration process.
+\end{itemize}
 
-    \item \textbf{Follow up Query for Conversational} 
+\vspace{2em}
+\textbf{Step 2: User Login Interface} \\
+Figure 2. shows the login page of the ADAL system.
 
-        Users can refine their search or ask additional questions based on the initial response by entering follow-up queries in the chat interface. As example is "add also the name of every pdfs" and then the system will give another response with the filenames of the pdfs as requested.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/2login.png}
+\end{figure}
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/5followup.png}
-            % \caption[]{Follow up Query for Conversational}
-        \end{figure}
+\begin{itemize}
+    \item \textbf{A -- CSPC Email Field}:  
+    The user enters the registered CSPC institutional email address.
 
-        \begin{enumerate}
-            \item [(A)] \textbf {Follow-Up Query Input -} The user enters an additional query, such as specifying a filename or narrowing the search, based on the previous response.
-            \item [(B)] \textbf {System Output -} The system generates an updated response that reflects the refined query and displays the corresponding thesis or literature results in the chat interface.
-        \end{enumerate}
+    \item \textbf{B -- Password Field}:  
+    The user inputs the corresponding account password. The entered characters are concealed for security purposes.
 
-    \item \textbf{PDF URL when clicked}
+    \item \textbf{C -- Continue Button}:  
+    The user clicks this button to authenticate and access the chatbot interface.
+\end{itemize}
 
-        The user can click the provided URL link in the output to access the full thesis document. This action opens the document in a new browser tab or window for viewing. This is important so that user can check the whole content not limited to the chatbot response only. This is also where the RAG functionality is highlighted since the system retrieves relevant documents from the database based on the user's query.
-        
+\vspace{2em}
+\textbf{Step 3: Chat Interface and Message Input} \\
+Figure 3. presents the main chatbot interface after successful login.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.90\textwidth]{appendices/user-guide/6pdfurl.png}
-            % \caption[]{PDF URL when clicked}
-        \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/3welcome.png}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{A -- Message Input Field}:  
+    The user types a research-related query or request into this field to initiate interaction with the chatbot.
+
+    \item \textbf{B -- Send Button}:  
+    The user clicks this button to submit the entered query and receive a response from the system.
+\end{itemize}
+
+\vspace{2em}
+\textbf{Step 4: Chatbot Response Output} \\
+Figure 4. displays the chatbot-generated response based on the user’s query.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/4output.png}
+\end{figure}
+\begin{itemize}
+    \item \textbf{A -- Response Content}:  
+    This section presents the chatbot’s generated answer, including relevant academic titles or descriptions.
+
+    \item \textbf{B -- Reference Links}:  
+    Hyperlinks to available academic manuscripts or resources are provided to allow users to access full documents when applicable.
+\end{itemize}
+
+\vspace{2em}
+\textbf{Step 5: Follow-up Queries} \\
+Figure 5. illustrates the interface for submitting additional questions or clarifications. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/5followup.png}
+\end{figure}
+\begin{itemize}
+    \item \textbf{A -- Follow-up Message}:  
+    The user can enter additional questions or clarifications related to the previous response.
+
+    \item \textbf{B -- Filename  Display}: 
+    This area shows the name of the thesis or document being referenced in the follow-up query for context and links to access the full document if available.
+\end{itemize}
+
+
+\vspace{2em}
+\textbf{Step 6: Accessing Full Thesis Document} \\
+Figure 6. shows how users can access the complete thesis document through provided links.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/6pdfurl.png}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Thesis PDF in Google Drive}:  
+    By clicking the provided link, users can open and view the full thesis document hosted on Google Drive.
+
+\end{itemize}
+
+\vspace{2em}
+\textbf{Step 7: Sidebar Navigation} \\
+Figure 7. illustrates the sidebar navigation menu for additional system functionalities.
+\begin{figure}[H]
+    \centering  
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/7sidebar.png}
+\end{figure}
+\begin{itemize}
+    \item \textbf{A -- Home Button}:  
+    Clicking this button returns the user to the main chat interface.
+
+    \item \textbf{B -- New chat Button}:  
+    This button allows users to start a new chat session with the chatbot.
+
+    \item \textbf{C -- Previous chats}:  
+    This allows users to view their previous chat interactions and responses.
+
+    \item \textbf{D -- Hide Button}:  
+    Clicking this button hides the sidebar navigation menu from the interface.
+\end{itemize}
+
+\vspace{1em}
+\textbf{Step 8: Logout} \\
+Figure 8. shows the profile button and logout button when the user chooses to exit the system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{appendices/user-guide/8logout.png}
+\end{figure}
+
+\begin{itemize}
+
+    \item \textbf{A -- Profile Button}:  
+    The user can access their profile settings and account information through this button.
+
+    \item \textbf{B -- Logout Button}:  
+    The user clicks this button to confirm and complete the logout process.
+
+\end{itemize}
 
 
 
-    \item \textbf{Chat History} 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.95\textwidth]{appendices/user-guide/7sidebar.png}
-            % \caption{Chat History}
-        \end{figure}
-
-        You can click "New Chat" to start a new conversation. You can also view your chat history with the chatbot, delete previous conversations as needed, and log out.
-
-        \begin{enumerate}
-            \item [(A)] \textbf {Hamburger menu/ Logo -} The user can click the logo, which also functions as a hamburger menu, to open the sidebar containing the chat history.
-            \item [(B)] \textbf {New Chat -} The “+ New Chat” button allows the user to start a new conversation session.
-            \item [(C)] \textbf {Chat History -}  Displays a list of previous chat sessions, enabling the user to revisit and continue past interactions.
-            \item [(D)] \textbf {Close -} The “×” icon allows the user to close the sidebar and focus solely on the chat interface.
-        \end{enumerate}
-
-    \item \textbf{Logout} 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.95\textwidth]{appendices/user-guide/8logout.png}
-            % \caption{Logout}
-        \end{figure}
-
-        To log out of the system, the user must access the user profile menu and select the logout option.
-
-        \begin{enumerate}
-            \item [(A)] \textbf {Click User Profile -} Click the profile icon to open the account options menu.
-            \item [(B)] \textbf {Choose Logout -} Choose the Logout option to securely exit the system.
-        \end{enumerate}
-
-\end{enumerate}
 
 \chapter{Data Collection Consent Form}
 \vspace{-3em}
@@ -179,45 +204,263 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
 
 
 \chapter{Survey Questionnaire}
+\vspace*{-2em}
+\small
+\textbf{Adal - CSPC Library Chatbot Evaluation Survey}
+
+A survey was conducted using Google Forms to evaluate Adal \url{https://forms.gle/5uaCUChXENQUrxJK6}, an AI-powered research assistant developed for the CSPC Library. Adal was designed to assist students and researchers in locating relevant studies, theses, and scholarly literature. The chatbot utilized machine learning techniques and a Retrieval-Augmented Generation (RAG) framework to generate responses based on available academic sources.
+
+This survey aims to evaluate Adal's accuracy, relevance, and usability in delivering research-related information. Your feedback will help improve the chatbot's performance and ensure it effectively supports academic research needs.
+
+\vspace*{2em}
+\textbf{Adal Chatbot Use Instructions}
+\begin{enumerate}
+    \item Please use the chatbot through this link: \url{https://adall.azurewebsites.net/login}
+    \item Click the link above to open the chatbot.
+    \item Enter each of the provided prompts one by one and review the chatbot's responses.
+    \item Evaluate whether the responses are accurate, relevant, and aligned with the answers you expect.
+    \item After testing all prompts, proceed to the survey questionnaire section to rate the chatbot's performance on a scale of 5 to 1.
+\end{enumerate}
+
+% \textbf{Data Privacy Notice and Consent}
+
+% By proceeding with this survey, you are providing your consent to the collection and processing of your personal data for the purposes of this study, in accordance with the Data Privacy Act of 2012 (Republic Act No. 10173). The data collected will be used solely for this survey and treated with the utmost confidentiality. All responses will be anonymized and used for statistical analysis only; individual identities will not be disclosed in any published reports. Your participation is entirely voluntary, and you may withdraw at any time without penalty.
+
+\textbf{Sample Prompts}
+\begin{itemize}
+    \item What studies are available on machine learning?
+    \item I am looking for topic about Digital Initiatives in Academic Libraries
+    \item What research is available about artificial intelligence?
+    \item I am looking for topic about Social Media Marketing for coffee shops
+    \item I am looking for the topic about Digital Initiatives for Library
+\end{itemize}
+
+
+\textbf{10 Items Survey Questionnaires}
+
+Please honestly answer each item.
+
+\begin{enumerate}
+    \item The questions are answered well by the chatbot.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item The answers are relevant to the question.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item Chatbot's responses are clear and understandable.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item The chatbot's responses help answer your questions.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item The chatbot provided enough information.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item The chatbot has a quick response time.
+    \begin{itemize}
+        \item Strongly Disagree
+        \item Disagree
+        \item Neither Agree Nor Disagree
+        \item Agree
+        \item Strongly Agree
+    \end{itemize}
+    
+    \item How satisfied are you with the chatbot's answer?
+    \begin{itemize}
+        \item Very Dissatisfied
+        \item Dissatisfied
+        \item Neutral
+        \item Satisfied
+        \item Very Satisfied
+    \end{itemize}
+    
+    \item How likely are you to use this chatbot again?
+    \begin{itemize}
+        \item Very Unlikely
+        \item Unlikely
+        \item Neutral
+        \item Likely
+        \item Very Likely
+    \end{itemize}
+    
+    \item How easy was it to read and understand the chatbot's output?
+    \begin{itemize}
+        \item Very Difficult
+        \item Difficult
+        \item Neutral
+        \item Easy
+        \item Very Easy
+    \end{itemize}
+    
+    \item How confident are you that the chatbot's answer is accurate?
+    \begin{itemize}
+        \item Not Confident
+        \item Slightly Confident
+        \item Somewhat Confident
+        \item Confident
+        \item Very Confident
+    \end{itemize}
+\end{enumerate}
+
+
+\centering
+\textbf{Thank You!!!}
+
+Your response has been successfully submitted. We sincerely appreciate you contributing your time and perspective to this research.
+
+
+
+\chapter{Survey Response Tally}
+\vspace*{-3em}
+
+\begin{table}[H]
+\centering
+\tiny
+\begin{tabular}{|p{1cm}|p{8cm}|p{3cm}|p{1.5cm}|}
+\hline
+\textbf{No.} & \textbf{Survey Item} & \textbf{Response Category} & \textbf{Frequency} \\
+\hline
+\multirow{4}{*}{\textbf{1}} & \multirow{4}{*}{The questions are answered well by the chatbot.} & Strongly Agree & 43 \\
+& & Agree & 55 \\
+& & Neutral & 3 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{3}{*}{\textbf{2}} & \multirow{3}{*}{The answers are relevant to the question.} & Strongly Agree & 59 \\
+& & Agree & 42 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{3}} & \multirow{4}{*}{The chatbot's responses are clear and understandable.} & Strongly Agree & 43 \\
+& & Agree & 55 \\
+& & Neutral & 3 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{4}} & \multirow{4}{*}{The chatbot's responses help answer your questions.} & Strongly Agree & 57 \\
+& & Agree & 38 \\
+& & Neutral & 6 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{5}{*}{\textbf{5}} & \multirow{5}{*}{The chatbot provided enough information.} & Strongly Agree & 47 \\
+& & Agree & 44 \\
+& & Neutral & 6 \\
+& & Neither Agree nor Disagree & 4 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{6}} & \multirow{4}{*}{The chatbot has a quick response time.} & Strongly Agree & 55 \\
+& & Agree & 37 \\
+& & Neutral & 9 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{7}} & \multirow{4}{*}{How satisfied are you with the chatbot's answers?} & Very Satisfied & 46 \\
+& & Satisfied & 42 \\
+& & Neutral & 13 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{8}} & \multirow{4}{*}{How likely are you to use this chatbot again?} & Very Likely & 46 \\
+& & Likely & 42 \\
+& & Neutral & 13 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{4}{*}{\textbf{9}} & \multirow{4}{*}{How easy was it to read and understand the chatbot's output?} & Very Easy & 62 \\
+& & Easy & 33 \\
+& & Neutral & 6 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\multirow{5}{*}{\textbf{10}} & \multirow{5}{*}{How confident are you that the chatbot's answers are accurate?} & Very Confident & 34 \\
+& & Confident & 43 \\
+& & Somewhat Confident & 21 \\
+& & Neither Agree nor Disagree & 3 \\
+\cline{3-4}
+& & \textbf{Total} & \textbf{101} \\
+\hline
+\end{tabular}
+\end{table}
+
 % \centering
-%     \begin{figure}[H]
+%     \begin{figure}[ht]
 %         \centering
-%         \includegraphics[width=0.70\textwidth]{figures/questions_1.png}
-%     \end{figure}
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[width=0.70\textwidth]{figures/questions_2.jpg}
-%     \end{figure}
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[width=0.70\textwidth]{figures/questions_3.jpg}
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/1.png}
 %     \end{figure}
 %     \begin{figure}[ht]
 %         \centering
-%         \includegraphics[width=0.70\textwidth]{figures/questions_4.jpg}
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/2.png}
 %     \end{figure}
 %     \begin{figure}[ht]
 %         \centering
-%         \includegraphics[width=0.70\textwidth]{figures/questions_5.jpg}
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/3.png}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/4.png}    
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/5.png}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/6.png}    
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/7.png}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/8.png}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/9.png}
+%     \end{figure}
+%     \begin{figure}[ht]
+%         \centering
+%         \includegraphics[width=0.50\textwidth]{appendices/questionresults/10.png}
 %     \end{figure}
 
-
-
-\chapter{Survey Results}
-% \centering
-%     \begin{figure}[ht]
-%         \centering
-%         \includegraphics[width=0.95\textwidth]{figures/respondent1.jpg}
-%     \end{figure}
-%     \begin{figure}[ht]
-%         \centering
-%         \includegraphics[width=0.95\textwidth]{figures/respondent.jpg}
-%     \end{figure}
 
 
 
 \chapter{Non-Disclosure Agreement Form}
-\vspace{-5em}
+\vspace{-3em}
 \centering
     \begin{figure}[H]
         \centering
@@ -247,7 +490,7 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
 
 
 
-\chapter{JOINT AFFIDAVIT OF UNDERTAKING (Plagiarism)}
+\chapter{Joint Affidavit of Undertaking (Plagiarism)}
 %     \begin{figure}[ht]
 %         \centering
 %         \includegraphics[width=0.90\textwidth]{appendices/affidavit.jpg}
@@ -316,31 +559,9 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
     \end{figure}
 
 
-% \appendix
 \chapter{ACM FORMAT}
-% \centering
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[width=0.9\textwidth]{appendices/acm/main1.jpg}
-%     \end{figure}
 
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[width=0.9\textwidth]{appendices/acm/main2.jpg}
-%     \end{figure}
-    
-
-
-% \includepdf[pages=1-]{appendices/main.pdf}
-
-    % \begin{figure}[ht]
-    %     \centering
-    %     \includegraphics[width=0.9\textwidth]{appendices/acm/main_1.jpg}
-    % \end{figure}
-
-% \includegraphics[pages=1, pagecommand={}, scale=0.8]{appendices/main.pdf}
-
-\vspace*{-5em} % Optional: pushes content towards the bottom if desired, adjust as needed
+\vspace*{-5em} 
 \begin{figure}[H]
   \centering
   \includegraphics[page=1, width=1.1\textwidth]{appendices/main.pdf}
@@ -407,6 +628,7 @@ This section provides a step-by-step guide on how to use the RAG Chatbot system 
     \end{figure}
 
 
+\chapter{Certification of Transfer}
 
 \chapter{Language Editing Certification}
 \centering
@@ -416,9 +638,8 @@ This is to certify that the undersigned has reviewed and went through all the pa
 \textbf{"BEYOND LLMS: A RAG CHATBOT FOR EFFICIENT LITERATURE SEARCH AND THESIS RETRIEVAL IN CSPC LIBRARY"} \\
 
 
-of \textbf{Aurellano, Divino Franco R.}, \textbf{Avila, Herald Carl N.}, \textbf{Calingacion, Almira L.}, as against the set of structural rules that govern research writing in accord with the composition of sentences, phrases, and words in the English language. 
+of \textbf{Divino Franco R. Aurellano}, \textbf{Herald Carl N. Avila}, \textbf{Almira L. Calingacion}, as against the set of structural rules that govern research writing in accord with the composition of sentences, phrases, and words in the English language. 
  \newline \newline \newline \\
-
 \noindent \textbf{MA. ALLAINE C. AGNA, LPT} \\
 \textit{Grammarian} \\
 
