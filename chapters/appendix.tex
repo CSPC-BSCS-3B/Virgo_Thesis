@@ -24,55 +24,142 @@
     \centering
     The pictures shown are from the meeting days when we were developing our system and papers, and defending our work to our panels. The first picture was taken at the Landers, where we held a meeting, and the second is from our Pre-proposal Defense day.
 
-
-
-
 \chapter{User's Guide}
-% This section provides a step-by-step guide on how to use the RAG Chatbot system for efficient literature search and thesis retrieval in the CSPC Library.
+This section provides a step-by-step guide on how to use the RAG Chatbot system for efficient literature search and thesis retrieval in the CSPC Library.
 
-% \vspace{3em}
-% \noindent
-% \textbf{1. Sign Up} \\
-% \small If you are a new user, sign up using your CSPC email account. Only CSPC students, faculty, and employees are allowed to register and access the system.
+\begin{enumerate}
+    \item \textbf{Sign Up Page} 
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=.90\textwidth]{figures/guide1.png}
-%     \caption{Sign Up Page}
-% \end{figure}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/1register.png}
+            % \caption[]{Sign Up Page}
+        \end{figure}
 
-% \newpage
-% \vspace{5em}
-% \textbf{2. Log In and Access} \\
-% \small After signing up, log in with your CSPC credentials. Click the "Continue" button to be redirected to the main page.
+        New users must create an account by accessing the Registration Page and providing the required information. Successful registration grants access to the system.
+        \\
+        \textcolor{red}{\textbf{Note:}} Only CSPC email are accepted
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{figures/guide2.png}
-%     \caption{Login and Continue}
-% \end{figure}
+        \begin{enumerate}
+            \item [(A)] \textbf {Full Name -} The user is required to enter their complete legal name for identification purposes.
+            \item [(B)] \textbf {CSPC Email Address -} This field accepts the user's official CSPC email address, which will be used as the primary credential for account authentication and login.
+            \item [(C)] \textbf {Password -} The user must provide a secure password that will be used to access the system.
+            \item [(D)] \textbf {Confirm Password -} This field requires the user to re-enter the password to ensure accuracy and prevent typographical errors.
+            \item [(E)] \textbf {Agree to Terms and Conditions -} The user must review and accept the system's terms and conditions by selecting the corresponding checkbox before proceeding.
+            \item [(F)] \textbf {Continue / Register Button -} After completing all required fields, the user must click the Continue/Register button to complete the registration process and proceed to the login page.
+        \end{enumerate}
 
-% \textbf{3. Start a Conversation} \\
-% \small Once on the main page (ADAL), you can start a conversation by typing your query in the "Ask me anything" chat box and clicking send.
+    \item \textbf{Log In Page} 
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{figures/guide3.png}
-%     \caption{Chat Interface}
-% \end{figure}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/2login.png}
+            % \caption[]{Log In Page}
+        \end{figure}
 
-% \textbf{4. Manage Chats} \\
-% \small You can click "New Chat" to start a new conversation. You can also view your chat history with the chatbot, delete previous conversations as needed, and log out.
+        Registered users can access the system through the Log In Page by entering their valid credentials. Only officially registered CSPC email addresses are permitted to log in to the system.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{figures/guide5.png}
-%     \caption{Chat History and Management}
-% \end{figure}
+        \begin{enumerate}
+            \item [(A)] \textbf {CSPC Email Address -} This field accepts the user's official CSPC email address, which will be used as the primary credential for account authentication and login.
+            \item [(B)] \textbf {Password -} The user must input the password associated with their CSPC email address to authenticate their account.
+            \item [(C)] \textbf {Login / Continue Button -} Upon entering valid credentials, the user must click the Log In/Continue button to gain access to the chatbot interface.
+        \end{enumerate}
 
-
+        \textcolor{red}{\textbf{Note:}} Non-CSPC email addresses are automatically rejected by the system to ensure authorized access.
 
 
+    \item \textbf{Chat Prompt Input}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/3welcome.png}
+            % \caption[]{Chat Prompt Input}
+        \end{figure}
+
+        After logging in, users are redirected to the Chat Interface, where they can enter a query or prompt related to thesis they want.
+
+        \begin{enumerate}
+            \item [(A)] \textbf {Query Input Field -} The user enters a text-based query or prompt into the input field to specify the thesis topic, keyword, or research inquiry.
+            \item [(B)] \textbf {Submit Query Button -} The user initiates the request by clicking the Submit Query button, represented by a send icon, which transmits the prompt to the system for processing.
+        \end{enumerate}
+
+        
+    \item \textbf{Output} 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/4output.png}
+            % \caption[]{Output}
+        \end{figure}
+
+        After the query is submitted, the system displays a generated response containing relevant thesis or literature information based on the user’s input. The output is presented in the chat interface for easy review and reference.
+
+        \begin{enumerate}
+            \item [(A)] \textbf {Thesis Title -} Displays the title of the retrieved thesis relevant to the user’s query
+            \item [(B)] \textbf {URL for full view access -} Provides a clickable link that allows the user to view the full thesis document, subject to access permissions.
+        \end{enumerate}
+
+    \item \textbf{Follow up Query for Conversational} 
+
+        Users can refine their search or ask additional questions based on the initial response by entering follow-up queries in the chat interface. As example is "add also the name of every pdfs" and then the system will give another response with the filenames of the pdfs as requested.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/5followup.png}
+            % \caption[]{Follow up Query for Conversational}
+        \end{figure}
+
+        \begin{enumerate}
+            \item [(A)] \textbf {Follow-Up Query Input -} The user enters an additional query, such as specifying a filename or narrowing the search, based on the previous response.
+            \item [(B)] \textbf {System Output -} The system generates an updated response that reflects the refined query and displays the corresponding thesis or literature results in the chat interface.
+        \end{enumerate}
+
+    \item \textbf{PDF URL when clicked}
+
+        The user can click the provided URL link in the output to access the full thesis document. This action opens the document in a new browser tab or window for viewing. This is important so that user can check the whole content not limited to the chatbot response only. This is also where the RAG functionality is highlighted since the system retrieves relevant documents from the database based on the user's query.
+        
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.90\textwidth]{appendices/user-guide/6pdfurl.png}
+            % \caption[]{PDF URL when clicked}
+        \end{figure}
+
+
+
+    \item \textbf{Chat History} 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.95\textwidth]{appendices/user-guide/7sidebar.png}
+            % \caption{Chat History}
+        \end{figure}
+
+        You can click "New Chat" to start a new conversation. You can also view your chat history with the chatbot, delete previous conversations as needed, and log out.
+
+        \begin{enumerate}
+            \item [(A)] \textbf {Hamburger menu/ Logo -} The user can click the logo, which also functions as a hamburger menu, to open the sidebar containing the chat history.
+            \item [(B)] \textbf {New Chat -} The “+ New Chat” button allows the user to start a new conversation session.
+            \item [(C)] \textbf {Chat History -}  Displays a list of previous chat sessions, enabling the user to revisit and continue past interactions.
+            \item [(D)] \textbf {Close -} The “×” icon allows the user to close the sidebar and focus solely on the chat interface.
+        \end{enumerate}
+
+    \item \textbf{Logout} 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.95\textwidth]{appendices/user-guide/8logout.png}
+            % \caption{Logout}
+        \end{figure}
+
+        To log out of the system, the user must access the user profile menu and select the logout option.
+
+        \begin{enumerate}
+            \item [(A)] \textbf {Click User Profile -} Click the profile icon to open the account options menu.
+            \item [(B)] \textbf {Choose Logout -} Choose the Logout option to securely exit the system.
+        \end{enumerate}
+
+\end{enumerate}
 
 \chapter{Data Collection Consent Form}
 \vspace{-3em}
