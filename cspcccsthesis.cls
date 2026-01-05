@@ -202,7 +202,7 @@
     \begin{center}
     \begin{singlespacing}
     \vspace{10\baselineskip}
-    \titlefontsize\textbf{\\\MakeUppercase{\@title}}\\
+    \titlefontsize\textbf{\\\MakeUppercase{Beyond LLMs: A RAG Chatbot for Efficient Literature Search and Thesis \\Retrieval in CSPC Library}}\\
     \normalsize
     \vspace{10\baselineskip}
     A Thesis Project\\
