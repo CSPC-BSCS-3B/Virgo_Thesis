@@ -10,6 +10,7 @@ Constructive research approach focuses on producing innovative constructions tha
 
 This study adopted a constructive research design to develop a library chatbot using RAG for CSPC. This approach suited the study well as it involves addressing the challenges being faced by researchers in searching and retrieving universities' theses by replacing the current yet traditional database and keyword-based search with a vector database and RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
 
+By adapting a constructive design, the researchers were able to build on existing methodologies while innovating and establishing a new solution that addressed the specific challenges in the current search and thesis retrieval in CSPC. By combining the existing information within the tailored architecture, this study contributed to the demanding research on LLMs and RAG being used in various domains, such as education and research discovery.
 
 \section{Theorems, Algorithms, and Mathematical Models}
 
@@ -26,11 +27,11 @@ The RAG pipeline is a hybrid architecture that combines information retrieval wi
     \label{fig:rag}
 \end{figure}
 
-The chatbot’s RAG pipeline as illustrated in \ref{fig:rag}, consists of the following key stages:
+The RAG pipeline as illustrated in \ref{fig:rag}, consists of the following key stages:
 
 \subsubsection{A. Data Indexing}
 
-The process begins with data loading, where all needed thesis documents are imported to be utilized.  Considering that every thesis documents are large document composing of hundreds of pages, these were splitted into smaller chunks using a token-based method that respects academic structure (Abstract; Chapters 1–5) to preserve context. Each chunk is then converted into a vector using the open-source ‘sentence-transformers/all-MiniLM-L6-v2‘ embedding model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Lastly, the data storing, where vector embeddings and their associated metadata were stored in FAISS for efficient similarity search.
+The process begins with data loading, where all needed thesis documents are imported to be utilized.  Considering that every thesis documents are large document composing of hundreds of pages, these were splitted into smaller chunks using a token-based method that respects academic structure (Abstract; Chapters 1–5). Each chunk is then converted into a vector using the open-source ‘sentence-transformers/all-MiniLM-L6-v2‘ embedding model from Hugging Face, which was chosen for its lightweight architecture and strong semantic representation capabilities. Lastly, the data storing, where vector embeddings and their associated metadata were stored in FAISS for efficient similarity search.
 
 
 \subsubsection{B. Retrieval and Generation}
@@ -55,7 +56,7 @@ This section includes the dataset that was used, as well as the minimum hardware
 
 \subsubsection{Dataset}
 
-This study utilized a dataset containing all available undergraduate thesis PDFs (initially 290+ pdfs) from various CSPC departments, excluding Computer Science and College of Engineering and Architecture due to unavailability. Good to note here that the system was also designed to ingest new theses, by allowing administrators to upload new PDF data.
+This study utilized a dataset containing all available undergraduate thesis (initially 290+ pdfs) from various CSPC departments, excluding Computer Science and College of Engineering and Architecture due to unavailability. Good to note here that the system was also designed to ingest new theses, by allowing admin to upload new PDF data.
 
 \subsubsection{Hardware}
 
