@@ -5,7 +5,7 @@ This chapter discusses the specific steps and logical procedures that were emplo
 
 \section{Research Design}
 
-Constructive research approach focuses on producing innovative constructions that intend to solve real-world problems and contribute to the theory of the discipline in which it is applied \citeauthor{lukka2003cons} \citeyear{lukka2003cons}. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
+Constructive research approach focuses on producing innovative constructions that intend to solve real-world problems and contribute to the theory of the discipline in which it is applied. This methodology is particularly well-suited to fields like information systems and artificial intelligence, where the goal is not only theoretical insight but also the creation of innovative, functional systems \cite{lukka2003cons}.
 
 
 This study adopted a constructive research design to develop a library chatbot using RAG for CSPC. This approach suited the study well as it involves addressing the challenges being faced by researchers in searching and retrieving universities' theses by replacing the current yet traditional database and keyword-based search with a vector database and RAG framework, enabling a conversational and topic-oriented approach. Furthermore, the system was deployed to the cloud, allowing students to access thesis everywhere they are, since current library policies restrict users from taking physical thesis books outside the premises.
@@ -77,7 +77,7 @@ To support the development of the RAG chatbot, the researchers used hardware com
     \end{tabular}
 \end{table}
 
-The researchers considered using a modern multi-core CPU to enable efficient data processing and high inference.  Sufficient memory was also crucial; At least 16 GB of RAM is recommended and is the least to manage large scale ingesting and embeddings. A 1 TB SSD was preferred than the traditional hard drives due to its high read/write speeds, which can significantly help in data importing as well as for the storage capacity. Given the resource-intensive nature of llm embedding computations, a high-performance GPU, like NVIDIA RTX 3090 or better, is crucial for accelerating deep learning inference and vector operations.
+The researchers considered using a modern multi-core CPU to enable efficient data processing and high inference.  Sufficient memory was also crucial; At least 16 GB of RAM is recommended and is the least to manage large-scale ingesting and embeddings. A 1 TB SSD was preferred to use due to its high read/write speeds, which help in the indexing process, and also serves as the data storage for thesis PDF documents. Considering also that LLM embeddings are resource-intensive when used, a powerful GPU like NVIDIA RTX 3090 or a higher version was recommended to speed up deep learning inference and vector operations. 
 
 \subsubsection{Software}
 
@@ -89,7 +89,7 @@ The researchers considered using a modern multi-core CPU to enable efficient dat
         \hline
         \textbf{Component}      & \textbf{Specification}                                                               \\ \hline
         Programming Language    & Python 3.10+                                                                         \\
-        Vector Database         & e.g. FAISS                                                                           \\
+        Vector Database         & FAISS                                                                                \\
         Language Model          & Gemini 2.5-flash                                                                     \\
         Embedding Model         & \begin{tabular}[c]{@{}l@{}}sentence-transformers/\\ all-MiniLM-L6-v2 (HuggingFace)\end{tabular} \\
         Web Framework           & Flask                                                                            \\
@@ -98,25 +98,25 @@ The researchers considered using a modern multi-core CPU to enable efficient dat
     \end{tabular}
 \end{table}
 
-Python serves as the core programming language due to its comprehensive support for ML and NLP, while version was 3.10 or later is used as the latest stable version, but this may vary if there's a new update. FAISS from Facebook was utilized as the vector database for fast similarity search. The Gemini 2.5-flash LLM called from Google Generative AI API serves as the reasoning model for the chatbot, and the sentence-transformers/all-MiniLM-L6-v2 from Hugging Face was used as the embedding model that transformed chunks into vector embeddings. While the Flask framework was used to build the whole system. 
+Python serves as the core programming language due to its strong support for ML and NLP. While version 3.10 or later was used as the latest stable version, this may vary if there's a new update. FAISS from Facebook was utilized as the vector database for its fast vector similarity search and compression. The Gemini 2.5-flash LLM called from Google Generative AI API serves as the reasoning model for the chatbot, and the sentence-transformers/all-MiniLM-L6-v2 from Hugging Face was used as the embedding model that transformed chunks into vector embeddings. While the Flask framework was used to build the whole system for its simplicity.
 
-Various modules was also called to help in document parsing and extraction. One is through PyMuPDF for text extraction from thesis PDF files. NumPy for numerical operations, and the LangChain framework manage the orchestration of LLMs during query interpretation and response generation. 
+Various modules was also called to help in document parsing and extraction. One is through PyMuPDF for text extraction from thesis PDF files. NumPy for numerical operations and help a lot in the evaluation, and the LangChain framework manage the orchestration of LLMs during query interpretation and response generation. 
 
 
 \subsection{Instrument}
 
 In this subsection, the instruments that was used by researchers to analyze and evaluate the performance of the RAG chatbot system.
 
-\textit{RAGAS (Retrieval-Augmented Generation Assessment Suite)}. The RAGAS toolkit was used to automate evaluation of the quality of system outputs using its metrics such as context precision, faithfulness, and answer relevance \cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks.
+\textit{RAGAS (Retrieval-Augmented Generation Assessment Suite)}. RAGAS is a framework for reference-free evaluation of RAG pipelines. This toolkit was used to automate evaluation of the quality of system outputs using its metrics such as context precision, faithfulness, and answer relevance \cite{shinn2023ragas}. Furthermore, a context recall metric was included, as recommended for evaluating retrieved chunks.
 
 \textit{Survey.} Instruments served as data collection tools across different areas and provided an effective way to gather information. They were useful when seeking insights into the attributes, preferences, opinions, or beliefs of a specific group. To meet the study objectives, the researchers conducted a survey among CSPC librarians and students to evaluate the proposed RAG chatbot. Using a user-centered method that measured users’ level of agreement on the chatbot’s quality and performance, the researchers created a questionnaire to assess users’ satisfaction with answers, likelihood to use the chatbot again, ease of reading and understanding the output, and confidence in the information retrieved by the system. There are 100 respondents in the study from the CSPC who served as representatives of the whole population.
 
 
 \subsection{Statistical Test}
 
-The system’s technical performance was evaluated using the RAGAS framework, focusing on context precision, recall, relevance, and faithfulness to measure how well relevant documents were retrieved and responses generated~\cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}.
+The RAG system performance was evaluated using the RAGAS framework, focusing on context precision, recall, relevance, and faithfulness to measure how well relevant documents were retrieved and responses generated \cite{holmes2023chatbot, ameli2024ranking, lin2024satisfaction}. Additionally, to assess not only the technical but also the user-centered performance of the system, a user questionnaire was administered to collect feedback regarding usability, accuracy, and overall satisfaction.
 
-Additionally, to asssess not only the technical but also the user-centered performance of the system, a user questionnaire was administered to collect feedback regarding usability, accuracy, and overall satisfaction, utilizing a 5-point Likert scale to ensure consistent measurement.
+The Likert Scale, introduced by \citeauthor{likert1932technique} \citeyear{likert1932technique}, is a measurement method developed for evaluating individuals' attitudes toward any object. It indicates the degree to which they agree or disagree about the issue. In particular, the 5-point Likert Scale was chosen because it works well in surveys and requires less time and effort to develop \cite{likert1932technique, rukundo}.
 
 \begin{table}[H] %TABLE 3%
     \centering
@@ -140,7 +140,13 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:likert_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Agreement based on the user’s experience to the system’s response quality and performance. The first column showed the scale that the system level of agreement fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Strongly Agree” which means that the user of the RAG Chatbot completely agrees with the described criteria or finds its quality and performance excellent, scale 4 with a range 3.40-4.19 described as “Agree”, the user of the RAG Chatbot agrees with the described criteria but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the  criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Disagree”, the user of the RAG Chatbot disagrees with the criteria description but not as intensely as “Strongly Disagree”, and Scale 1 is described as “Strongly Disagree”, the user of the RAG chatbot completely disagrees with the criteria description or finds the system as low quality and low performance. Another set of questionnaires will be prepared to determine the level of user satisfaction, likelihood of using the application in the future, ease of reading and understanding chatbot output, and confidence in response information regarding the RAG chatbot system. User opinions are expected to provide an understanding of the overall user experience and satisfaction level with the chatbot's performance in thesis retrieval tasks. A Likert scale type of questionnaire will also be used for this purpose, employing the same 5-point scale framework to ensure consistency in measurement and analysis.
+\ref{tab:likert_scale} shows that this study employed a 5-point Likert Scale to determine "User level of Agreement" based on the user’s experience with the system’s response quality and performance. In the table, the first column showed the scale, and the second its range, while the scale that the system level of agreement fell under was shown in the third column, and its corresponding description in the fourth column. The user’s response was computed using a weighted mean, and then it was determined in which range it fell.  
+
+The scale is the numerical value that corresponds to the level of agreement ( Strongly agree, agree, neutral, disagree, strongly disagree). This is important as it allows it to be used in statistical analysis. Scale 5 with a range of 4.20 - 5.00 described as “Strongly Agree”, which means that the users who tested the chatbot completely agreed with the described criteria or considered its quality and performance excellent. Scale 4 with a range 3.40 - 4.19 described as “Agree”, shows that the user who tested the chatbot generally agrees with the described criteria, but not to the strongest extent. The Scale 3 with a range of 2.60 - 3.39 was described as “Neutral”, meaning that the user of who tested the chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction. Scale 2 with a range of 1.80 - 2.59 described as “Disagree”, denoting that the user who tested the chatbot disagrees with the criteria description but not as intensely as “Strongly Disagree”. And lastly,  Scale 1 was described as “Strongly Disagree”, meaning that the user who tested the chatbot completely disagrees with the criteria description or finds the system to be low quality and low performance.  
+
+Another set of questionnaires was prepared to determine the level of user satisfaction, likelihood of using the application in the future, ease of reading and understanding chatbot output, and confidence in response information regarding the RAG chatbot system. User opinions are expected to provide an understanding of the overall user experience and satisfaction level with the chatbot’s performance in thesis retrieval tasks and its accessibility that proposed to solve the problem. A Likert scale-type questionnaire was also used for this purpose, employing the same 5-point scale framework to ensure consistency in measurement and analysis as shown in \ref{tab:satisfaction_scale}.
+
+% Another set of questionnaires will be prepared to determine the level of user satisfaction, likelihood of using the application in the future, ease of reading and understanding chatbot output, and confidence in response information regarding the RAG chatbot system. User opinions are expected to provide an understanding of the overall user experience and satisfaction level with the chatbot's performance in thesis retrieval tasks. A Likert scale type of questionnaire will also be used for this purpose, employing the same 5-point scale framework to ensure consistency in measurement and analysis.
 
 \begin{table}[H] %TABLE User level satisfaction%
     \centering
@@ -236,9 +242,10 @@ Additionally, to asssess not only the technical but also the user-centered perfo
     \end{tabular}
 \end{table}
 
-\ref{tab:confidence_scale} shows that RAG chatbot system will use 5-point Likert Scale to determine users Level of Confidence based on the user’s trust and perceived accuracy of the information retrieved by the system. The first column showed the scale that the system level of confidence fell under which was shown in third column and its corresponding definition in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Confident” which means that the user of the RAG Chatbot is very confident in the information received or finds its accuracy and reliability excellent, scale 4 with a range 3.40-4.19 described as “Confident”, the user of the RAG Chatbot is confident in the information but not to the strongest extent, scale 3 with a range 2.60-3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Uncofident”, the user of the RAG Chatbot lacks confidence in the information retrieved but not as intensely as “Very Unconfident”, and Scale 1 is described as “Very Unconfident”, the user of the RAG chatbot is very unconfident in the chatbot's information or finds the responses unreliable.
+\ref{tab:confidence_scale} shows that RAG chatbot system used a 5-point Likert Scale to determine users Level of Confidence based on the user’s trust and perceived accuracy of the information retrieved by the system. The first column showed the scale that the system level of confidence was classified as, which was shown in third column and its corresponding description in the fourth column. User’s response would be computed using weighted mean and will be determined in which range fell under. Scale 5 with a range of 4.20-5.00 described as “Very Confident” which means that the user of the RAG Chatbot is very confident in the information received or finds its accuracy and reliability excellent, scale 4 with a range 3.40-4.19 described as “Confident”, the user of the RAG Chatbot is confident in the information but not to the strongest extent, scale 3 with a range 2.60 - 3.39 described as “Neutral”, the user of the RAG chatbot is neutral, undecided, or the criteria description doesn’t strongly resonate in either direction, Scale 2 with a range of 1.80-2.59 described as “Unconfident”, the user of the RAG Chatbot lacks confidence in the information retrieved but not as intensely as “Very Unconfident”, and Scale 1 is described as “Very Unconfident”, the user of the RAG chatbot is very unconfident in the chatbot's information or finds the responses unreliable.
 
-In order to analyze the gathered data from the user evaluation questionnaire, the researchers employed the Weighted Mean as the statistical tool. This method was chosen for its effectiveness in summarizing responses on a Likert scale, allowing for a nuanced understanding of user perceptions regarding the chatbot's usability and performance. Also, the level of satisfaction with chatbot answers, likelihood of using the chatbot again, ease of reading and understanding the output, and users’ confidence in the accuracy of the chatbot’s responses will be evaluated. To analyze user questionnaire responses, the researchers used the Weighted Mean to summarize Likert-scale data. It captured perceptions of user satisfaction with answers, likelihood of using again, ease of understanding outputs, and confidence in accuracy. This method enabled consistent comparison across items and respondents, supporting an evidence-based assessment of the chatbot’s overall usability and performance:
+In order to analyze the gathered data from the user evaluation questionnaire, the researchers employed the Weighted Mean as the statistical tool. This method was chosen for its effectiveness in summarizing data responses from the Likert scale, in where it can provide a detailed understanding of user perceptions regarding the chatbot's usability and performance. Also, the level of satisfaction with chatbot answers, likelihood of using the chatbot again in the future, ease of reading and understanding the output, and users’ confidence in the accuracy of the chatbot’s responses was  evaluated using this computation:
+
 
 \begin{equation}
     \centering
@@ -295,11 +302,11 @@ The procedure includes the most important stages in building this project. Each 
 
 
 \section{Evaluation Metrics}
-The researchers evaluated the RAG-based system with RAGAS~\cite{es2024ragas}, focusing on Context Precision, Context Recall, Response Relevance, and Faithfulness. These metrics jointly assess retrieval quality, accuracy, query alignment, and factual grounding, ensuring reliable, useful outputs for users.
+Researchers evaluated the performance of the RAG-Based System using the RAGAS\cite{es2024ragas}, which focusing on context precision, context recall, response relevance, and faithfulness. With these metrics, it will evaluate retrieval accuracy, quality, query similarity, and factual grounding of generated answers, ensuring that system produces reliable and useful outputs for users. 
 
 \subsection{Context Precision}
 
-The Context Precision metric was used to evaluate the retrieval quality of the RAG chatbot within the CSPC Library. It measured the proportion of relevant document chunks among the top $K$ retrieved results, emphasizing the system's ability to present highly relevant content at higher ranks. A higher Context Precision indicated that the system effectively prioritized relevant information for the user.
+Context Precision metric was used to evaluate the retrieval value of the RAG chatbot within the CSPC Library. It measured the amount of relevant document chunks among the top $K$ retrieved results, that emphasizing the system’s ability to present highly relevant content at higher ranks. A higher Context Precision specify that the system effectively prioritized relevant information for the user. 
 
 \begin{equation}
 \centering
@@ -311,9 +318,9 @@ The Context Precision metric was used to evaluate the retrieval quality of the R
 }
 \end{equation}
 
-where $\text{Precision@k}$ is the precision at rank $k$, and $v_k$ is a binary indicator variable such that $v_k = 1$ if the chunk at position $k$ is relevant, and $v_k = 0$ otherwise. Here, $K$ indicates the cutoff for the top results evaluated. The denominator normalizes the metric by accounting for the total number of relevant items within the top $K$ retrieved results. This weighted approach ensures that relevant items retrieved earlier in the ranking contribute more significantly to the final score, making the metric especially meaningful for library retrieval tasks.
+where $\text{Precision@k}$ denotes the precision at rank $k$, and $v_k$ is a binary indicator variable such that $v_k = 1$ if the chunk at position $k$ is relevant, and $v_k = 0$ otherwise. The $K$  indicates the cutoff for the top results evaluated, while the denominator was the one that normalizes the metric by considering the total number of relevant items within the top $K$ retrieved results. This weighted approach helped so that relevant items retrieved earlier in the ranking will contribute more to the final score, making the metric meaningful for library retrieval tasks. 
 
-The precision at each position $k$, denoted as Precision@k, is computed as follows:
+The precision at each position $k$, denoted as Precision@k, was calculated using this equation:
 
 \begin{equation}
 \centering
@@ -325,11 +332,12 @@ The precision at each position $k$, denoted as Precision@k, is computed as follo
 }
 \end{equation}
 
-where $\text{true positives@k}$ is the number of relevant chunks retrieved up to position $k$, and $\text{false positives@k}$ is the number of non-relevant chunks retrieved up to the same position. This component metric quantifies retrieval accuracy at each rank and serves as a foundation for the overall Context Precision@K calculation.
+where $\text{true positives@k}$ is the number of relevant chunks retrieved up to position $k$, while the  $\text{false positives@k}$ was the number of non-relevant chunks that was retrieved up to the same position. This metric calculates retrieval accuracy at each rank and serves as the main basis for the overall Context Precision@K calculation.
 
 \subsection{Context Recall}
 
-Context Recall was used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. It measured the proportion of relevant chunks successfully retrieved by the RAG chatbot within the CSPC Library, ensuring minimal omission of important academic content.
+Context Recall was used to evaluate the comprehensiveness of the retrieval system in capturing all relevant information necessary to answer a query. In this study, It measured the amount of relevant chunks successfully retrieved by the RAG system within its knowledge base. 
+% For this, a higher recall is bad as it indicates that fewer relevant chunks were left out. So in essence, recall is about not missing important chunks. 
 
 \begin{equation}
 \centering
@@ -339,16 +347,16 @@ Context Recall was used to evaluate the comprehensiveness of the retrieval syste
 where:
 
 \begin{itemize}
-    \item \textit{Number of relevant claims supported by retrieved chunks} refers to the count of factual claims in the ground truth answer that can be attributed to the retrieved document chunks,
+    \item \textit{Number of relevant claims supported by retrieved chunks} refers to the count of factual claims in the ground truth answer that can be attributed to the retrieved chunks. 
     \item \textit{Total number of relevant claims in the reference answer} represents all the factual claims present in the ground truth answer that ideally should be covered by the retrieval process.
 \end{itemize}
 
-This metric captures how effectively the system covers the necessary knowledge, with a value ranging between 0 and 1, where 1 indicates perfect recall. It ensures that critical academic information is not missed during retrieval, making it an essential part of evaluating the RAG chatbot system.
+This metric show how effectively the system provides the necessary knowledge, with a value ranging between 0 and 1, where 1 specify the perfect recall. It ensures that important academic information is not missed during retrieval, making it an essential part of evaluating the RAG system.
 
 
 \subsection{Response Relevance}
 
-Response Relevance was a critical metric used to evaluate how well the RAG chatbot's generated answer addressed the specific query posed by users in the CSPC Library. This metric ensured that the chatbot provided focused, comprehensive, and directly applicable responses to academic inquiries, minimizing irrelevant or incomplete information that could hinder research efficiency.
+The response relevance was a crucial metric that was used to evaluate how relevant was the response RAG system in answering  the specific query asked by the user. This metric works by penalizing responses that are either incomplete or contains unnecessary detail. 
 
 \begin{equation}
 \centering
@@ -358,16 +366,16 @@ Response Relevance was a critical metric used to evaluate how well the RAG chatb
 where:
 \begin{itemize}
     \item $N$ is the number of artificially generated questions based on the response (typically 3),
-    \item $E_{g_i}$ is the embedding of the $i$-th generated question derived from the response,
-    \item $E_o$ is the embedding of the original user query,
+    \item $E_{g_i}$ is the embedding of the $i$-th generated question obtain from the response,
+    \item $E_o$ is the embedding of the user query,
     \item $\cos(E_{g_i}, E_o)$ represents the cosine similarity between the generated question embedding and the original query embedding.
 \end{itemize}
 
-This metric worked on the idea that if the chatbot's response sufficiently answered the original query, then questions generated from that response would semantically align with the original question. This involved generating multiple artificial questions, embedding both the response-generated questions and the original query into vector representations, and calculating the mean cosine similarity to measure alignment, which ensured that the retrieved academic information closely matched the research needs of CSPC Library users.
+This metric was based on the idea that if the chatbot’s response correctly answered the original query, then questions generated from that response would semantically similar with the original question. This involved generating multiple artificial questions, and also embedding both the response-generated questions and the original query into vector embeddings. The mean cosine similarity was then calculated to measure the alignment, so that the retrieved academic information will closely match the research needs of the users.
 
 \subsection{Faithfulness}
 
-Faithfulness is a critical metric for evaluating the factual consistency of the RAG chatbot's generated responses with respect to the retrieved context from the CSPC Library. This metric ensures that all claims made in the chatbot's answer are directly supported by the information present in the retrieved documents, thereby minimizing hallucinations and maintaining academic integrity.
+The Faithfulness is a critical metric for evaluating the consistency of the RAG chatbot’s that generates responses with the retrieved context from the CSPC Library. This metric will help so that all claims made in the chatbot’s answer are directly supported by the information present in the retrieved documents, thereby reducing hallucinations and maintaining academic integrity.
 
 \begin{equation}
 \centering
@@ -376,12 +384,11 @@ Faithfulness is a critical metric for evaluating the factual consistency of the 
 
 where:
 \begin{itemize}
-\item \textit{Number of claims in the response supported by retrieved context} refers to the count of factual statements in the generated answer that can be directly verified or inferred from the retrieved context chunks,
-\item \textit{Total number of claims in the response} is the complete count of all factual statements made in the answer, regardless of whether they are supported by the context.
+\item \textit{Number of claims in the response supported by retrieved context} refers to the count of factual statements in the generated answer that can be directly verified or inferred from the retrieved context chunks.
+\item \textit{Total number of claims in the response} is the complete count of all factual statements made in the answer, even so whether they are supported by the context. A faithfulness score of 1.0 shows that all claims in the response are grounded in the retrieved context, while lower scores reveal the presence of unsupported or hallucinated.
 \end{itemize}
 
-A faithfulness score of $1.0$ indicates that all claims in the response are grounded in the retrieved context, while lower scores reveal the presence of unsupported or hallucinated information. In the context of academic literature search and thesis retrieval, maintaining high faithfulness is essential to ensure that the chatbot's answers are trustworthy and factually accurate, directly reflecting the content of the CSPC Library's resources.
-
+A faithfulness score of $1.0$ indicates that all claims in the response are grounded in the retrieved context, while a lower score means that hallucination has occurred. In this study, a high faithfulness result is crucial so that the RAG system's generated answers are factually correct and grounded in the thesis chunks.
 
 \section{Conceptual Framework}
 
