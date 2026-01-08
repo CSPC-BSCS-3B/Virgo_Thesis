@@ -56,7 +56,7 @@ The semantic search and thesis retrieval system addresses second specific object
 \subsection{Query Encoding and Retrieval}
 Queries were encoded with the same model as used for indexing for consistency. The retriever powered by FAISS returned the top-$K$ chunks to balance precision and recall.
 
-For example, when users asked, “What research has been done on machine learning applications in healthcare?”, as shown in \ref{fig:sample_query_output} the system retrieved abstracts/summary and key sections.  Notably, setting $K=50$ produced a good balance of focused context and cross-thesis coverage.
+For example, when users asked, “What research has been done on machine learning applications in healthcare?”, as shown in \ref{fig:sample_query_output} the system retrieved key sections from theses.  Notably, setting $K=50$ produced a good context and cross-thesis coverage.
 
 \begin{figure}[h]
     \centering
@@ -65,9 +65,11 @@ For example, when users asked, “What research has been done on machine learnin
     \label{fig:sample_query_output}
 \end{figure}
 
-\ref{fig:sample_query_output} shows a sample user query about existing research on machine learning applications in healthcare and the retrieved thesis key sections and summary. The system effectively find one thesis related to the query, which demonstrates its capability to locate relevant chunk content from the FAISS vector database.
+\ref{fig:sample_query_output} shows a sample user query about existing research on machine learning applications in healthcare and the retrieved thesis key sections and summary. 
 
-Moreover, the output also includes the created citations that shows the author's last name and the year of publication in the CSPC. Notably, this retrieved data are all chunks that was get from the top-K retrieval process.
+The system effectively find one thesis related to the query, which demonstrates its capability to locate relevant chunk content from the FAISS vector database. 
+
+Moreover, the output also includes the created citations that shows the author's last name and the year of publication in the CSPC. Notably, this retrieved data are all chunks that got from the top-K retrieval process.
 
 \subsection{Augmented Input Generation}
 Retrieved chunks were then combined with the user query in a structured context incorporating lightweight citation markers and the URL of the source document. This construction allowed for grounded and traceable responses while minimizing the chance of the hallucinations. Prompt templates guided the model to respond only based on the provided context. As \ref{fig:sample_query_output} shows, safety measures were in place to maintain input quality.
@@ -79,7 +81,11 @@ Retrieved chunks were then combined with the user query in a structured context 
     \label{fig:sample_bomb_query}
 \end{figure}
 
-\ref{fig:sample_bomb_query} illustrated the capability of the RAG chatbot into responding responsibly to sensitive question user asks. In the case of a query is detected as violating the content guidelines, it automatically triggers guardrails protocols of the system that hinder generating responses that are harmful or inappropriate. Instead, the chatbot sends out a warning, observing ethical standards in ensuring user safety. This demonstrates the capability of the implemented guardrails put in place during the integration of AI in this academic environment. By prioritizing transparency and compliance, the system fosters trust and maintains the integrity of information retrieval processes.
+\ref{fig:sample_bomb_query} illustrated the capability of the RAG chatbot into responding responsibly to sensitive question user asks. 
+
+In the case of a query is detected as violating the content guidelines, it automatically triggers guardrails protocols of the system that hinder generating responses that are harmful or inappropriate. Instead, the chatbot sends out a warning, observing ethical standards in ensuring user safety. 
+
+This demonstrates the capability of the implemented guardrails put in place during the integration of AI in this academic environment. By prioritizing transparency and compliance, the system fosters trust and maintains the integrity of information retrieval processes.
 
 \subsection{Response Generation with Gemini 2.5-flash }
 
