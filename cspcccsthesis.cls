@@ -319,7 +319,7 @@ In partial fulfillment of the requirements for the degree of \@degree, this rese
     \vspace{\baselineskip}
     \textbf{\underline{\MakeUppercase{\@dean}}}\\
     OIC Dean, \@school \\
-    Date: December 9, 2025
+    Date: \underline{\hspace{5cm}}
     
 \end{center}
 }
