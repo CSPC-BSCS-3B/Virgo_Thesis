@@ -261,34 +261,34 @@
 \textbf{\MakeUppercase{\\Approval Page}}\\
 \end{center}
 
-% \centering
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[width=1\textwidth]{appendices/approvalp.jpg}
-%     \end{figure}
+\centering
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{appendices/sc_5_approvalp.jpg}
+    \end{figure}
 
-In partial fulfillment of the requirements for the degree of \@degree, this research entitled \textbf{\MakeUppercase{\@title}} prepared and submitted by \textbf{\@authorOne}, \textbf{\@authorTwo}, \textbf{\@authorThree} has been examined and is recommended for approval and acceptance.\\
+% In partial fulfillment of the requirements for the degree of \@degree, this research entitled \textbf{\MakeUppercase{\@title}} prepared and submitted by \textbf{\@authorOne}, \textbf{\@authorTwo}, \textbf{\@authorThree} has been examined and is recommended for approval and acceptance.\\
 
-    \center{\textbf{\underline{\MakeUppercase{\@adviser}}}\\Adviser}\\
-    \vspace{\baselineskip}
-    % \hline \\ 
-    \vspace{\baselineskip}
+%     \center{\textbf{\underline{\MakeUppercase{\@adviser}}}\\Adviser}\\
+%     \vspace{\baselineskip}
+%     % \hline \\ 
+%     \vspace{\baselineskip}
     
-    \indent This research project entitled, \textbf{\MakeUppercase{\@title}} in partial fulfillment of the requirements for the degree of \@degree\ has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
+%     \indent This research project entitled, \textbf{\MakeUppercase{\@title}} in partial fulfillment of the requirements for the degree of \@degree\ has been examined and is recommended for acceptance and approval for ORAL EXAMINATION.
     
-    \vspace{\baselineskip}
+%     \vspace{\baselineskip}
     
-    \center{\textbf{\MakeUppercase{RESEARCH COMMITTEE:}}} \\
-    \vspace{\baselineskip}
-    \begin{multicols}{2}
-    \textbf{\underline{\MakeUppercase{\@committeeMemberOne}}}\\
-    Member\\
-    \columnbreak
-    \textbf{\underline{\MakeUppercase{\@committeeMemberTwo}}}\\
-    Member\\
-    \end{multicols}
-    \textbf{\underline{\MakeUppercase{\@committeeChair}}}\\
-    Chairman
+%     \center{\textbf{\MakeUppercase{RESEARCH COMMITTEE:}}} \\
+%     \vspace{\baselineskip}
+%     \begin{multicols}{2}
+%     \textbf{\underline{\MakeUppercase{\@committeeMemberOne}}}\\
+%     Member\\
+%     \columnbreak
+%     \textbf{\underline{\MakeUppercase{\@committeeMemberTwo}}}\\
+%     Member\\
+%     \end{multicols}
+%     \textbf{\underline{\MakeUppercase{\@committeeChair}}}\\
+%     Chairman
 }
 
 % ------------------ Panel Of Examiners ------------------
